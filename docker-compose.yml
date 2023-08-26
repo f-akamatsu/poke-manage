@@ -35,7 +35,7 @@ services:
     ports:
       - 3306:3306
     environment:
-      MYSQL_DATABASE: poke-manage
+      MYSQL_DATABASE: poke_manage
       MYSQL_USER: user
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: root
