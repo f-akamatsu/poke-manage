@@ -10,10 +10,4 @@ export class Pokemon {
 
   @Field()
   pokedex_no: number;
-
-  @Field()
-  createdAt: Date;
-
-  @Field()
-  updatedAt: Date;
 }

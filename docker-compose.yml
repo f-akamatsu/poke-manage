@@ -11,7 +11,9 @@ services:
     volumes:
       - ./backend:/usr/src/api
       - backend_node_modules:/usr/src/api/node_modules
-    command: sh -c "npm run start:dev"
+    networks:
+      - app-net
+#    command: sh -c "npm run start:dev"
     tty: true
     stdin_open: true
   
@@ -42,8 +44,14 @@ services:
     volumes:
       - ./mysql/config/my.cnf:/etc/mysql/conf.d/my.cnf
       - mysql_data_volume:/var/lib/mysql
+    networks:
+      - app-net
 
 volumes:
   backend_node_modules:
   frontend_node_modules:
   mysql_data_volume:
+
+networks:
+  app-net:
+    driver: bridge
