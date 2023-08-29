@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Pokemon } from './models/pokemon.models';
 import { PrismaService } from 'src/prisma.service';
 

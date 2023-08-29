@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Pokemon {
-  id         String @id
+  id         String @id @default(uuid())
   name       String
   pokedex_no Int
 }
