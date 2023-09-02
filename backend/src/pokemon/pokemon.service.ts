@@ -1,16 +1,19 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { Pokemon } from './models/pokemon.models';
-import { PrismaService } from 'src/prisma.service';
+import { IPokemonRepository } from './models/pokemon.repository.interface';
 
 @Injectable()
 export class PokemonService {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(
+    @Inject("REPOSITORY")
+    private readonly pokemonRepository: IPokemonRepository
+  ) {}
 
-  findAll(): Promise<Pokemon[]> {
-    return this.prismaService.pokemon.findMany();
+  async findAll(): Promise<Pokemon[]> {
+    return this.pokemonRepository.findAll();
   }
 
-  findOneById(id: number): Promise<Pokemon> {
-    return this.prismaService.pokemon.findUnique({where: { id }});
+  async findOneById(id: number): Promise<Pokemon> {
+    return await this.pokemonRepository.findOne(id);
   }
 }

@@ -2,6 +2,13 @@ import { Field, Int, ObjectType } from "@nestjs/graphql";
 
 @ObjectType()
 export class Pokemon {
+
+  constructor(id: number, name: string, pokedexNo: number) {
+    this.id = id;
+    this.name = name;
+    this.pokedexNo = pokedexNo;
+  }
+
   @Field(() => Int)
   id: number;
 
@@ -9,5 +16,5 @@ export class Pokemon {
   name: string;
 
   @Field(() => Int)
-  pokedex_no: number;
+  pokedexNo: number;
 }

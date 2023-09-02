@@ -5,7 +5,7 @@
 type Pokemon {
   id: Int!
   name: String!
-  pokedex_no: Int!
+  pokedexNo: Int!
 }
 
 type Query {
