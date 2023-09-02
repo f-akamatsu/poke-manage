@@ -10,7 +10,7 @@ export class PokemonService {
     return this.prismaService.pokemon.findMany();
   }
 
-  findOneById(id: string): Promise<Pokemon> {
+  findOneById(id: number): Promise<Pokemon> {
     return this.prismaService.pokemon.findUnique({where: { id }});
   }
 }

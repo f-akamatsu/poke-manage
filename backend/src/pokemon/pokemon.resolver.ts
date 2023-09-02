@@ -12,7 +12,7 @@ export class PokemonResolver {
   }
 
   @Query(() => Pokemon)
-  findOneById(@Args('id', { type: () => ID }) id: string) {
+  findOneById(@Args('id', { type: () => ID }) id: number) {
     return this.pokemonService.findOneById(id);
   }
 }
