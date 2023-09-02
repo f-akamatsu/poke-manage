@@ -3,12 +3,12 @@
 # ------------------------------------------------------
 
 type Pokemon {
-  id: ID!
+  id: Int!
   name: String!
-  pokedex_no: Float!
+  pokedex_no: Int!
 }
 
 type Query {
-  findAll: [Pokemon]!
-  findOneById(id: ID!): Pokemon!
+  pokemonAll: [Pokemon!]!
+  pokemon(id: Int!): Pokemon!
 }
