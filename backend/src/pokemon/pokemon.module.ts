@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { PokemonService } from './pokemon.service';
-import { PokemonResolver } from './pokemon.resolver';
-import { PokemonRepositoryMySQL } from './infra/pokemon.repository.mysql';
+import { PokemonUseCase } from './useCase/pokemon.useCase';
+import { PokemonResolver } from './presenter/pokemon.resolver';
+import { PokemonRepositoryMySQL } from './infrastructure/pokemon.repository.mysql';
 import { PrismaService } from 'src/prisma.service';
 
 @Module({
   providers: [
-    PokemonService, 
+    PokemonUseCase, 
     PokemonResolver,
     { provide: "REPOSITORY", useClass: PokemonRepositoryMySQL },
     PrismaService

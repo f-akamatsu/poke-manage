@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
-import { Pokemon } from "../models/pokemon.models";
-import { IPokemonRepository } from "../models/pokemon.repository.interface";
+import { IPokemonRepository } from "../domain/repository/pokemon.repository.interface";
 import { PrismaService } from "src/prisma.service";
+import { Pokemon } from "../domain/entity/pokemon.entity";
 
 @Injectable()
 export class PokemonRepositoryMySQL implements IPokemonRepository {
@@ -13,7 +13,7 @@ export class PokemonRepositoryMySQL implements IPokemonRepository {
 
     const pokemonList = [];
     for (const data of dataList) {
-      const pokemon = new Pokemon(data.id, data.name, data.pokedex_no);
+      const pokemon = Pokemon.create(data.id, data.name, data.pokedex_no);
       pokemonList.push(pokemon);
     }
 
@@ -23,7 +23,7 @@ export class PokemonRepositoryMySQL implements IPokemonRepository {
   async findOne(id: string): Promise<Pokemon> {
     const data = await this.prismaService.pokemon.findUnique({where: {id}});
 
-    return new Pokemon(data.id, data.name, data.pokedex_no);
+    return Pokemon.create(data.id, data.name, data.pokedex_no);
   }
   
 }

@@ -21,4 +21,14 @@ export class Pokemon {
     );
   }
   
+  /**
+   * 連想配列に変換
+   */
+  public toArray() {
+    return {
+      id: this._id.toString(),
+      name: this._name.toString(),
+      pokedexNo: this._pokedexNo.toNumber()
+    };
+  }
 }
