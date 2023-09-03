@@ -13,7 +13,7 @@ export class PokemonService {
     return this.pokemonRepository.findAll();
   }
 
-  async findOneById(id: number): Promise<Pokemon> {
+  async findOneById(id: string): Promise<Pokemon> {
     return await this.pokemonRepository.findOne(id);
   }
 }

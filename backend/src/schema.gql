@@ -3,12 +3,12 @@
 # ------------------------------------------------------
 
 type Pokemon {
-  id: Int!
+  id: ID!
   name: String!
   pokedexNo: Int!
 }
 
 type Query {
   pokemonAll: [Pokemon!]!
-  pokemon(id: Int!): Pokemon!
+  pokemon(id: ID!): Pokemon!
 }

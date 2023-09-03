@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE `Pokemon` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `id` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
     `pokedex_no` INTEGER NOT NULL,
 

@@ -1,12 +1,13 @@
 import { Pokemon, PrismaClient } from '@prisma/client';
+import { v4 } from 'uuid';
 
 const prisma = new PrismaClient();
 
 const pokemonData: Pokemon[] = [
-  { id: 1, name: 'フシギダネ', pokedex_no: 1  },
-  { id: 2, name: 'ヒトカゲ',   pokedex_no: 4  },
-  { id: 3, name: 'ゼニガメ',   pokedex_no: 7  },
-  { id: 4, name: 'ピカチュウ', pokedex_no: 25 },
+  { id: v4(), name: 'フシギダネ', pokedex_no: 1  },
+  { id: v4(), name: 'ヒトカゲ',   pokedex_no: 4  },
+  { id: v4(), name: 'ゼニガメ',   pokedex_no: 7  },
+  { id: v4(), name: 'ピカチュウ', pokedex_no: 25 },
 ];
 
 const doSeed = async () => {

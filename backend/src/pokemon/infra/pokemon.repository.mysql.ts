@@ -19,7 +19,7 @@ export class PokemonRepositoryMySQL implements IPokemonRepository {
     return pokemonList;
   }
 
-  async findOne(id: number): Promise<Pokemon> {
+  async findOne(id: string): Promise<Pokemon> {
     const data = await this.prismaService.pokemon.findUnique({where: {id}});
 
     return new Pokemon(data.id, data.name, data.pokedex_no);

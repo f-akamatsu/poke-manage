@@ -1,4 +1,4 @@
-import { Args, Int, Query, Resolver } from '@nestjs/graphql';
+import { Args, ID, Int, Query, Resolver } from '@nestjs/graphql';
 import { PokemonService } from './pokemon.service';
 import { Pokemon } from './models/pokemon.models';
 
@@ -12,7 +12,7 @@ export class PokemonResolver {
   }
 
   @Query(() => Pokemon, { name: 'pokemon' })
-  findOneById(@Args('id', { type: () => Int }) id: number) {
+  findOneById(@Args('id', { type: () => ID }) id: string) {
     return this.pokemonService.findOneById(id);
   }
 }

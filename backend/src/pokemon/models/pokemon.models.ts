@@ -1,20 +1,20 @@
-import { Field, Int, ObjectType } from "@nestjs/graphql";
+import { Field, ID, Int, ObjectType } from "@nestjs/graphql";
 
 @ObjectType()
 export class Pokemon {
 
-  constructor(id: number, name: string, pokedexNo: number) {
+  constructor(id: string, name: string, pokedexNo: number) {
     this.id = id;
     this.name = name;
     this.pokedexNo = pokedexNo;
   }
 
-  @Field(() => Int)
-  id: number;
+  @Field(() => ID)
+  private id: string;
 
   @Field()
-  name: string;
+  private name: string;
 
   @Field(() => Int)
-  pokedexNo: number;
+  private pokedexNo: number;
 }
