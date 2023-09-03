@@ -5,7 +5,8 @@ import { PrismaService } from "src/prisma.service";
 
 @Injectable()
 export class PokemonRepositoryMySQL implements IPokemonRepository {
-  constructor( private readonly prismaService: PrismaService ) {}
+  
+  constructor(private readonly prismaService: PrismaService) {}
   
   async findAll(): Promise<Pokemon[]> {
     const dataList = await this.prismaService.pokemon.findMany();
