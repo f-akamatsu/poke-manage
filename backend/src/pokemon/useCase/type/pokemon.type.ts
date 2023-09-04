@@ -6,3 +6,8 @@ export type PokemonType = {
   name: string;
   pokedexNo: number;
 };
+
+export type CreatePokemonType = {
+  name: string;
+  pokedexNo: number;
+}

@@ -8,6 +8,9 @@ export class PokemonRepositoryMySQL implements IPokemonRepository {
   
   constructor(private readonly prismaService: PrismaService) {}
   
+  /**
+   * 
+   */
   async findAll(): Promise<Pokemon[]> {
     const dataList = await this.prismaService.pokemon.findMany();
 
@@ -20,10 +23,37 @@ export class PokemonRepositoryMySQL implements IPokemonRepository {
     return pokemonList;
   }
 
+  /**
+   * 
+   */
   async findOne(id: string): Promise<Pokemon> {
     const data = await this.prismaService.pokemon.findUnique({where: {id}});
 
     return Pokemon.create(data.id, data.name, data.pokedex_no);
   }
   
+  /**
+   * 
+   */
+  async save(pokemon: Pokemon): Promise<Pokemon> {
+    const array = pokemon.toArray();
+
+    const data = await this.prismaService.pokemon.upsert({
+      where: {
+        id: array.id,
+      },
+      update: {
+        name: array.name,
+        pokedex_no: array.pokedexNo,
+      },
+      create: {
+        id: array.id,
+        name: array.name,
+        pokedex_no: array.pokedexNo
+      },
+    });
+
+    return Pokemon.create(data.id, data.name, data.pokedex_no);
+  }
+
 }

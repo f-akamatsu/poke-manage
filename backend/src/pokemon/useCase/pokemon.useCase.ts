@@ -1,6 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { IPokemonRepository } from '../domain/repository/pokemon.repository.interface';
-import { PokemonType } from './type/pokemon.type';
+import { CreatePokemonType, PokemonType } from './type/pokemon.type';
+import { Pokemon } from '../domain/entity/pokemon.entity';
+import { UpdatePokemonInput } from '../presenter/dto/updatePokemon.input';
 
 @Injectable()
 export class PokemonUseCase {
@@ -25,5 +27,17 @@ export class PokemonUseCase {
     const pokemon = await this.pokemonRepository.findOne(id);
     return pokemon.toArray();
   }
+
+  async create(createPokemonType: CreatePokemonType): Promise<PokemonType> {
+    const createPokemon = Pokemon.createNew(createPokemonType.name, createPokemonType.pokedexNo);
+    const pokemon = await this.pokemonRepository.save(createPokemon);
+    return pokemon.toArray();
+  }
   
+  // async update(updatePokemonType: PokemonType): Promise<PokemonType> {
+  //   const updatePokemon = Pokemon.create(updatePokemonType.id, updatePokemonType.name, updatePokemonType.pokedexNo);
+  //   const pokemon = await this.pokemonRepository.save(updatePokemon);
+  //   return pokemon.toArray();
+  // }
+
 }

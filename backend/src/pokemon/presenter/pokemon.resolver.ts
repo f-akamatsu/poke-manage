@@ -1,6 +1,8 @@
-import { Args, ID, Query, Resolver } from '@nestjs/graphql';
+import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { PokemonUseCase } from '../useCase/pokemon.useCase';
 import { PokemonGQLModel } from './model/pokemon.model';
+import { CreatePokemonInput } from './dto/createPokemon.input';
+import { UpdatePokemonInput } from './dto/updatePokemon.input';
 
 @Resolver()
 export class PokemonResolver {
@@ -16,4 +18,15 @@ export class PokemonResolver {
   findOneById(@Args('id', { type: () => ID }) id: string) {
     return this.pokemonService.findOneById(id);
   }
+
+  @Mutation(() => PokemonGQLModel)
+  createPokemon(@Args('createPokemonInput') createPokemonInput: CreatePokemonInput) {
+    return this.pokemonService.create(createPokemonInput);
+  }
+
+  // @Mutation(() => PokemonGQLModel)
+  // updatePokemon(@Args('updatePokemonInput') updatePokemonInput: UpdatePokemonInput) {
+  //   return this.pokemonService.update(updatePokemonInput);
+  // }
+
 }

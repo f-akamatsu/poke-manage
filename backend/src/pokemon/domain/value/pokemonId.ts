@@ -11,7 +11,7 @@ export class PokemonID {
     this._value = value;
   }
 
-  public static create(): PokemonID {
+  public static newId(): PokemonID {
     return new PokemonID(v4());
   }
 

@@ -20,6 +20,14 @@ export class Pokemon {
       new PokedexNo(pokedexNo)
     );
   }
+
+  public static createNew(name: string, pokedexNo: number): Pokemon {
+    return new Pokemon(
+      PokemonID.newId(),
+      new PokemonName(name),
+      new PokedexNo(pokedexNo)
+    );
+  }
   
   /**
    * 連想配列に変換
