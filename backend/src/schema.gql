@@ -15,9 +15,16 @@ type Query {
 
 type Mutation {
   createPokemon(createPokemonInput: CreatePokemonInput!): Pokemon!
+  updatePokemon(updatePokemonInput: UpdatePokemonInput!): Pokemon!
 }
 
 input CreatePokemonInput {
   name: String!
   pokedexNo: Int!
+}
+
+input UpdatePokemonInput {
+  name: String
+  pokedexNo: Int
+  id: ID!
 }

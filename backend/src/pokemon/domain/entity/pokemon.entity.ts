@@ -39,4 +39,13 @@ export class Pokemon {
       pokedexNo: this._pokedexNo.toNumber()
     };
   }
+
+  public setName(name: PokemonName): void {
+    this._name = name;
+  }
+
+  public setPokedexNo(pokedexNo: PokedexNo): void {
+    this._pokedexNo = pokedexNo;
+  }
+  
 }

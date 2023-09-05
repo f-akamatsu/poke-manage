@@ -24,9 +24,9 @@ export class PokemonResolver {
     return this.pokemonService.create(createPokemonInput);
   }
 
-  // @Mutation(() => PokemonGQLModel)
-  // updatePokemon(@Args('updatePokemonInput') updatePokemonInput: UpdatePokemonInput) {
-  //   return this.pokemonService.update(updatePokemonInput);
-  // }
+  @Mutation(() => PokemonGQLModel)
+  updatePokemon(@Args('updatePokemonInput') updatePokemonInput: UpdatePokemonInput) {
+    return this.pokemonService.update(updatePokemonInput);
+  }
 
 }
