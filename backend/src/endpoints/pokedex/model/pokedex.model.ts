@@ -3,13 +3,13 @@ import { Field, ID, Int, ObjectType } from "@nestjs/graphql";
 @ObjectType("Pokedex")
 export class PokedexModel {
 
-  @Field(() => ID)
+  @Field((_type) => ID)
   pokedexId: string;
 
-  @Field()
+  @Field((_type) => String)
   name: string;
 
-  @Field(() => Int)
+  @Field((_type) => Int)
   pokedexNo: number;
 
 }

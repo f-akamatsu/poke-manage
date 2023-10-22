@@ -1,18 +1,18 @@
 /**
- * UseCase ⇔ Presenter やりとり用
+ * service ⇔ endpoint やりとり用
  */
-export type PokemonType = {
+export type PokedexType = {
   pokedexId: string;
   name: string;
   pokedexNo: number;
 };
 
-export type CreatePokemonType = {
+export type CreatePokedexType = {
   name: string;
   pokedexNo: number;
 }
 
-export type UpdatePokemonType = {
+export type UpdatePokedexType = {
   pokedexId: string;
   name?: string;
   pokedexNo?: number;

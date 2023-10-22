@@ -1,15 +1,16 @@
-import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, ID, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { PokedexService } from '../../services/pokedex/pokedex.service';
 import { PokedexModel } from './model/pokedex.model';
 import { CreatePokemonInput, UpdatePokemonInput } from './input/pokedex.input';
+import { PokedexType } from 'src/services/pokedex/type/pokemon.type';
 
-@Resolver()
+@Resolver(() => PokedexModel)
 export class PokedexResolver {
   
   constructor (private pokemonService: PokedexService) {}
 
   @Query(() => [PokedexModel], { name: 'pokemonAll' })
-  findAll() {
+  findAll(): Promise<PokedexType[]> {
     return this.pokemonService.findAll();
   }
 
