@@ -6,7 +6,7 @@ export class PokedexModel {
   @Field((_type) => ID)
   pokedexId: string;
 
-  @Field((_type) => String)
+  @Field()
   name: string;
 
   @Field((_type) => Int)

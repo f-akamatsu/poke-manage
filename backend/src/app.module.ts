@@ -9,7 +9,7 @@ import { PokedexEndpointModule } from './endpoints/pokedex/pokedex.endpoint.modu
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       playground: true,
-      autoSchemaFile: join(process.cwd(), 'src/schema.gql')
+      autoSchemaFile: join(process.cwd(), 'src/endpoints/schema.gql')
     }),
     PokedexEndpointModule,
   ],
