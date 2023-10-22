@@ -2,20 +2,20 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Pokemon {
-  id: ID!
+type Pokedex {
+  pokedexId: ID!
   name: String!
   pokedexNo: Int!
 }
 
 type Query {
-  pokemonAll: [Pokemon!]!
-  pokemon(id: ID!): Pokemon!
+  pokemonAll: [Pokedex!]!
+  pokemon(pokedexId: ID!): Pokedex!
 }
 
 type Mutation {
-  createPokemon(createPokemonInput: CreatePokemonInput!): Pokemon!
-  updatePokemon(updatePokemonInput: UpdatePokemonInput!): Pokemon!
+  createPokemon(createPokemonInput: CreatePokemonInput!): Pokedex!
+  updatePokemon(updatePokemonInput: UpdatePokemonInput!): Pokedex!
 }
 
 input CreatePokemonInput {
@@ -26,5 +26,5 @@ input CreatePokemonInput {
 input UpdatePokemonInput {
   name: String
   pokedexNo: Int
-  id: ID!
+  pokedexId: ID!
 }

@@ -2,7 +2,7 @@
  * UseCase ⇔ Presenter やりとり用
  */
 export type PokemonType = {
-  id: string;
+  pokedexId: string;
   name: string;
   pokedexNo: number;
 };
@@ -13,7 +13,7 @@ export type CreatePokemonType = {
 }
 
 export type UpdatePokemonType = {
-  id: string;
+  pokedexId: string;
   name?: string;
   pokedexNo?: number;
 }

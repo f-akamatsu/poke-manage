@@ -1,10 +1,10 @@
 import { Field, ID, Int, ObjectType } from "@nestjs/graphql";
 
-@ObjectType("Pokemon")
-export class PokemonGQLModel {
+@ObjectType("Pokedex")
+export class PokedexModel {
 
   @Field(() => ID)
-  id: string;
+  pokedexId: string;
 
   @Field()
   name: string;

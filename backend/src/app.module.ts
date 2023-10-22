@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
-import { PokemonModule } from './pokemon/pokemon.module';
+import { PokedexEndpointModule } from './endpoints/pokedex/pokedex.endpoint.module';
 
 @Module({
   imports: [
@@ -11,7 +11,7 @@ import { PokemonModule } from './pokemon/pokemon.module';
       playground: true,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql')
     }),
-    PokemonModule,
+    PokedexEndpointModule,
   ],
 })
 export class AppModule {}

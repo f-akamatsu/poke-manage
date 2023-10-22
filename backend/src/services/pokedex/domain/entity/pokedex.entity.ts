@@ -1,29 +1,29 @@
 import { PokedexNo } from "../value/pokedexNo";
-import { PokemonID } from "../value/pokemonId";
+import { PokedexID } from "../value/pokedexId";
 import { PokemonName } from "../value/pokemonName";
 
 /**
  * ポケモン
  */
-export class Pokemon {
+export class Pokedex {
 
   constructor(
-    private _id: PokemonID,
+    private _pokedexId: PokedexID,
     private _name: PokemonName,
     private _pokedexNo: PokedexNo
   ) {}
 
-  public static create(id: string, name: string, pokedexNo: number): Pokemon {
-    return new Pokemon(
-      new PokemonID(id),
+  public static create(pokedexId: string, name: string, pokedexNo: number): Pokedex {
+    return new Pokedex(
+      new PokedexID(pokedexId),
       new PokemonName(name),
       new PokedexNo(pokedexNo)
     );
   }
 
-  public static createNew(name: string, pokedexNo: number): Pokemon {
-    return new Pokemon(
-      PokemonID.newId(),
+  public static createNew(name: string, pokedexNo: number): Pokedex {
+    return new Pokedex(
+      PokedexID.newId(),
       new PokemonName(name),
       new PokedexNo(pokedexNo)
     );
@@ -34,7 +34,7 @@ export class Pokemon {
    */
   public toArray() {
     return {
-      id: this._id.toString(),
+      pokedexId: this._pokedexId.toString(),
       name: this._name.toString(),
       pokedexNo: this._pokedexNo.toNumber()
     };

@@ -1,9 +1,9 @@
 import { v4 } from 'uuid';
 
 /**
- * ポケモンID
+ * ポケモン図鑑ID
  */
-export class PokemonID {
+export class PokedexID {
 
   private readonly _value: string;
 
@@ -11,11 +11,11 @@ export class PokemonID {
     this._value = value;
   }
 
-  public static newId(): PokemonID {
-    return new PokemonID(v4());
+  public static newId(): PokedexID {
+    return new PokedexID(v4());
   }
 
-  public equals(other: PokemonID): boolean {
+  public equals(other: PokedexID): boolean {
     return this._value === other._value;
   }
 
