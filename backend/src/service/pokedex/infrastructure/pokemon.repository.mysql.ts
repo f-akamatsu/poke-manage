@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { PrismaService } from "src/services/prisma.service";
+import { PrismaService } from "src/service/prisma.service";
 import { IPokedexRepository } from "../pokedex.repository.interface";
 import { Pokedex } from "../domain/entity/pokedex.entity";
 

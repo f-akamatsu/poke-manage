@@ -1,7 +1,7 @@
 import { InputType, Field, ID, PartialType, Int } from '@nestjs/graphql';
 
 @InputType()
-export class CreatePokemonInput {
+export class CreatePokedexInput {
 
   @Field()
   name: string;
@@ -12,7 +12,7 @@ export class CreatePokemonInput {
 }
 
 @InputType()
-export class UpdatePokemonInput extends PartialType(CreatePokemonInput) {
+export class UpdatePokedexInput extends PartialType(CreatePokedexInput) {
 
   @Field(() => ID)
   pokedexId: string;

@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
-import { PokedexEndpointModule } from './endpoints/pokedex/pokedex.endpoint.module';
+import { PokedexEndpointModule } from './endpoint/pokedex/pokedex.endpoint.module';
 
 @Module({
   imports: [

@@ -18,7 +18,6 @@ export class PokedexService {
    */
   async findAll(): Promise<PokedexType[]> {
     const pokedexList = await this.pokedexRepository.findAll();
-    console.log(pokedexList);
     
     const array = [];
     for (const pokedex of pokedexList) {
