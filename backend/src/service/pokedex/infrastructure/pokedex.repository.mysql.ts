@@ -13,11 +13,11 @@ export class PokedexRepositoryMySQL implements IPokedexRepository {
    * 
    */
   async findAll(): Promise<Pokedex[]> {
-    const dataList = await this.prismaService.pokemon.findMany();
+    const dataList = await this.prismaService.pokedex.findMany();
 
     const pokemonList = [];
     for (const data of dataList) {
-      const pokemon = Pokedex.create(data.id, data.name, data.pokedex_no);
+      const pokemon = Pokedex.create(data.pokedex_id, data.name, data.pokedex_no);
       pokemonList.push(pokemon);
     }
 
@@ -27,10 +27,10 @@ export class PokedexRepositoryMySQL implements IPokedexRepository {
   /**
    * 
    */
-  async findOne(id: string): Promise<Pokedex> {
-    const data = await this.prismaService.pokemon.findUnique({where: {id}});
+  async findOne(pokedex_id: string): Promise<Pokedex> {
+    const data = await this.prismaService.pokedex.findUnique({where: {pokedex_id}});
 
-    return Pokedex.create(data.id, data.name, data.pokedex_no);
+    return Pokedex.create(data.pokedex_id, data.name, data.pokedex_no);
   }
   
   /**
@@ -39,22 +39,22 @@ export class PokedexRepositoryMySQL implements IPokedexRepository {
   async save(pokemon: Pokedex): Promise<Pokedex> {
     const array = pokemon.toArray();
 
-    const data = await this.prismaService.pokemon.upsert({
+    const data = await this.prismaService.pokedex.upsert({
       where: {
-        id: array.pokedexId,
+        pokedex_id: array.pokedexId,
       },
       update: {
         name: array.name,
         pokedex_no: array.pokedexNo,
       },
       create: {
-        id: array.pokedexId,
+        pokedex_id: array.pokedexId,
         name: array.name,
         pokedex_no: array.pokedexNo
       },
     });
 
-    return Pokedex.create(data.id, data.name, data.pokedex_no);
+    return Pokedex.create(data.pokedex_id, data.name, data.pokedex_no);
   }
 
 }

@@ -30,8 +30,8 @@ export class PokedexService {
   /**
    * IDでポケモンを取得する
    */
-  async findOneById(id: string): Promise<PokedexType> {
-    const pokedex = await this.pokedexRepository.findOne(id);
+  async findOneById(pokedexId: string): Promise<PokedexType> {
+    const pokedex = await this.pokedexRepository.findOne(pokedexId);
     return pokedex.toArray();
   }
 

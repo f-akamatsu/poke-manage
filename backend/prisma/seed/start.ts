@@ -1,26 +1,26 @@
-import { Pokemon, PrismaClient } from '@prisma/client';
+import { Pokedex, PrismaClient } from '@prisma/client';
 import { v4 } from 'uuid';
 
 const prisma = new PrismaClient();
 
-const pokemonData: Pokemon[] = [
-  { id: v4(), name: 'フシギダネ', pokedex_no: 1  },
-  { id: v4(), name: 'ヒトカゲ',   pokedex_no: 4  },
-  { id: v4(), name: 'ゼニガメ',   pokedex_no: 7  },
-  { id: v4(), name: 'ピカチュウ', pokedex_no: 25 },
+const pokedexData: Pokedex[] = [
+  { pokedex_id: v4(), name: 'フシギダネ', pokedex_no: 1  },
+  { pokedex_id: v4(), name: 'ヒトカゲ',   pokedex_no: 4  },
+  { pokedex_id: v4(), name: 'ゼニガメ',   pokedex_no: 7  },
+  { pokedex_id: v4(), name: 'ピカチュウ', pokedex_no: 25 },
 ];
 
 const doSeed = async () => {
-  await prisma.pokemon.deleteMany();
+  await prisma.pokedex.deleteMany();
   
-  const pokemonList = [];
-  for (const pokemon of pokemonData) {
-    const createPokemon = prisma.pokemon.create({
-      data: pokemon
+  const pokedexList = [];
+  for (const pokedex of pokedexData) {
+    const createPokedex = prisma.pokedex.create({
+      data: pokedex
     });
-    pokemonList.push(createPokemon);
+    pokedexList.push(createPokedex);
   }
-  return await prisma.$transaction(pokemonList);
+  return await prisma.$transaction(pokedexList);
 };
 
 const main = async () => {
