@@ -39,7 +39,7 @@ export class PokedexService {
    * ポケモンを登録する
    */
   async create(createPokedexType: CreatePokedexType): Promise<PokedexType> {
-    const createPokedex = Pokedex.createNew(createPokedexType.name, createPokedexType.pokedexNo);
+    const createPokedex = Pokedex.createNew(createPokedexType.pokemonName, createPokedexType.pokedexNo);
     const pokedex = await this.pokedexRepository.save(createPokedex);
     return pokedex.toArray();
   }
@@ -50,7 +50,7 @@ export class PokedexService {
   async update(updatePokedexType: UpdatePokedexType): Promise<PokedexType> {
     const updatePokedex = await this.pokedexRepository.findOne(updatePokedexType.pokedexId);
 
-    if (updatePokedexType.name) updatePokedex.setName(new PokemonName(updatePokedexType.name));
+    if (updatePokedexType.pokemonName) updatePokedex.setPokemonName(new PokemonName(updatePokedexType.pokemonName));
     if (updatePokedexType.pokedexNo) updatePokedex.setPokedexNo(new PokedexNo(updatePokedexType.pokedexNo));
 
     const pokedex = await this.pokedexRepository.save(updatePokedex);

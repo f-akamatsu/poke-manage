@@ -4,7 +4,7 @@ import { InputType, Field, ID, PartialType, Int } from '@nestjs/graphql';
 export class CreatePokedexInput {
 
   @Field()
-  name: string;
+  pokemonName: string;
 
   @Field(() => Int)
   pokedexNo: number;

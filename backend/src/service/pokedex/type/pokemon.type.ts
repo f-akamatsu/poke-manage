@@ -3,17 +3,17 @@
  */
 export type PokedexType = {
   pokedexId: string;
-  name: string;
+  pokemonName: string;
   pokedexNo: number;
 };
 
 export type CreatePokedexType = {
-  name: string;
+  pokemonName: string;
   pokedexNo: number;
 }
 
 export type UpdatePokedexType = {
   pokedexId: string;
-  name?: string;
+  pokemonName?: string;
   pokedexNo?: number;
 }

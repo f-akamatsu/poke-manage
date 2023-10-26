@@ -19,12 +19,12 @@ type Mutation {
 }
 
 input CreatePokedexInput {
-  name: String!
+  pokemonName: String!
   pokedexNo: Int!
 }
 
 input UpdatePokedexInput {
-  name: String
+  pokemonName: String
   pokedexNo: Int
   pokedexId: ID!
 }

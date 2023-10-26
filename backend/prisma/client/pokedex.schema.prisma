@@ -1,0 +1,18 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../node_modules/@prisma-pokedex-db/client"
+}
+
+datasource pokedexDb {
+  provider = "mysql"
+  url      = env("POKEDEX_DATABASE_URL")
+}
+
+model Pokedex {
+  pokedex_id   String @id @default(cuid())
+  pokemon_name String
+  pokedex_no   Int
+}

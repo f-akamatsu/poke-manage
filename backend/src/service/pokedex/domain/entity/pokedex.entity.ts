@@ -9,22 +9,22 @@ export class Pokedex {
 
   constructor(
     private _pokedexId: PokedexID,
-    private _name: PokemonName,
+    private _pokemonName: PokemonName,
     private _pokedexNo: PokedexNo
   ) {}
 
-  public static create(pokedexId: string, name: string, pokedexNo: number): Pokedex {
+  public static create(pokedexId: string, pokemonName: string, pokedexNo: number): Pokedex {
     return new Pokedex(
       new PokedexID(pokedexId),
-      new PokemonName(name),
+      new PokemonName(pokemonName),
       new PokedexNo(pokedexNo)
     );
   }
 
-  public static createNew(name: string, pokedexNo: number): Pokedex {
+  public static createNew(pokemonName: string, pokedexNo: number): Pokedex {
     return new Pokedex(
       PokedexID.newId(),
-      new PokemonName(name),
+      new PokemonName(pokemonName),
       new PokedexNo(pokedexNo)
     );
   }
@@ -35,13 +35,13 @@ export class Pokedex {
   public toArray() {
     return {
       pokedexId: this._pokedexId.toString(),
-      name: this._name.toString(),
+      pokemonName: this._pokemonName.toString(),
       pokedexNo: this._pokedexNo.toNumber()
     };
   }
 
-  public setName(name: PokemonName): void {
-    this._name = name;
+  public setPokemonName(pokemonName: PokemonName): void {
+    this._pokemonName = pokemonName;
   }
 
   public setPokedexNo(pokedexNo: PokedexNo): void {
