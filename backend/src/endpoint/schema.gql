@@ -4,7 +4,7 @@
 
 type Pokedex {
   pokedexId: ID!
-  name: String!
+  pokemonName: String!
   pokedexNo: Int!
 }
 
