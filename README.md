@@ -1,2 +1,2 @@
 # poke-manage
-ポケモンのドメインを考えて色々勉強するRepository
+ポケモンまわりのドメインを考えて色々勉強するRepository
