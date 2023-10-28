@@ -13,5 +13,5 @@ datasource moveDb {
 
 model Move {
   move_id   String @id @default(cuid())
-  move_name String
+  move_name String @unique
 }

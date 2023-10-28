@@ -13,6 +13,14 @@ datasource pokedexDb {
 
 model Pokedex {
   pokedex_id   String @id @default(cuid())
-  pokemon_name String
+  pokemon_name String @unique
   pokedex_no   Int
+}
+
+model MoveByLevelUp {
+  pokedex_id String
+  move_id    String
+  level      Int
+
+  @@id([pokedex_id, move_id])
 }
