@@ -6,16 +6,22 @@ type Pokedex {
   pokedexId: ID!
   pokemonName: String!
   pokedexNo: Int!
+  moveByLevelUpList: [MoveByLevelUp!]!
+}
+
+type MoveByLevelUp {
+  moveId: ID!
+  level: Int!
 }
 
 type Query {
-  pokedexAll: [Pokedex!]!
-  pokedex(pokedexId: ID!): Pokedex!
+  allPokedex: [Pokedex!]!
+  pokedexById(pokedexId: ID!): Pokedex!
 }
 
 type Mutation {
-  createPokemon(createPokedexInput: CreatePokedexInput!): Pokedex!
-  updatePokemon(updatePokedexInput: UpdatePokedexInput!): Pokedex!
+  createPokedex(createPokedexInput: CreatePokedexInput!): Pokedex!
+  updatePokedex(updatePokedexInput: UpdatePokedexInput!): Pokedex!
 }
 
 input CreatePokedexInput {

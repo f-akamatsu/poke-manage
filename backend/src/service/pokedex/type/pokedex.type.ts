@@ -17,3 +17,9 @@ export type UpdatePokedexType = {
   pokemonName?: string;
   pokedexNo?: number;
 }
+
+export type MoveByLevelUpType = {
+  pokedexId: string;
+  moveId: string;
+  level: number;
+}

@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { IPokedexRepository } from './pokedex.repository.interface';
-import { CreatePokedexType, PokedexType, UpdatePokedexType } from './type/pokemon.type';
+import { CreatePokedexType, MoveByLevelUpType, PokedexType, UpdatePokedexType } from './type/pokedex.type';
 import { Pokedex } from './domain/entity/pokedex.entity';
 import { PokemonName } from './domain/value/pokemonName';
 import { PokedexNo } from './domain/value/pokedexNo';
@@ -14,47 +14,43 @@ export class PokedexService {
   ) {}
 
   /**
-   * ポケモンを全て取得する
+   * ポケモン図鑑情報を全て取得する
    */
-  async findAll(): Promise<PokedexType[]> {
-    const pokedexList = await this.pokedexRepository.findAll();
-    
-    const array = [];
-    for (const pokedex of pokedexList) {
-      array.push(pokedex.toArray());
-    }
-
-    return array;
+  async findAllPokedex(): Promise<PokedexType[]> {
+    return await this.pokedexRepository.findAllPokedex();
   }
 
   /**
-   * IDでポケモンを取得する
+   * IDでポケモン図鑑情報を取得する
    */
-  async findOneById(pokedexId: string): Promise<PokedexType> {
-    const pokedex = await this.pokedexRepository.findOne(pokedexId);
-    return pokedex.toArray();
+  async findPokedexById(pokedexId: string): Promise<PokedexType> {
+    return await this.pokedexRepository.findPokedexById(pokedexId);
   }
 
   /**
-   * ポケモンを登録する
+   * ポケモン図鑑情報を登録する
    */
-  async create(createPokedexType: CreatePokedexType): Promise<PokedexType> {
+  async create(createPokedexType: CreatePokedexType): Promise<void> {
     const createPokedex = Pokedex.createNew(createPokedexType.pokemonName, createPokedexType.pokedexNo);
     const pokedex = await this.pokedexRepository.save(createPokedex);
-    return pokedex.toArray();
   }
   
   /**
-   * ポケモンを更新する
+   * ポケモン図鑑情報を更新する
    */
-  async update(updatePokedexType: UpdatePokedexType): Promise<PokedexType> {
-    const updatePokedex = await this.pokedexRepository.findOne(updatePokedexType.pokedexId);
+  async update(updatePokedexType: UpdatePokedexType): Promise<void> {
+    const pokedexType = await this.pokedexRepository.findPokedexById(updatePokedexType.pokedexId);
 
-    if (updatePokedexType.pokemonName) updatePokedex.setPokemonName(new PokemonName(updatePokedexType.pokemonName));
-    if (updatePokedexType.pokedexNo) updatePokedex.setPokedexNo(new PokedexNo(updatePokedexType.pokedexNo));
+    const pokedex = Pokedex.create(pokedexType.pokedexId, pokedexType.pokemonName, pokedexType.pokedexNo);
 
-    const pokedex = await this.pokedexRepository.save(updatePokedex);
-    return pokedex.toArray();
+    if (updatePokedexType.pokemonName) pokedex.setPokemonName(new PokemonName(updatePokedexType.pokemonName));
+    if (updatePokedexType.pokedexNo) pokedex.setPokedexNo(new PokedexNo(updatePokedexType.pokedexNo));
+
+    await this.pokedexRepository.save(pokedex);
+  }
+
+  async findMoveByLevelUpListByPokedexIdList(pokedexIdList: string[]): Promise<MoveByLevelUpType[]> {
+    return await this.pokedexRepository.findMoveByLevelUpListByPokedexIdList(pokedexIdList);
   }
 
 }

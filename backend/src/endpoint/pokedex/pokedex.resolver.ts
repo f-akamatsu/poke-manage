@@ -1,31 +1,40 @@
-import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, ID, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { PokedexService } from '../../service/pokedex/pokedex.service';
-import { PokedexModel } from './model/pokedex.model';
+import { MoveByLevelUpModel, PokedexModel } from './model/pokedex.model';
 import { CreatePokedexInput, UpdatePokedexInput } from './input/pokedex.input';
-import { PokedexType } from '../../service/pokedex/type/pokemon.type';
+import { PokedexType } from '../../service/pokedex/type/pokedex.type';
+import { MoveByLevelUpDataloader } from './pokedex.dataloader';
 
 @Resolver(() => PokedexModel)
 export class PokedexResolver {
   
-  constructor (private pokedexService: PokedexService) {}
+  constructor (
+    private pokedexService: PokedexService,
+    private pokedexDataloader: MoveByLevelUpDataloader,
+  ) {}
 
-  @Query(() => [PokedexModel], { name: 'pokedexAll' })
-  findAll(): Promise<PokedexType[]> {
-    return this.pokedexService.findAll();
+  @ResolveField(() => [MoveByLevelUpModel])
+  async moveByLevelUpList(@Parent() pokedex: PokedexModel) {
+    return this.pokedexDataloader.load(pokedex.pokedexId);
   }
 
-  @Query(() => PokedexModel, { name: 'pokedex' })
-  findOneById(@Args('pokedexId', { type: () => ID }) id: string) {
-    return this.pokedexService.findOneById(id);
+  @Query(() => [PokedexModel])
+  allPokedex(): Promise<PokedexType[]> {
+    return this.pokedexService.findAllPokedex();
+  }
+
+  @Query(() => PokedexModel)
+  pokedexById(@Args('pokedexId', { type: () => ID }) id: string) {
+    return this.pokedexService.findPokedexById(id);
   }
 
   @Mutation(() => PokedexModel)
-  createPokemon(@Args('createPokedexInput') createPokedexInput: CreatePokedexInput) {
+  createPokedex(@Args('createPokedexInput') createPokedexInput: CreatePokedexInput) {
     return this.pokedexService.create(createPokedexInput);
   }
 
   @Mutation(() => PokedexModel)
-  updatePokemon(@Args('updatePokedexInput') updatePokedexInput: UpdatePokedexInput) {
+  updatePokedex(@Args('updatePokedexInput') updatePokedexInput: UpdatePokedexInput) {
     return this.pokedexService.update(updatePokedexInput);
   }
 
