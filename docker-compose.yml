@@ -29,7 +29,7 @@ services:
       - frontend_node_modules:/usr/src/app/node_modules
     networks:
       - app-net  
-    command: sh -c "npm run dev"
+#    command: sh -c "npm run dev"
     tty: true
     stdin_open: true
 
