@@ -1,4 +1,4 @@
-import * as DataLoader from "dataloader";
+import * as DataLoader from 'dataloader';
 
 export abstract class BaseDataloader<K, V> extends Object {
   protected dataloader: DataLoader<K, V> = new DataLoader<K, V>(this.batchLoad.bind(this));

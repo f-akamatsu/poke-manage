@@ -1,12 +1,11 @@
-import { PokedexNo } from "../value/pokedexNo";
-import { PokedexID } from "../value/pokedexId";
-import { PokemonName } from "../value/pokemonName";
+import { PokedexNo } from '../value/pokedexNo';
+import { PokedexID } from '../value/pokedexId';
+import { PokemonName } from '../value/pokemonName';
 
 /**
  * ポケモン
  */
 export class Pokedex {
-
   constructor(
     private _pokedexId: PokedexID,
     private _pokemonName: PokemonName,
@@ -22,13 +21,9 @@ export class Pokedex {
   }
 
   public static createNew(pokemonName: string, pokedexNo: number): Pokedex {
-    return new Pokedex(
-      PokedexID.newId(),
-      new PokemonName(pokemonName),
-      new PokedexNo(pokedexNo)
-    );
+    return new Pokedex(PokedexID.newId(), new PokemonName(pokemonName), new PokedexNo(pokedexNo));
   }
-  
+
   /**
    * 連想配列に変換
    */
@@ -36,7 +31,7 @@ export class Pokedex {
     return {
       pokedexId: this._pokedexId.toString(),
       pokemonName: this._pokemonName.toString(),
-      pokedexNo: this._pokedexNo.toNumber()
+      pokedexNo: this._pokedexNo.toNumber(),
     };
   }
 
@@ -47,5 +42,4 @@ export class Pokedex {
   public setPokedexNo(pokedexNo: PokedexNo): void {
     this._pokedexNo = pokedexNo;
   }
-  
 }

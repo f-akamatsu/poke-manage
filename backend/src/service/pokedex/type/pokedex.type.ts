@@ -10,16 +10,16 @@ export type PokedexType = {
 export type CreatePokedexType = {
   pokemonName: string;
   pokedexNo: number;
-}
+};
 
 export type UpdatePokedexType = {
   pokedexId: string;
   pokemonName?: string;
   pokedexNo?: number;
-}
+};
 
 export type MoveByLevelUpType = {
   pokedexId: string;
   moveId: string;
   level: number;
-}
+};

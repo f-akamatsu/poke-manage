@@ -7,8 +7,8 @@ import { PokedexPrismaService } from './pokedex.prisma.service';
   providers: [
     PokedexService,
     { provide: 'REPOSITORY', useClass: PokedexRepositoryMySQL },
-    PokedexPrismaService
+    PokedexPrismaService,
   ],
-  exports: [ PokedexService ]
+  exports: [PokedexService],
 })
 export class PokedexServiceModule {}

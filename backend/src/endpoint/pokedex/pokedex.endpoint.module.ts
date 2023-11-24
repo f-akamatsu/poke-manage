@@ -4,7 +4,7 @@ import { PokedexServiceModule } from '../../service/pokedex/pokedex.service.modu
 import { MoveByLevelUpDataloader } from './pokedex.dataloader';
 
 @Module({
-  providers: [ PokedexResolver, MoveByLevelUpDataloader ],
-  imports: [ PokedexServiceModule ]
+  providers: [PokedexResolver, MoveByLevelUpDataloader],
+  imports: [PokedexServiceModule],
 })
 export class PokedexEndpointModule {}

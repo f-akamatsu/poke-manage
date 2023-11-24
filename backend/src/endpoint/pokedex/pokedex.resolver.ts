@@ -7,10 +7,9 @@ import { MoveByLevelUpDataloader } from './pokedex.dataloader';
 
 @Resolver(() => PokedexModel)
 export class PokedexResolver {
-  
-  constructor (
+  constructor(
     private pokedexService: PokedexService,
-    private pokedexDataloader: MoveByLevelUpDataloader,
+    private pokedexDataloader: MoveByLevelUpDataloader
   ) {}
 
   @ResolveField(() => [MoveByLevelUpModel])
@@ -37,5 +36,4 @@ export class PokedexResolver {
   updatePokedex(@Args('updatePokedexInput') updatePokedexInput: UpdatePokedexInput) {
     return this.pokedexService.update(updatePokedexInput);
   }
-
 }

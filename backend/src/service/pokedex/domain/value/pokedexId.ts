@@ -4,7 +4,6 @@ import { v4 } from 'uuid';
  * ポケモン図鑑ID
  */
 export class PokedexID {
-
   private readonly _value: string;
 
   constructor(value: string) {
@@ -22,5 +21,4 @@ export class PokedexID {
   public toString(): string {
     return this._value;
   }
-  
 }

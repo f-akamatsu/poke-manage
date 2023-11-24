@@ -1,17 +1,15 @@
-import { Injectable } from "@nestjs/common";
-import { PokedexPrismaService } from "src/service/pokedex/pokedex.prisma.service";
-import { IPokedexRepository } from "../pokedex.repository.interface";
-import { Pokedex } from "../domain/entity/pokedex.entity";
-import { MoveByLevelUpType, PokedexType } from "../type/pokedex.type";
-
+import { Injectable } from '@nestjs/common';
+import { PokedexPrismaService } from 'src/service/pokedex/pokedex.prisma.service';
+import { IPokedexRepository } from '../pokedex.repository.interface';
+import { Pokedex } from '../domain/entity/pokedex.entity';
+import { MoveByLevelUpType, PokedexType } from '../type/pokedex.type';
 
 @Injectable()
 export class PokedexRepositoryMySQL implements IPokedexRepository {
-  
   constructor(private readonly prismaService: PokedexPrismaService) {}
-  
+
   /**
-   * 
+   *
    */
   async findAllPokedex(): Promise<PokedexType[]> {
     const pokedexDataList = await this.prismaService.pokedex.findMany();
@@ -21,7 +19,7 @@ export class PokedexRepositoryMySQL implements IPokedexRepository {
       pokedexTypeList.push({
         pokedexId: pokedexData.pokedex_id,
         pokemonName: pokedexData.pokemon_name,
-        pokedexNo: pokedexData.pokedex_no
+        pokedexNo: pokedexData.pokedex_no,
       });
     }
 
@@ -29,20 +27,20 @@ export class PokedexRepositoryMySQL implements IPokedexRepository {
   }
 
   /**
-   * 
+   *
    */
   async findPokedexById(pokedex_id: string): Promise<PokedexType> {
-    const pokedexData = await this.prismaService.pokedex.findUnique({ where: {pokedex_id} });
+    const pokedexData = await this.prismaService.pokedex.findUnique({ where: { pokedex_id } });
 
     return {
       pokedexId: pokedexData.pokedex_id,
       pokemonName: pokedexData.pokemon_name,
-      pokedexNo: pokedexData.pokedex_no
+      pokedexNo: pokedexData.pokedex_no,
     };
   }
-  
+
   /**
-   * 
+   *
    */
   async save(pokemon: Pokedex): Promise<void> {
     const array = pokemon.toArray();
@@ -58,7 +56,7 @@ export class PokedexRepositoryMySQL implements IPokedexRepository {
       create: {
         pokedex_id: array.pokedexId,
         pokemon_name: array.pokemonName,
-        pokedex_no: array.pokedexNo
+        pokedex_no: array.pokedexNo,
       },
     });
   }
@@ -66,7 +64,7 @@ export class PokedexRepositoryMySQL implements IPokedexRepository {
   async findMoveByLevelUpListByPokedexIdList(pokdexIdList: string[]): Promise<MoveByLevelUpType[]> {
     const moveByLevelUpDataList = await this.prismaService.moveByLevelUp.findMany({
       where: { pokedex_id: { in: pokdexIdList } },
-      orderBy: [{ level: 'asc'}],
+      orderBy: [{ level: 'asc' }],
     });
 
     const moveByLevelUpTypeList: MoveByLevelUpType[] = [];
