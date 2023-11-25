@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "codegen": "graphql-codegen --config codegen/codegen.ts"
   },
   "dependencies": {
     "@chakra-ui/next-js": "^2.2.0",
@@ -16,11 +17,17 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "framer-motion": "^10.16.5",
+    "graphql": "^16.8.1",
     "next": "14.0.3",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "urql": "^4.0.6"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "5.0.0",
+    "@graphql-codegen/typescript": "^4.0.1",
+    "@graphql-codegen/typescript-operations": "^4.0.1",
+    "@graphql-codegen/typescript-urql": "^4.0.0",
     "@storybook/addon-essentials": "^7.5.3",
     "@storybook/addon-interactions": "^7.5.3",
     "@storybook/addon-links": "^7.5.3",
@@ -38,6 +45,7 @@
     "eslint-plugin-storybook": "^0.6.15",
     "prettier": "^3.1.0",
     "storybook": "^7.5.3",
-    "typescript": "^5"
+    "typescript": "^5",
+    "@graphql-codegen/client-preset": "4.1.0"
   }
 }
