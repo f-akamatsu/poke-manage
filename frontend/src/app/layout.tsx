@@ -17,7 +17,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ChakraProvider>
           <Header />
           {children}
-          <h1>Layout Footer</h1>
         </ChakraProvider>
       </body>
     </html>
