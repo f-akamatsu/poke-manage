@@ -16,14 +16,12 @@ export function PokedexListPresenter({ pokedexDataList }: PokedexListPresenterPr
           </Tr>
         </Thead>
         <Tbody>
-          {pokedexDataList.map((d) => {
-            return (
-              <Tr>
-                <Td isNumeric>{d.pokedexNo}</Td>
-                <Td>{d.pokemonName}</Td>
-              </Tr>
-            );
-          })}
+          {pokedexDataList.map((d) => (
+            <Tr key={d.pokedexNo}>
+              <Td isNumeric>{d.pokedexNo}</Td>
+              <Td>{d.pokemonName}</Td>
+            </Tr>
+          ))}
         </Tbody>
       </Table>
     </TableContainer>

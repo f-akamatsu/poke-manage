@@ -1,39 +1,5 @@
+import { PokedexList } from '@/components/organisms/PokedexList/PokedexList';
+
 export default function PokedexPage() {
-  return (
-    <>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-      <h2>Pokedex Page</h2>
-    </>
-  );
+  return <PokedexList />;
 }
