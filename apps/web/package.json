@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "clean": "rimraf node_modules"
   },
   "dependencies": {
     "@chakra-ui/next-js": "^2.2.0",
