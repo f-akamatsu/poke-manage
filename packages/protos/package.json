@@ -1,0 +1,22 @@
+{
+  "name": "@packages/protos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "protobuf": "pnpm buf generate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@bufbuild/buf": "^1.32.2",
+    "@grpc/grpc-js": "^1.10.8",
+    "@grpc/proto-loader": "^0.7.13",
+    "ts-proto": "^1.176.1"
+  },
+  "dependencies": {
+    "@nestjs/microservices": "^10.3.8",
+    "rxjs": "^7.8.1"
+  }
+}

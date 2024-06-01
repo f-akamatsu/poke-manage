@@ -1,0 +1,15 @@
+version: v1
+plugins:
+  - name: ts_proto
+    out: ./__generated__
+    opt: "\
+      nestJs=true,\
+      esModuleInterop=true,\
+      useOptionals=messages,\
+      oneof=unions,\
+      forceLong=bitint,\
+      unrecognizedEnum=false,\
+      enumAsLiterals=true,\
+      fileSuffix=.interface"
+    path: ./node_modules/.bin/protoc-gen-ts_proto
+    strategy: all
