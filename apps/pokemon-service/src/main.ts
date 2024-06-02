@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
-import { HERO_PACKAGE_NAME } from '@packages/protos/__generated__/hero/hero.interface';
+import { POKEMON_QUERY_PACKAGE_NAME } from '@packages/protos/__generated__/pokemon/pokemon_query.interface';
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
@@ -9,8 +9,10 @@ async function bootstrap() {
     {
       transport: Transport.GRPC,
       options: {
-        package: [HERO_PACKAGE_NAME],
-        protoPath: ['node_modules/@packages/protos/apis/hero/hero.proto'],
+        package: [POKEMON_QUERY_PACKAGE_NAME],
+        protoPath: [
+          'node_modules/@packages/protos/apis/pokemon/pokemon_query.proto',
+        ],
       },
     },
   );
