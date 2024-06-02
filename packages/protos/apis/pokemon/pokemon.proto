@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package pokemon;
+
+service PokemonService {
+  rpc FetchAllPokemon (FetchAllPokemonRequest) returns (FetchAllPokemonResponse) {}
+}
+
+message FetchAllPokemonRequest {}
+
+message FetchAllPokemonResponse {
+  repeated Pokemon pokemonList = 1;
+}
+
+message Pokemon {
+  string id = 1;
+  int32 pokedexNo = 2;
+  string name = 3;
+}

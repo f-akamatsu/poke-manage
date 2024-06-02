@@ -1,19 +1,18 @@
 version: '3.8'
 
 services:
-  mysql:
+  pokmon_service_db:
     image: mysql:8.0
-    container_name: mysql
     ports:
       - 3306:3306
     environment:
-      MYSQL_DATABASE: poke_manage
+      MYSQL_DATABASE: pokemon
       MYSQL_USER: user
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - ./mysql/config/my.cnf:/etc/mysql/conf.d/my.cnf
-      - mysql_data_volume:/var/lib/mysql
+      - pokmon_service_data_volume:/var/lib/mysql
 
 volumes:
-  mysql_data_volume:
+  pokmon_service_data_volume:
