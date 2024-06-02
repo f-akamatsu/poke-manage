@@ -31,17 +31,17 @@ const moveByLevelUpData: MoveByLevelUp[] = [
 
 export const doSeedMoveByLevelUp = async () => {
   try {
-  await prisma.moveByLevelUp.deleteMany();
-    
+    await prisma.moveByLevelUp.deleteMany();
+
     const moveByLevelUpList = [];
     for (const moveByLevelUp of moveByLevelUpData) {
       const createMoveByLevelUp = prisma.moveByLevelUp.create({
-        data: moveByLevelUp
+        data: moveByLevelUp,
       });
       moveByLevelUpList.push(createMoveByLevelUp);
     }
     return await prisma.$transaction(moveByLevelUpList);
-  } catch(e) {
+  } catch (e) {
     console.log(e);
   } finally {
     await prisma.$disconnect();

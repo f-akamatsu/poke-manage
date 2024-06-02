@@ -27,17 +27,17 @@ const moveData: Move[] = [
 
 export const doSeedMove = async () => {
   try {
-  await prisma.move.deleteMany();
-    
+    await prisma.move.deleteMany();
+
     const moveList = [];
     for (const move of moveData) {
       const createMove = prisma.move.create({
-        data: move
+        data: move,
       });
       moveList.push(createMove);
     }
     return await prisma.$transaction(moveList);
-  } catch(e) {
+  } catch (e) {
     console.log(e);
   } finally {
     await prisma.$disconnect();
