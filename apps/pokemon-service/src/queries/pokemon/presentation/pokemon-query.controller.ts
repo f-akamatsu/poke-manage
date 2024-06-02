@@ -6,6 +6,7 @@ import {
   POKEMON_QUERY_PACKAGE_NAME,
   PokemonQueryServiceController,
   PokemonQueryServiceControllerMethods,
+  Pokemon,
 } from '@packages/protos/__generated__/pokemon/pokemon_query.interface';
 import { FetchAllPokemonQuery } from '../application/fetch-all-pokemon.query';
 import { PokemonRM } from '@prisma/client';
@@ -22,28 +23,24 @@ export class PokemonQueryController implements PokemonQueryServiceController {
     _request: FetchAllPokemonRequest,
   ): Promise<FetchAllPokemonResponse> {
     const query = new FetchAllPokemonQuery();
-    const queryResult = await this.queryBus.execute<
+    const pokemonRMList = await this.queryBus.execute<
       FetchAllPokemonQuery,
       PokemonRM[]
     >(query);
 
-    return toProtoMessage(queryResult);
+    return {
+      pokemonList: pokemonRMList.map(toProtoMessage),
+    };
   }
 }
 
 /**
  * ReadModel to ProtoMessage
  */
-const toProtoMessage = (
-  pokemonRMList: PokemonRM[],
-): FetchAllPokemonResponse => {
+const toProtoMessage = (pokemonRM: PokemonRM): Pokemon => {
   return {
-    pokemonList: pokemonRMList.map((rm) => {
-      return {
-        id: rm.id,
-        pokedexNo: rm.pokedex_no,
-        name: rm.name,
-      };
-    }),
+    id: pokemonRM.id,
+    pokedexNo: pokemonRM.pokedex_no,
+    name: pokemonRM.name,
   };
 };
