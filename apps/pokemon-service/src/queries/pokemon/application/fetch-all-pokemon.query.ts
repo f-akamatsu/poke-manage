@@ -1,8 +1,8 @@
-import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
+import { IQuery, IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { PokemonRM } from '@prisma/client';
 import { PrismaService } from 'src/common/prisma/prisma.service';
 
-export class FetchAllPokemonQuery {}
+export class FetchAllPokemonQuery implements IQuery {}
 
 @QueryHandler(FetchAllPokemonQuery)
 export class FetchAllPokemonQueryHandler

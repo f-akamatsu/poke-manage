@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package pokemon_command;
+
+service PokemonCommandService {
+  rpc CreatePokemon (CreatePokemonRequest) returns (CreatePokemonResponse) {}
+}
+
+message CreatePokemonRequest {
+  int32 pokedexNo = 1;
+  string name = 2;
+}
+
+message CreatePokemonResponse {}

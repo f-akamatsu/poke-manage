@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { POKEMON_QUERY_PACKAGE_NAME } from '@packages/protos/__generated__/pokemon/pokemon_query.interface';
+import { POKEMON_COMMAND_PACKAGE_NAME } from '@packages/protos/__generated__/pokemon/pokemon_command.interface';
 
 const PORT = 50051;
 
@@ -12,9 +13,10 @@ async function bootstrap() {
       transport: Transport.GRPC,
       options: {
         url: `0.0.0.0:${PORT}`,
-        package: [POKEMON_QUERY_PACKAGE_NAME],
+        package: [POKEMON_QUERY_PACKAGE_NAME, POKEMON_COMMAND_PACKAGE_NAME],
         protoPath: [
           'node_modules/@packages/protos/apis/pokemon/pokemon_query.proto',
+          'node_modules/@packages/protos/apis/pokemon/pokemon_command.proto',
         ],
       },
     },
