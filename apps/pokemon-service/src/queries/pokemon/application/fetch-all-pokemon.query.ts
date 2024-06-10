@@ -10,7 +10,7 @@ export class FetchAllPokemonQueryHandler
 {
   constructor(private readonly prisma: PrismaService) {}
 
-  execute(query: FetchAllPokemonQuery): Promise<PokemonRM[]> {
+  execute(_query: FetchAllPokemonQuery): Promise<PokemonRM[]> {
     return this.prisma.pokemonRM.findMany();
   }
 }
