@@ -6,7 +6,7 @@ import {
   PokemonCommandServiceController,
   PokemonCommandServiceControllerMethods,
 } from '@packages/protos/__generated__/pokemon/pokemon_command.interface';
-import { CreatePokemonCommand } from '../application/usecases/create-pokemon.commands';
+import { CreatePokemonCommand } from '../application/usecases/create-pokemon.command';
 
 @PokemonCommandServiceControllerMethods()
 @Controller(POKEMON_COMMAND_PACKAGE_NAME)
