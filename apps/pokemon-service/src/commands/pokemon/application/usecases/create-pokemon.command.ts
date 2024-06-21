@@ -14,7 +14,9 @@ export class CreatePokemonCommand implements ICommand {
  * ポケモン新規登録ユースケース
  */
 @CommandHandler(CreatePokemonCommand)
-export class CreatePokemonCommandHandler implements ICommandHandler {
+export class CreatePokemonCommandHandler
+  implements ICommandHandler<CreatePokemonCommand>
+{
   async execute(command: CreatePokemonCommand): Promise<void> {
     console.log(command);
   }
