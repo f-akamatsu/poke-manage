@@ -1,8 +1,8 @@
-import { IEvent } from '@nestjs/cqrs';
+import { DomainEvent } from '@event-nest/core';
 
-export class PokemonCreatedEvent implements IEvent {
+@DomainEvent('PokemonCreatedEvent')
+export class PokemonCreatedEvent {
   constructor(
-    public readonly id: string,
     public readonly name: string,
     public readonly pokedexNo: number,
   ) {}

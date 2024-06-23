@@ -1,1 +1,3 @@
-export class PokemonName {}
+export class PokemonName {
+  constructor(public readonly value: string) {}
+}
