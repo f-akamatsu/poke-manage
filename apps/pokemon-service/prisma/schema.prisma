@@ -14,7 +14,7 @@ datasource db {
 }
 
 model PokemonRM {
-  id   String @id @db.VarChar(36)
+  pokemon_id   String @id @db.VarChar(36)
   pokedex_no   Int
   name String @unique @db.VarChar(6)
 }

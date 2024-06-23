@@ -39,7 +39,7 @@ export class PokemonQueryController implements PokemonQueryServiceController {
  */
 const toProtoMessage = (pokemonRM: PokemonRM): Pokemon => {
   return {
-    id: pokemonRM.id,
+    pokemonId: pokemonRM.pokemon_id,
     pokedexNo: pokemonRM.pokedex_no,
     name: pokemonRM.name,
   };

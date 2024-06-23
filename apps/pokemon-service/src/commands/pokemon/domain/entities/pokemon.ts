@@ -15,15 +15,15 @@ import { PokemonId } from '../value-objects/pokemon-id';
 @AggregateRootName('Pokemon')
 export class Pokemon extends AggregateRoot {
   /** ポケモンID */
-  private pokemonId: PokemonId;
+  private _pokemonId: PokemonId;
   /** ポケモン名 */
-  private name: PokemonName;
+  private _name: PokemonName;
   /** 図鑑番号 */
-  private pokedexNo: PokedexNo;
+  private _pokedexNo: PokedexNo;
 
   private constructor(pokemonId: PokemonId) {
     super(pokemonId.value);
-    this.pokemonId = pokemonId;
+    this._pokemonId = pokemonId;
   }
 
   public static create(event: PokemonCreatedEvent): Pokemon {
@@ -48,7 +48,22 @@ export class Pokemon extends AggregateRoot {
   // ==============================
   @ApplyEvent(PokemonCreatedEvent)
   private applyPokemonCreatedEvent(event: PokemonCreatedEvent) {
-    this.name = new PokemonName(event.name);
-    this.pokedexNo = new PokedexNo(event.pokedexNo);
+    this._name = new PokemonName(event.name);
+    this._pokedexNo = new PokedexNo(event.pokedexNo);
+  }
+
+  // ==============================
+  //  getter
+  // ==============================
+  public get pokemonId(): PokemonId {
+    return this._pokemonId;
+  }
+
+  public get name(): PokemonName {
+    return this._name;
+  }
+
+  public get pokedexNo(): PokedexNo {
+    return this._pokedexNo;
   }
 }
