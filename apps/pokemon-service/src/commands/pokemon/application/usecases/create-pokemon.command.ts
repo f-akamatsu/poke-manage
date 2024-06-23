@@ -1,7 +1,6 @@
 import { EVENT_STORE, EventStore } from '@event-nest/core';
 import { Inject } from '@nestjs/common';
 import { CommandHandler, ICommand, ICommandHandler } from '@nestjs/cqrs';
-import { randomUUID } from 'crypto';
 import { Pokemon } from '../../domain/entities/pokemon';
 import { ObjectId } from 'mongodb';
 
