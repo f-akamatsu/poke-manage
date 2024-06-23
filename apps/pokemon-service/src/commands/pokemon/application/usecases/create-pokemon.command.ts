@@ -3,6 +3,7 @@ import { Inject } from '@nestjs/common';
 import { CommandHandler, ICommand, ICommandHandler } from '@nestjs/cqrs';
 import { randomUUID } from 'crypto';
 import { Pokemon } from '../../domain/entities/pokemon';
+import { ObjectId } from 'mongodb';
 
 /**
  * ポケモン新規登録
@@ -24,7 +25,7 @@ export class CreatePokemonCommandHandler
   constructor(@Inject(EVENT_STORE) private eventStore: EventStore) {}
 
   async execute(command: CreatePokemonCommand): Promise<void> {
-    const newId = '507f1f77bcf86cd799439011'; // TODO
+    const newId = new ObjectId().toString();
     const pokemon = Pokemon.createNew(newId, command.name, command.pokedexNo);
     const pokemonWithPublisher = this.eventStore.addPublisher(pokemon);
     await pokemonWithPublisher.commit();
