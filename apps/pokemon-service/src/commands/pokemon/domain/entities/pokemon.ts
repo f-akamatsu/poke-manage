@@ -8,6 +8,7 @@ import { PokedexNo } from '../value-objects/pokedex-no';
 import { PokemonName } from '../value-objects/pokemon-name';
 import { PokemonCreatedEvent } from '../events/pokemon-created.event';
 import { PokemonId } from '../value-objects/pokemon-id';
+import { PokemonUpdatedEvent } from '../events/pokemon-updated.event';
 
 /**
  * ポケモン
@@ -43,11 +44,22 @@ export class Pokemon extends AggregateRoot {
     return pokemon;
   }
 
+  public update(event: PokemonUpdatedEvent): void {
+    this.applyPokemonUpdatedEvent(event);
+    this.append(event);
+  }
+
   // ==============================
   //  ApplyEvent
   // ==============================
   @ApplyEvent(PokemonCreatedEvent)
   private applyPokemonCreatedEvent(event: PokemonCreatedEvent) {
+    this._name = new PokemonName(event.name);
+    this._pokedexNo = new PokedexNo(event.pokedexNo);
+  }
+
+  @ApplyEvent(PokemonUpdatedEvent)
+  private applyPokemonUpdatedEvent(event: PokemonUpdatedEvent) {
     this._name = new PokemonName(event.name);
     this._pokedexNo = new PokedexNo(event.pokedexNo);
   }

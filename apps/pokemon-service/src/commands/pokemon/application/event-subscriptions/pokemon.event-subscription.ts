@@ -13,11 +13,12 @@ import {
 import { Pokemon } from '../../domain/entities/pokemon';
 import { PrismaService } from 'src/common/prisma/prisma.service';
 import { PokemonRM } from '@prisma/client';
+import { PokemonUpdatedEvent } from '../../domain/events/pokemon-updated.event';
 
 @Injectable()
-@DomainEventSubscription(PokemonCreatedEvent)
+@DomainEventSubscription(PokemonCreatedEvent, PokemonUpdatedEvent)
 export class PokemonEventSubscription
-  implements OnDomainEvent<PokemonCreatedEvent>
+  implements OnDomainEvent<PokemonCreatedEvent | PokemonUpdatedEvent>
 {
   constructor(
     @Inject(POKEMON_REPOSITORY_TOKEN)
@@ -26,7 +27,7 @@ export class PokemonEventSubscription
   ) {}
 
   async onDomainEvent(
-    event: PublishedDomainEvent<PokemonCreatedEvent>,
+    event: PublishedDomainEvent<PokemonCreatedEvent | PokemonUpdatedEvent>,
   ): Promise<void> {
     const pokemonId = PokemonId.from(event.aggregateRootId);
     const pokemon = await this.pokemonRepository.findById(pokemonId);

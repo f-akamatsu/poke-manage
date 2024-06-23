@@ -4,6 +4,7 @@ package pokemon_command;
 
 service PokemonCommandService {
   rpc CreatePokemon (CreatePokemonRequest) returns (CreatePokemonResponse) {}
+  rpc UpdatePokemon (UpdatePokemonRequest) returns (UpdatePokemonResponse) {}
 }
 
 message CreatePokemonRequest {
@@ -12,3 +13,11 @@ message CreatePokemonRequest {
 }
 
 message CreatePokemonResponse {}
+
+message UpdatePokemonRequest {
+  string pokemonId = 1;
+  int32 pokedexNo = 2;
+  string name = 3;
+}
+
+message UpdatePokemonResponse {}

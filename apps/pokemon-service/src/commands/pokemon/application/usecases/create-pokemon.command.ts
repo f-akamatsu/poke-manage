@@ -12,8 +12,8 @@ import { PokemonCreatedEvent } from '../../domain/events/pokemon-created.event';
  */
 export class CreatePokemonCommand implements ICommand {
   constructor(
-    public readonly pokedexNo: number,
     public readonly name: string,
+    public readonly pokedexNo: number,
   ) {}
 }
 
@@ -29,6 +29,9 @@ export class CreatePokemonCommandHandler
     private readonly repository: IPokemonRepository,
   ) {}
 
+  /**
+   *
+   */
   async execute(command: CreatePokemonCommand): Promise<void> {
     const event = new PokemonCreatedEvent(command.name, command.pokedexNo);
     const pokemon = Pokemon.create(event);
