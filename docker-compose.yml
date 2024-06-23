@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  pokmon_service_db:
+  pokemon_service_mysql:
     image: mysql:8.0
     ports:
       - 3306:3306
@@ -11,8 +11,22 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: root
     volumes:
-      - ./mysql/config/my.cnf:/etc/mysql/conf.d/my.cnf
-      - pokmon_service_data_volume:/var/lib/mysql
+      - ./dbconfig/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - pokemon_service_mysql_data_volume:/var/lib/mysql
+
+  pokemon_service_mongo:
+    image: mongo:latest
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: pokemon
+    volumes:
+      - ./dbconfig/mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - pokemon_service_mongo_data_volume:/data/db
 
 volumes:
-  pokmon_service_data_volume:
+  pokemon_service_mysql_data_volume:
+  pokemon_service_mongo_data_volume:
