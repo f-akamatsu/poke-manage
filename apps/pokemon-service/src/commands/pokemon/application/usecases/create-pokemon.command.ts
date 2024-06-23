@@ -1,12 +1,11 @@
-import { EVENT_STORE, EventStore } from '@event-nest/core';
 import { Inject } from '@nestjs/common';
 import { CommandHandler, ICommand, ICommandHandler } from '@nestjs/cqrs';
 import { Pokemon } from '../../domain/entities/pokemon';
-import { ObjectId } from 'mongodb';
 import {
   IPokemonRepository,
   POKEMON_REPOSITORY_TOKEN,
 } from '../../domain/repository/pokemon.repository.interface';
+import { PokemonCreatedEvent } from '../../domain/events/pokemon-created.event';
 
 /**
  * ポケモン新規登録
@@ -31,8 +30,8 @@ export class CreatePokemonCommandHandler
   ) {}
 
   async execute(command: CreatePokemonCommand): Promise<void> {
-    const newId = new ObjectId().toString();
-    const pokemon = Pokemon.createNew(newId, command.name, command.pokedexNo);
+    const event = new PokemonCreatedEvent(command.name, command.pokedexNo);
+    const pokemon = Pokemon.create(event);
     this.repository.save(pokemon);
   }
 }

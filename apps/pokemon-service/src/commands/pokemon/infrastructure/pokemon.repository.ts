@@ -2,6 +2,7 @@ import { Inject } from '@nestjs/common';
 import { Pokemon } from '../domain/entities/pokemon';
 import { IPokemonRepository } from '../domain/repository/pokemon.repository.interface';
 import { EVENT_STORE, EventStore } from '@event-nest/core';
+import { PokemonId } from '../domain/value-objects/pokemon-id';
 
 export class PokemonRepository implements IPokemonRepository {
   constructor(@Inject(EVENT_STORE) private eventStore: EventStore) {}
@@ -9,9 +10,12 @@ export class PokemonRepository implements IPokemonRepository {
   /**
    *
    */
-  async findById(id: string): Promise<Pokemon> {
-    const events = await this.eventStore.findByAggregateRootId(Pokemon, id);
-    const pokemon = Pokemon.fromEvents(id, events);
+  async findById(pokemonId: PokemonId): Promise<Pokemon> {
+    const events = await this.eventStore.findByAggregateRootId(
+      Pokemon,
+      pokemonId.value,
+    );
+    const pokemon = Pokemon.fromEvents(pokemonId, events);
     return pokemon;
   }
 

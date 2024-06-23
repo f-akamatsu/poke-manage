@@ -7,35 +7,38 @@ import {
 import { PokedexNo } from '../value-objects/pokedex-no';
 import { PokemonName } from '../value-objects/pokemon-name';
 import { PokemonCreatedEvent } from '../events/pokemon-created.event';
+import { PokemonId } from '../value-objects/pokemon-id';
 
 /**
  * ポケモン
  */
 @AggregateRootName('Pokemon')
 export class Pokemon extends AggregateRoot {
+  /** ポケモンID */
+  private pokemonId: PokemonId;
   /** ポケモン名 */
   private name: PokemonName;
   /** 図鑑番号 */
   private pokedexNo: PokedexNo;
 
-  private constructor(id: string) {
-    super(id);
+  private constructor(pokemonId: PokemonId) {
+    super(pokemonId.value);
+    this.pokemonId = pokemonId;
   }
 
-  public static createNew(
-    id: string,
-    name: string,
-    pokedexNo: number,
-  ): Pokemon {
-    const pokemon = new Pokemon(id);
-    const event = new PokemonCreatedEvent(name, pokedexNo);
+  public static create(event: PokemonCreatedEvent): Pokemon {
+    const pokemonId = PokemonId.generate();
+    const pokemon = new Pokemon(pokemonId);
     pokemon.applyPokemonCreatedEvent(event);
     pokemon.append(event);
     return pokemon;
   }
 
-  public static fromEvents(id: string, events: Array<StoredEvent>): Pokemon {
-    const pokemon = new Pokemon(id);
+  public static fromEvents(
+    pokemonId: PokemonId,
+    events: Array<StoredEvent>,
+  ): Pokemon {
+    const pokemon = new Pokemon(pokemonId);
     pokemon.reconstitute(events);
     return pokemon;
   }

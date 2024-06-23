@@ -1,7 +1,8 @@
 import { Pokemon } from '../entities/pokemon';
+import { PokemonId } from '../value-objects/pokemon-id';
 
 export interface IPokemonRepository {
-  findById(id: string): Promise<Pokemon>;
+  findById(pokemonId: PokemonId): Promise<Pokemon>;
   save(pokemon: Pokemon): Promise<void>;
 }
 
