@@ -40,6 +40,9 @@ export class Pokemon extends AggregateRoot {
     return pokemon;
   }
 
+  // ==============================
+  //  ApplyEvent
+  // ==============================
   @ApplyEvent(PokemonCreatedEvent)
   private applyPokemonCreatedEvent(event: PokemonCreatedEvent) {
     this.name = new PokemonName(event.name);
