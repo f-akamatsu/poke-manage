@@ -1,0 +1,13 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Pokemon {
+  name: String!
+  pokedexNo: Int!
+  pokemonId: String!
+}
+
+type Query {
+  fetchAllPokemon: [Pokemon!]!
+}
