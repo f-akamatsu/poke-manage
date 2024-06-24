@@ -27,6 +27,9 @@ export class Pokemon extends AggregateRoot {
     this._pokemonId = pokemonId;
   }
 
+  /**
+   *
+   */
   public static create(event: PokemonCreatedEvent): Pokemon {
     const pokemonId = PokemonId.generate();
     const pokemon = new Pokemon(pokemonId);
@@ -35,6 +38,9 @@ export class Pokemon extends AggregateRoot {
     return pokemon;
   }
 
+  /**
+   *
+   */
   public static fromEvents(
     pokemonId: PokemonId,
     events: Array<StoredEvent>,
@@ -44,6 +50,9 @@ export class Pokemon extends AggregateRoot {
     return pokemon;
   }
 
+  /**
+   *
+   */
   public update(event: PokemonUpdatedEvent): void {
     this.applyPokemonUpdatedEvent(event);
     this.append(event);
