@@ -1,25 +1,14 @@
 import { Query, Resolver } from '@nestjs/graphql';
 import { Pokemon } from '../models/pokemon.model';
+import { PokemonQueryService } from '../services/pokemon-query.service';
+import { PokemonBase } from '../types/pokemon.type';
 
 @Resolver()
 export class PokemonQueryResolver {
+  constructor(private readonly pokemonQueryService: PokemonQueryService) {}
+
   @Query(() => [Pokemon])
-  fetchAllPokemon() {
-    // TODO
-    return mockData;
+  fetchAllPokemon(): Promise<PokemonBase[]> {
+    return this.pokemonQueryService.fetchAllPokemon();
   }
 }
-
-// TODO
-const mockData = [
-  {
-    pokemonId: '00001',
-    name: 'フシギダネ',
-    pokedexNo: 1,
-  },
-  {
-    pokemonId: '00002',
-    name: 'フシギソウ',
-    pokedexNo: 2,
-  },
-];
