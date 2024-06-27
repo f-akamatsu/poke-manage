@@ -1,3 +1,5 @@
+'use client';
+
 import { useQuery } from 'urql';
 import { graphql } from '../../../gql/__generated__/';
 import { PokedexListPresenter } from './PokedexListPresenter';

@@ -7,7 +7,7 @@ export const grpcClientOptions: Record<string, ClientProviderOptions> = {
     name: POKEMON_QUERY_PACKAGE_NAME,
     transport: Transport.GRPC,
     options: {
-      url: 'localhost:50051',
+      url: 'localhost:50051', // TODO env
       package: POKEMON_QUERY_PACKAGE_NAME,
       protoPath: join(
         process.cwd(),
