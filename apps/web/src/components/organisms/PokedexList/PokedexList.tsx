@@ -1,29 +1,22 @@
+import { useQuery } from 'urql';
+import { graphql } from '../../../gql/__generated__/';
 import { PokedexListPresenter } from './PokedexListPresenter';
 
-const ALL_POKEDEX = /* GraphQL */ `
-  query allPokedex {
-    allPokedex {
-      pokemonName
-      moveByLevelUpList {
-        moveId
-        level
-      }
+/** Query */
+const FetchAllPokemonQuery = graphql(/* GraphQL */ `
+  query FetchAllPokemon {
+    fetchAllPokemon {
+      ...PokemonFields
     }
   }
-`;
-
-const mockData = [
-  { pokedexNo: 1, pokemonName: 'フシギダネ' },
-  { pokedexNo: 2, pokemonName: 'フシギソウ' },
-  { pokedexNo: 3, pokemonName: 'フシギバナ' },
-  { pokedexNo: 4, pokemonName: 'ヒトカゲ' },
-  { pokedexNo: 5, pokemonName: 'リザード' },
-  { pokedexNo: 6, pokemonName: 'リザードン' },
-  { pokedexNo: 7, pokemonName: 'ゼニガメ' },
-  { pokedexNo: 8, pokemonName: 'カメール' },
-  { pokedexNo: 9, pokemonName: 'カメックス' },
-];
+`);
 
 export function PokedexList() {
-  return <PokedexListPresenter pokedexDataList={mockData} />;
+  const [result] = useQuery({ query: FetchAllPokemonQuery });
+
+  const { data } = result;
+
+  if (!data) return null;
+
+  return <PokedexListPresenter pokemonFragments={data.fetchAllPokemon} />;
 }
