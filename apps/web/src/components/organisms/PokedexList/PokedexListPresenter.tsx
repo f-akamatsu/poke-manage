@@ -1,11 +1,20 @@
+import { FragmentType, getFragmentData, graphql } from '@/gql/__generated__';
 import { Table, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
-import { PokedexData } from './PokedexList.schema';
+
+export const PokemonFieldsFragment = graphql(/* GraphQL */ `
+  fragment PokemonFields on Pokemon {
+    name
+    pokedexNo
+  }
+`);
 
 export interface PokedexListPresenterProps {
-  pokedexDataList: PokedexData[];
+  pokemonFragments: FragmentType<typeof PokemonFieldsFragment>[];
 }
 
-export function PokedexListPresenter({ pokedexDataList }: PokedexListPresenterProps) {
+export function PokedexListPresenter({ pokemonFragments }: PokedexListPresenterProps) {
+  const pokemonList = getFragmentData(PokemonFieldsFragment, pokemonFragments);
+
   return (
     <TableContainer>
       <Table variant='simple'>
@@ -16,10 +25,10 @@ export function PokedexListPresenter({ pokedexDataList }: PokedexListPresenterPr
           </Tr>
         </Thead>
         <Tbody>
-          {pokedexDataList.map((d) => (
-            <Tr key={d.pokedexNo}>
-              <Td isNumeric>{d.pokedexNo}</Td>
-              <Td>{d.pokemonName}</Td>
+          {pokemonList.map((pokemon) => (
+            <Tr key={pokemon.pokedexNo}>
+              <Td isNumeric>{pokemon.pokedexNo}</Td>
+              <Td>{pokemon.name}</Td>
             </Tr>
           ))}
         </Tbody>
