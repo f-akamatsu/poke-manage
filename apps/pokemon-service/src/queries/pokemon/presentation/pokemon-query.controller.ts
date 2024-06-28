@@ -7,9 +7,12 @@ import {
   PokemonQueryServiceController,
   PokemonQueryServiceControllerMethods,
   Pokemon,
+  FindPokemonRequest,
+  FindPokemonResponse,
 } from '@packages/protos/__generated__/pokemon/pokemon_query.interface';
 import { FetchAllPokemonQuery } from '../application/fetch-all-pokemon.query';
 import { PokemonRM } from '@prisma/client';
+import { FindPokemonQuery } from '../application/find-pokemon.query';
 
 @PokemonQueryServiceControllerMethods()
 @Controller(POKEMON_QUERY_PACKAGE_NAME)
@@ -30,6 +33,20 @@ export class PokemonQueryController implements PokemonQueryServiceController {
 
     return {
       pokemonList: pokemonRMList.map(toProtoMessage),
+    };
+  }
+
+  /**
+   *
+   */
+  async findPokemon(request: FindPokemonRequest): Promise<FindPokemonResponse> {
+    const query = new FindPokemonQuery(request.pokemonId);
+    const pokemonRM = await this.queryBus.execute<FindPokemonQuery, PokemonRM>(
+      query,
+    );
+
+    return {
+      pokemon: toProtoMessage(pokemonRM),
     };
   }
 }

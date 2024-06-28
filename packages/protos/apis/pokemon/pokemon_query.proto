@@ -4,12 +4,21 @@ package pokemon_query;
 
 service PokemonQueryService {
   rpc FetchAllPokemon (FetchAllPokemonRequest) returns (FetchAllPokemonResponse) {}
+  rpc FindPokemon (FindPokemonRequest) returns (FindPokemonResponse) {}
 }
 
 message FetchAllPokemonRequest {}
 
 message FetchAllPokemonResponse {
   repeated Pokemon pokemonList = 1;
+}
+
+message FindPokemonRequest {
+  string pokemonId = 1;
+}
+
+message FindPokemonResponse {
+  Pokemon pokemon = 1;
 }
 
 message Pokemon {
