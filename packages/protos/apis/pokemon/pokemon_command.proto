@@ -12,7 +12,9 @@ message CreatePokemonRequest {
   string name = 2;
 }
 
-message CreatePokemonResponse {}
+message CreatePokemonResponse {
+  string pokemonId = 1;
+}
 
 message UpdatePokemonRequest {
   string pokemonId = 1;
@@ -20,4 +22,6 @@ message UpdatePokemonRequest {
   string name = 3;
 }
 
-message UpdatePokemonResponse {}
+message UpdatePokemonResponse {
+  string pokemonId = 1;
+}

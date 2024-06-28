@@ -33,12 +33,13 @@ export class UpdatePokemonCommandHandler
   /**
    *
    */
-  async execute(command: UpdatePokemonCommand): Promise<void> {
+  async execute(command: UpdatePokemonCommand): Promise<{ pokemonId: string }> {
     const event = new PokemonUpdatedEvent(command.name, command.pokedexNo);
     const pokemon = await this.repository.findById(
       PokemonId.from(command.pokemonId),
     );
     pokemon.update(event);
     this.repository.save(pokemon);
+    return { pokemonId: pokemon.pokemonId.value };
   }
 }

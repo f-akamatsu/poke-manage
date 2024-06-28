@@ -32,9 +32,10 @@ export class CreatePokemonCommandHandler
   /**
    *
    */
-  async execute(command: CreatePokemonCommand): Promise<void> {
+  async execute(command: CreatePokemonCommand): Promise<{ pokemonId: string }> {
     const event = new PokemonCreatedEvent(command.name, command.pokedexNo);
     const pokemon = Pokemon.create(event);
     this.repository.save(pokemon);
+    return { pokemonId: pokemon.pokemonId.value };
   }
 }
