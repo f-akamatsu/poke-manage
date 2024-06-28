@@ -26,4 +26,9 @@ export class PokemonQueryService implements OnModuleInit {
     const response = await lastValueFrom(this.svc.fetchAllPokemon({}));
     return response.pokemonList;
   }
+
+  async findPokemon(pokemonId: string): Promise<PokemonBase> {
+    const response = await lastValueFrom(this.svc.findPokemon({ pokemonId }));
+    return response.pokemon;
+  }
 }

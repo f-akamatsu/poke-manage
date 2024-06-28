@@ -1,4 +1,4 @@
-import { Query, Resolver } from '@nestjs/graphql';
+import { Args, Query, Resolver } from '@nestjs/graphql';
 import { Pokemon } from '../models/pokemon.model';
 import { PokemonQueryService } from '../services/pokemon-query.service';
 import { PokemonBase } from '../types/pokemon.type';
@@ -10,5 +10,10 @@ export class PokemonQueryResolver {
   @Query(() => [Pokemon])
   fetchAllPokemon(): Promise<PokemonBase[]> {
     return this.pokemonQueryService.fetchAllPokemon();
+  }
+
+  @Query(() => Pokemon)
+  findPokemon(@Args('id') pokemonId: string): Promise<PokemonBase> {
+    return this.pokemonQueryService.findPokemon(pokemonId);
   }
 }
