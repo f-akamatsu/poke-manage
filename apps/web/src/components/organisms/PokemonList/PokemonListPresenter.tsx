@@ -8,11 +8,11 @@ export const PokemonFieldsFragment = graphql(/* GraphQL */ `
   }
 `);
 
-export interface PokedexListPresenterProps {
+export interface PokemonListPresenterProps {
   pokemonFragments: FragmentType<typeof PokemonFieldsFragment>[];
 }
 
-export function PokedexListPresenter({ pokemonFragments }: PokedexListPresenterProps) {
+export function PokemonListPresenter({ pokemonFragments }: PokemonListPresenterProps) {
   const pokemonList = getFragmentData(PokemonFieldsFragment, pokemonFragments);
 
   return (
