@@ -2,6 +2,16 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreatePokemonInput {
+  name: String!
+  pokedexNo: Int!
+}
+
+type Mutation {
+  createPokemon(input: CreatePokemonInput!): Pokemon!
+  updatePokemon(input: UpdatePokemonInput!): Pokemon!
+}
+
 type Pokemon {
   name: String!
   pokedexNo: Int!
@@ -11,4 +21,10 @@ type Pokemon {
 type Query {
   fetchAllPokemon: [Pokemon!]!
   findPokemon(id: String!): Pokemon!
+}
+
+input UpdatePokemonInput {
+  name: String!
+  pokedexNo: Int!
+  pokemonId: String!
 }

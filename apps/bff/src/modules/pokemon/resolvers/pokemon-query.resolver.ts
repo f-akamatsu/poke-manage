@@ -8,12 +8,12 @@ export class PokemonQueryResolver {
   constructor(private readonly pokemonQueryService: PokemonQueryService) {}
 
   @Query(() => [Pokemon])
-  fetchAllPokemon(): Promise<PokemonBase[]> {
-    return this.pokemonQueryService.fetchAllPokemon();
+  async fetchAllPokemon(): Promise<PokemonBase[]> {
+    return await this.pokemonQueryService.fetchAllPokemon();
   }
 
   @Query(() => Pokemon)
-  findPokemon(@Args('id') pokemonId: string): Promise<PokemonBase> {
-    return this.pokemonQueryService.findPokemon(pokemonId);
+  async findPokemon(@Args('id') pokemonId: string): Promise<PokemonBase> {
+    return await this.pokemonQueryService.findPokemon(pokemonId);
   }
 }

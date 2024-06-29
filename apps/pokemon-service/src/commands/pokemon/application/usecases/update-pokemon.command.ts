@@ -39,7 +39,7 @@ export class UpdatePokemonCommandHandler
       PokemonId.from(command.pokemonId),
     );
     pokemon.update(event);
-    this.repository.save(pokemon);
+    await this.repository.save(pokemon);
     return { pokemonId: pokemon.pokemonId.value };
   }
 }
