@@ -18,7 +18,7 @@ export class PokemonMutationResolver {
     @Args('input') input: CreatePokemonInput,
   ): Promise<PokemonBase> {
     const { pokemonId } = await this.pokemonCommandService.createPokemon(input);
-    return await this.pokemonQueryService.findPokemon(pokemonId);
+    return await this.pokemonQueryService.findPokemon(pokemonId); // TODO RMへの反映が非同期で取得できない
   }
 
   @Mutation(() => Pokemon)
@@ -26,6 +26,6 @@ export class PokemonMutationResolver {
     @Args('input') input: UpdatePokemonInput,
   ): Promise<PokemonBase> {
     const { pokemonId } = await this.pokemonCommandService.updatePokemon(input);
-    return await this.pokemonQueryService.findPokemon(pokemonId);
+    return await this.pokemonQueryService.findPokemon(pokemonId); // TODO RMへの反映が非同期で取得できない
   }
 }
