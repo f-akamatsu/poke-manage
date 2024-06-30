@@ -6,6 +6,7 @@ import {
 } from '../../domain/repository/pokemon.repository.interface';
 import { PokemonUpdatedEvent } from '../../domain/events/pokemon-updated.event';
 import { PokemonId } from '../../domain/value-objects/pokemon-id';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 /**
  * ポケモン更新
@@ -28,6 +29,7 @@ export class UpdatePokemonCommandHandler
   constructor(
     @Inject(POKEMON_REPOSITORY_TOKEN)
     private readonly repository: IPokemonRepository,
+    private eventEmitter: EventEmitter2,
   ) {}
 
   /**
@@ -40,6 +42,12 @@ export class UpdatePokemonCommandHandler
     );
     pokemon.update(event);
     await this.repository.save(pokemon);
+
+    // ドメインイベント発行
+    await this.eventEmitter.emitAsync('pokemon.updated', {
+      pokemonId: pokemon.pokemonId.value,
+    });
+
     return { pokemonId: pokemon.pokemonId.value };
   }
 }

@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { PokemonController } from './presentation/pokemon.controller';
 import { CreatePokemonCommandHandler } from './application/usecases/create-pokemon.command';
-import { PokemonEventSubscription } from './application/event-subscriptions/pokemon.event-subscription';
 import { POKEMON_REPOSITORY_TOKEN } from './domain/repository/pokemon.repository.interface';
 import { PokemonRepository } from './infrastructure/pokemon.repository';
 import { UpdatePokemonCommandHandler } from './application/usecases/update-pokemon.command';
+import { PokemonEventHandler } from './application/event-handlers/pokemon.event-handler';
 
 @Module({
   imports: [],
@@ -12,7 +12,7 @@ import { UpdatePokemonCommandHandler } from './application/usecases/update-pokem
   providers: [
     CreatePokemonCommandHandler,
     UpdatePokemonCommandHandler,
-    PokemonEventSubscription,
+    PokemonEventHandler,
     {
       provide: POKEMON_REPOSITORY_TOKEN,
       useClass: PokemonRepository,

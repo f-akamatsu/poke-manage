@@ -6,6 +6,7 @@ import {
   POKEMON_REPOSITORY_TOKEN,
 } from '../../domain/repository/pokemon.repository.interface';
 import { PokemonCreatedEvent } from '../../domain/events/pokemon-created.event';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 /**
  * ポケモン新規登録
@@ -27,6 +28,7 @@ export class CreatePokemonCommandHandler
   constructor(
     @Inject(POKEMON_REPOSITORY_TOKEN)
     private readonly repository: IPokemonRepository,
+    private eventEmitter: EventEmitter2,
   ) {}
 
   /**
@@ -36,6 +38,12 @@ export class CreatePokemonCommandHandler
     const event = new PokemonCreatedEvent(command.name, command.pokedexNo);
     const pokemon = Pokemon.create(event);
     await this.repository.save(pokemon);
+
+    // ドメインイベント発行
+    await this.eventEmitter.emitAsync('pokemon.created', {
+      pokemonId: pokemon.pokemonId.value,
+    });
+
     return { pokemonId: pokemon.pokemonId.value };
   }
 }

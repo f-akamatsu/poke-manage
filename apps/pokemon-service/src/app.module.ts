@@ -4,6 +4,7 @@ import { CustomCqrsModule } from './common/custom-cqrs.module';
 import { PokemonModule } from './commands/pokemon/pokemon.module';
 import { PrismaModule } from './common/prisma/prisma.module';
 import { EventStoreModule } from './common/event-store/event-store.module';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { EventStoreModule } from './common/event-store/event-store.module';
     CustomCqrsModule,
     PrismaModule,
     EventStoreModule,
+    EventEmitterModule.forRoot({ wildcard: true }),
     // Queries
     PokemonQueryModule,
     // Commands
