@@ -44,9 +44,7 @@ export class UpdatePokemonCommandHandler
     await this.repository.save(pokemon);
 
     // ドメインイベント発行
-    await this.eventEmitter.emitAsync('pokemon.updated', {
-      pokemonId: pokemon.pokemonId.value,
-    });
+    await this.eventEmitter.emitAsync('pokemon.updated', pokemon);
 
     return { pokemonId: pokemon.pokemonId.value };
   }

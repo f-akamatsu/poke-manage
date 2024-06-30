@@ -40,9 +40,7 @@ export class CreatePokemonCommandHandler
     await this.repository.save(pokemon);
 
     // ドメインイベント発行
-    await this.eventEmitter.emitAsync('pokemon.created', {
-      pokemonId: pokemon.pokemonId.value,
-    });
+    await this.eventEmitter.emitAsync('pokemon.created', pokemon);
 
     return { pokemonId: pokemon.pokemonId.value };
   }
