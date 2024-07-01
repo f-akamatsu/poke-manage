@@ -1,10 +1,12 @@
 import { FragmentType, getFragmentData, graphql } from '@/gql/__generated__';
 import { Table, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
+import Link from 'next/link';
 
 export const PokemonFieldsFragment = graphql(/* GraphQL */ `
   fragment PokemonFields on Pokemon {
     name
     pokedexNo
+    pokemonId
   }
 `);
 
@@ -28,7 +30,9 @@ export function PokemonListPresenter({ pokemonFragments }: PokemonListPresenterP
           {pokemonList.map((pokemon) => (
             <Tr key={pokemon.pokedexNo}>
               <Td isNumeric>{pokemon.pokedexNo}</Td>
-              <Td>{pokemon.name}</Td>
+              <Td>
+                <Link href={`/pokemon/${pokemon.pokemonId}`}>{pokemon.name}</Link>
+              </Td>
             </Tr>
           ))}
         </Tbody>
