@@ -5,7 +5,9 @@ export const pokemonFormSchema = z.object({
     .string()
     .min(1, { message: '名前を入力してください' })
     .max(6, { message: '6文字以内で入力してください' }),
-  pokedexNo: z.number().min(1, '1以上の数字を入力してください'),
+  pokedexNo: z
+    .number({ message: '数字を入力してください' })
+    .min(1, '1以上の数字を入力してください'),
 });
 
 export type PokemonFormSchemaType = z.infer<typeof pokemonFormSchema>;

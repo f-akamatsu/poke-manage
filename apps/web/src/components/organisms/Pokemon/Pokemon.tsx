@@ -45,11 +45,14 @@ export function Pokemon({ pokemonId }: PokemonProps) {
   const router = useRouter();
 
   // React Hook Form
-  const methods = useForm<PokemonFormSchemaType>({ resolver: zodResolver(pokemonFormSchema) });
+  const methods = useForm<PokemonFormSchemaType>({
+    resolver: zodResolver(pokemonFormSchema),
+    mode: 'onChange',
+  });
   const {
     handleSubmit,
     reset,
-    formState: { isSubmitting },
+    formState: { isSubmitting, isValid },
   } = methods;
 
   // Init Value
