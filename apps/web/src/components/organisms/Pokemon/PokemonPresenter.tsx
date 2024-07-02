@@ -3,9 +3,10 @@ import { useFormContext } from 'react-hook-form';
 
 export interface PokemonPresenterProps {
   onSubmit: () => void;
+  isFetching: boolean;
 }
 
-export function PokemonPresenter({ onSubmit }: PokemonPresenterProps) {
+export function PokemonPresenter({ onSubmit, isFetching }: PokemonPresenterProps) {
   const {
     register,
     handleSubmit,
@@ -17,7 +18,9 @@ export function PokemonPresenter({ onSubmit }: PokemonPresenterProps) {
       <Flex flexDir='column' gap={1} width='80%'>
         <Input {...register('name')} />
         <Input {...register('pokedexNo', { valueAsNumber: true })} />
-        <Button type='submit'>保存</Button>
+        <Button type='submit' isLoading={isFetching}>
+          保存
+        </Button>
       </Flex>
     </form>
   );
