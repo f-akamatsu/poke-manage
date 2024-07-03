@@ -3,7 +3,7 @@ import { useFormContext } from 'react-hook-form';
 import { PokemonFormSchemaType } from './Pokemon.schema';
 
 export interface PokemonPresenterProps {
-  onSubmit: () => void;
+  onSubmit: (data: PokemonFormSchemaType) => void;
   isFetching: boolean;
 }
 
@@ -16,7 +16,7 @@ export function PokemonPresenter({ onSubmit, isFetching }: PokemonPresenterProps
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Flex flexDir='column' gap={4} width='80%' padding={4}>
+      <Flex flexDir='column' gap={4}>
         {/* ポケモン名 */}
         <Flex flexDir='column' gap={1}>
           <Text fontSize='0.8rem' fontWeight='bold'>
@@ -47,7 +47,14 @@ export function PokemonPresenter({ onSubmit, isFetching }: PokemonPresenterProps
         </Flex>
 
         <Center>
-          <Button type='submit' isLoading={isFetching} isDisabled={!isValid} width='fit-content'>
+          <Button
+            type='submit'
+            isLoading={isFetching}
+            isDisabled={!isValid}
+            width='fit-content'
+            colorScheme='teal'
+            variant='solid'
+          >
             保存
           </Button>
         </Center>

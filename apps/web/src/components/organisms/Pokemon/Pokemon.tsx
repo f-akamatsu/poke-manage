@@ -1,6 +1,6 @@
 'use client';
 
-import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { PokemonFormSchemaType, pokemonFormSchema } from './Pokemon.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { PokemonPresenter } from './PokemonPresenter';
@@ -8,6 +8,7 @@ import { graphql } from '@/gql/__generated__';
 import { useMutation, useQuery } from 'urql';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useToast } from '@chakra-ui/react';
 
 /** Query */
 const FindPokemonQuery = graphql(/* GraphQL */ `
@@ -43,17 +44,14 @@ export interface PokemonProps {
 
 export function Pokemon({ pokemonId }: PokemonProps) {
   const router = useRouter();
+  const toast = useToast();
 
   // React Hook Form
   const methods = useForm<PokemonFormSchemaType>({
     resolver: zodResolver(pokemonFormSchema),
     mode: 'onChange',
   });
-  const {
-    handleSubmit,
-    reset,
-    formState: { isSubmitting, isValid },
-  } = methods;
+  const { reset } = methods;
 
   // Init Value
   const [findResult] = useQuery({
@@ -79,7 +77,7 @@ export function Pokemon({ pokemonId }: PokemonProps) {
   const fetching = updateFetching || createFetching;
 
   /** 保存処理 */
-  const onSubmit: SubmitHandler<PokemonFormSchemaType> = async (data) => {
+  const onSubmit = async (data: PokemonFormSchemaType) => {
     if (pokemonId) {
       await executeUpdate({
         input: {
@@ -88,6 +86,8 @@ export function Pokemon({ pokemonId }: PokemonProps) {
           pokedexNo: data.pokedexNo,
         },
       });
+
+      toast({ status: 'success', description: '保存しました' });
     } else {
       const _createResult = await executeCreate({
         input: {
@@ -96,13 +96,14 @@ export function Pokemon({ pokemonId }: PokemonProps) {
         },
       });
 
+      toast({ status: 'success', description: '登録しました' });
       router.push(`/pokemon/${_createResult.data?.createPokemon.pokemonId}`);
     }
   };
 
   return (
     <FormProvider {...methods}>
-      <PokemonPresenter onSubmit={handleSubmit(onSubmit)} isFetching={fetching} />
+      <PokemonPresenter onSubmit={onSubmit} isFetching={fetching} />
     </FormProvider>
   );
 }
