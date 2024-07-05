@@ -5,6 +5,7 @@ package pokemon_command;
 service PokemonCommandService {
   rpc CreatePokemon (CreatePokemonRequest) returns (CreatePokemonResponse) {}
   rpc UpdatePokemon (UpdatePokemonRequest) returns (UpdatePokemonResponse) {}
+  rpc DeletePokemon (DeletePokemonRequest) returns (DeletePokemonResponse) {}
 }
 
 message CreatePokemonRequest {
@@ -22,6 +23,10 @@ message UpdatePokemonRequest {
   string name = 3;
 }
 
-message UpdatePokemonResponse {
+message UpdatePokemonResponse {}
+
+message DeletePokemonRequest {
   string pokemonId = 1;
 }
+
+message DeletePokemonResponse {}

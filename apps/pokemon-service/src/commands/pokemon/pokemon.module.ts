@@ -5,6 +5,7 @@ import { POKEMON_REPOSITORY_TOKEN } from './domain/repository/pokemon.repository
 import { PokemonRepository } from './infrastructure/pokemon.repository';
 import { UpdatePokemonCommandHandler } from './application/usecases/update-pokemon.command';
 import { PokemonEventHandler } from './application/event-handlers/pokemon.event-handler';
+import { DeletePokemonCommandHandler } from './application/usecases/delete-pokemon.command';
 
 @Module({
   imports: [],
@@ -12,6 +13,7 @@ import { PokemonEventHandler } from './application/event-handlers/pokemon.event-
   providers: [
     CreatePokemonCommandHandler,
     UpdatePokemonCommandHandler,
+    DeletePokemonCommandHandler,
     PokemonEventHandler,
     {
       provide: POKEMON_REPOSITORY_TOKEN,

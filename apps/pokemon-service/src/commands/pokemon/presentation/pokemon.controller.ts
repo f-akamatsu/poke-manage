@@ -3,14 +3,15 @@ import { CommandBus } from '@nestjs/cqrs';
 import {
   CreatePokemonRequest,
   CreatePokemonResponse,
+  DeletePokemonRequest,
   POKEMON_COMMAND_PACKAGE_NAME,
   PokemonCommandServiceController,
   PokemonCommandServiceControllerMethods,
   UpdatePokemonRequest,
-  UpdatePokemonResponse,
 } from '@packages/protos/__generated__/pokemon/pokemon_command.interface';
 import { CreatePokemonCommand } from '../application/usecases/create-pokemon.command';
 import { UpdatePokemonCommand } from '../application/usecases/update-pokemon.command';
+import { DeletePokemonCommand } from '../application/usecases/delete-pokemon.command';
 
 @PokemonCommandServiceControllerMethods()
 @Controller(POKEMON_COMMAND_PACKAGE_NAME)
@@ -34,18 +35,20 @@ export class PokemonController implements PokemonCommandServiceController {
   /**
    *
    */
-  async updatePokemon(
-    request: UpdatePokemonRequest,
-  ): Promise<UpdatePokemonResponse> {
+  async updatePokemon(request: UpdatePokemonRequest): Promise<void> {
     const command = new UpdatePokemonCommand(
       request.pokemonId,
       request.name,
       request.pokedexNo,
     );
-    const response = await this.commandBus.execute<
-      UpdatePokemonCommand,
-      { pokemonId: string }
-    >(command);
-    return response;
+    await this.commandBus.execute<UpdatePokemonCommand>(command);
+  }
+
+  /**
+   *
+   */
+  async deletePokemon(request: DeletePokemonRequest): Promise<void> {
+    const command = new DeletePokemonCommand(request.pokemonId);
+    await this.commandBus.execute<DeletePokemonCommand>(command);
   }
 }

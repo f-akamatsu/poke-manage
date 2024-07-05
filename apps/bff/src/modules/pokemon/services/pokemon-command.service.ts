@@ -29,10 +29,7 @@ export class PokemonCommandService implements OnModuleInit {
     return response;
   }
 
-  async updatePokemon(
-    input: UpdatePokemonInput,
-  ): Promise<{ pokemonId: string }> {
-    const reponse = await lastValueFrom(this.svc.updatePokemon(input));
-    return reponse;
+  async updatePokemon(input: UpdatePokemonInput): Promise<void> {
+    await lastValueFrom(this.svc.updatePokemon(input));
   }
 }

@@ -1,4 +1,4 @@
-import { Inject } from '@nestjs/common';
+import { Inject, NotFoundException } from '@nestjs/common';
 import { Pokemon } from '../domain/entities/pokemon';
 import { IPokemonRepository } from '../domain/repository/pokemon.repository.interface';
 import { EVENT_STORE, EventStore } from '@event-nest/core';
@@ -16,6 +16,15 @@ export class PokemonRepository implements IPokemonRepository {
       pokemonId.value,
     );
     const pokemon = Pokemon.fromEvents(pokemonId, events);
+
+    console.log(pokemon);
+
+    if (!pokemon.version || pokemon.isDeleted.value) {
+      throw new NotFoundException(
+        `Pokemon Not Found. PokemonId is [${pokemonId.value}].`,
+      );
+    }
+
     return pokemon;
   }
 

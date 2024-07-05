@@ -3,6 +3,7 @@ import { OnEvent } from '@nestjs/event-emitter';
 import { PrismaService } from 'src/common/prisma/prisma.service';
 import { Pokemon } from '../../domain/entities/pokemon';
 import { PokemonRM } from '@prisma/client';
+import { PokemonId } from '../../domain/value-objects/pokemon-id';
 
 @Injectable()
 export class PokemonEventHandler {
@@ -15,7 +16,11 @@ export class PokemonEventHandler {
    */
   @OnEvent('pokemon.*', { async: true, promisify: true })
   async handlePokemonEvent(pokemon: Pokemon): Promise<void> {
-    await this.upsert(pokemon);
+    if (pokemon.isDeleted.value) {
+      await this.delete(pokemon.pokemonId);
+    } else {
+      await this.upsert(pokemon);
+    }
   }
 
   /**
@@ -34,6 +39,14 @@ export class PokemonEventHandler {
       },
       create: pokemonRM,
       update: pokemonRM,
+    });
+  }
+
+  private async delete(pokemonId: PokemonId): Promise<void> {
+    await this.prisma.pokemonRM.delete({
+      where: {
+        pokemon_id: pokemonId.value,
+      },
     });
   }
 }

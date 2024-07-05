@@ -35,7 +35,7 @@ export class UpdatePokemonCommandHandler
   /**
    *
    */
-  async execute(command: UpdatePokemonCommand): Promise<{ pokemonId: string }> {
+  async execute(command: UpdatePokemonCommand): Promise<void> {
     const event = new PokemonUpdatedEvent(command.name, command.pokedexNo);
     const pokemon = await this.repository.findById(
       PokemonId.from(command.pokemonId),
@@ -45,7 +45,5 @@ export class UpdatePokemonCommandHandler
 
     // ドメインイベント発行
     await this.eventEmitter.emitAsync('pokemon.updated', pokemon);
-
-    return { pokemonId: pokemon.pokemonId.value };
   }
 }

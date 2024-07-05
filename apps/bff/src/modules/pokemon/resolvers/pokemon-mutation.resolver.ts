@@ -25,7 +25,7 @@ export class PokemonMutationResolver {
   async updatePokemon(
     @Args('input') input: UpdatePokemonInput,
   ): Promise<PokemonBase> {
-    const { pokemonId } = await this.pokemonCommandService.updatePokemon(input);
-    return await this.pokemonQueryService.findPokemon(pokemonId);
+    await this.pokemonCommandService.updatePokemon(input);
+    return await this.pokemonQueryService.findPokemon(input.pokemonId);
   }
 }

@@ -9,6 +9,8 @@ import { PokemonName } from '../value-objects/pokemon-name';
 import { PokemonCreatedEvent } from '../events/pokemon-created.event';
 import { PokemonId } from '../value-objects/pokemon-id';
 import { PokemonUpdatedEvent } from '../events/pokemon-updated.event';
+import { PokemonDeletedEvent } from '../events/pokemon-deleted.event';
+import { IsDeleted } from '../value-objects/is-deleted';
 
 /**
  * ポケモン
@@ -21,6 +23,8 @@ export class Pokemon extends AggregateRoot {
   private _name: PokemonName;
   /** 図鑑番号 */
   private _pokedexNo: PokedexNo;
+  /** 削除フラグ */
+  private _isDeleted: IsDeleted;
 
   private constructor(pokemonId: PokemonId) {
     super(pokemonId.value);
@@ -58,6 +62,11 @@ export class Pokemon extends AggregateRoot {
     this.append(event);
   }
 
+  public delete(event: PokemonDeletedEvent): void {
+    this.applyPokemonDeletedEvent(event);
+    this.append(event);
+  }
+
   // ==============================
   //  ApplyEvent
   // ==============================
@@ -65,12 +74,18 @@ export class Pokemon extends AggregateRoot {
   private applyPokemonCreatedEvent(event: PokemonCreatedEvent) {
     this._name = new PokemonName(event.name);
     this._pokedexNo = new PokedexNo(event.pokedexNo);
+    this._isDeleted = new IsDeleted(false);
   }
 
   @ApplyEvent(PokemonUpdatedEvent)
   private applyPokemonUpdatedEvent(event: PokemonUpdatedEvent) {
     this._name = new PokemonName(event.name);
     this._pokedexNo = new PokedexNo(event.pokedexNo);
+  }
+
+  @ApplyEvent(PokemonDeletedEvent)
+  private applyPokemonDeletedEvent(_event: PokemonDeletedEvent) {
+    this._isDeleted = new IsDeleted(true);
   }
 
   // ==============================
@@ -86,5 +101,9 @@ export class Pokemon extends AggregateRoot {
 
   public get pokedexNo(): PokedexNo {
     return this._pokedexNo;
+  }
+
+  public get isDeleted(): IsDeleted {
+    return this._isDeleted;
   }
 }
