@@ -5,6 +5,8 @@ import { PokemonQueryService } from '../services/pokemon-query.service';
 import { CreatePokemonInput } from '../inputs/create-pokemon.input';
 import { PokemonBase } from '../types/pokemon.type';
 import { UpdatePokemonInput } from '../inputs/update-pokemon.input';
+import { DeletePokemonInput } from '../inputs/delete-pokemon.input';
+import { GraphQLVoid } from 'graphql-scalars';
 
 @Resolver(() => Pokemon)
 export class PokemonMutationResolver {
@@ -27,5 +29,10 @@ export class PokemonMutationResolver {
   ): Promise<PokemonBase> {
     await this.pokemonCommandService.updatePokemon(input);
     return await this.pokemonQueryService.findPokemon(input.pokemonId);
+  }
+
+  @Mutation(() => GraphQLVoid, { nullable: true })
+  async deletePokemon(@Args('input') input: DeletePokemonInput): Promise<void> {
+    await this.pokemonCommandService.deletePokemon(input);
   }
 }

@@ -7,8 +7,13 @@ input CreatePokemonInput {
   pokedexNo: Int!
 }
 
+input DeletePokemonInput {
+  pokemonId: String!
+}
+
 type Mutation {
   createPokemon(input: CreatePokemonInput!): Pokemon!
+  deletePokemon(input: DeletePokemonInput!): Void
   updatePokemon(input: UpdatePokemonInput!): Pokemon!
 }
 
@@ -28,3 +33,6 @@ input UpdatePokemonInput {
   pokedexNo: Int!
   pokemonId: String!
 }
+
+"""Represents NULL values"""
+scalar Void

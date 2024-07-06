@@ -8,6 +8,7 @@ import {
 import { lastValueFrom } from 'rxjs';
 import { CreatePokemonInput } from '../inputs/create-pokemon.input';
 import { UpdatePokemonInput } from '../inputs/update-pokemon.input';
+import { DeletePokemonInput } from '../inputs/delete-pokemon.input';
 @Injectable()
 export class PokemonCommandService implements OnModuleInit {
   private svc: PokemonCommandServiceClient;
@@ -22,6 +23,9 @@ export class PokemonCommandService implements OnModuleInit {
     );
   }
 
+  /**
+   *
+   */
   async createPokemon(
     input: CreatePokemonInput,
   ): Promise<{ pokemonId: string }> {
@@ -29,7 +33,17 @@ export class PokemonCommandService implements OnModuleInit {
     return response;
   }
 
+  /**
+   *
+   */
   async updatePokemon(input: UpdatePokemonInput): Promise<void> {
     await lastValueFrom(this.svc.updatePokemon(input));
+  }
+
+  /**
+   *
+   */
+  async deletePokemon(input: DeletePokemonInput): Promise<void> {
+    await lastValueFrom(this.svc.deletePokemon(input));
   }
 }
