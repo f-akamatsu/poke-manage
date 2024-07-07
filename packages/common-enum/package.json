@@ -1,0 +1,13 @@
+{
+  "name": "@packages/common-enum",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "nest build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
