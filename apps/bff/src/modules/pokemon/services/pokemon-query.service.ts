@@ -4,9 +4,10 @@ import {
   POKEMON_QUERY_PACKAGE_NAME,
   POKEMON_QUERY_SERVICE_NAME,
   PokemonQueryServiceClient,
+  Pokemon as PokemonProto,
 } from '@packages/protos/__generated__/pokemon/pokemon_query.interface';
 import { lastValueFrom } from 'rxjs';
-import { PokemonBase } from '../types/pokemon.type';
+import { Pokemon } from '../models/pokemon.model';
 
 @Injectable()
 export class PokemonQueryService implements OnModuleInit {
@@ -22,13 +23,23 @@ export class PokemonQueryService implements OnModuleInit {
     );
   }
 
-  async fetchAllPokemon(): Promise<PokemonBase[]> {
+  async fetchAllPokemon(): Promise<Pokemon[]> {
     const response = await lastValueFrom(this.svc.fetchAllPokemon({}));
-    return response.pokemonList;
+    return response.pokemonList.map(this.protoToGraphQLModel);
   }
 
-  async findPokemon(pokemonId: string): Promise<PokemonBase> {
+  async findPokemon(pokemonId: string): Promise<Pokemon> {
     const response = await lastValueFrom(this.svc.findPokemon({ pokemonId }));
-    return response.pokemon;
+    return this.protoToGraphQLModel(response.pokemon);
+  }
+
+  private protoToGraphQLModel(pokemonProto: PokemonProto): Pokemon {
+    return {
+      pokemonId: pokemonProto.pokemonId,
+      name: pokemonProto.name,
+      pokedexNo: pokemonProto.pokedexNo,
+      // TODO
+      type1: { id: '01', name: 'ノーマル' },
+    };
   }
 }

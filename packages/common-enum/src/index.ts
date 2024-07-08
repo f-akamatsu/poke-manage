@@ -1,1 +1,1 @@
-export * from './enum/pokemon-type';
+export * from './enum/type';

@@ -21,11 +21,18 @@ type Pokemon {
   name: String!
   pokedexNo: Int!
   pokemonId: String!
+  type1: Type!
+  type2: Type
 }
 
 type Query {
   fetchAllPokemon: [Pokemon!]!
   findPokemon(id: String!): Pokemon!
+}
+
+type Type {
+  id: String!
+  name: String!
 }
 
 input UpdatePokemonInput {
