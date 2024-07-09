@@ -15,6 +15,8 @@ export class CreatePokemonCommand implements ICommand {
   constructor(
     public readonly name: string,
     public readonly pokedexNo: number,
+    public readonly typeId1: string,
+    public readonly typeId2?: string,
   ) {}
 }
 
@@ -35,7 +37,12 @@ export class CreatePokemonCommandHandler
    *
    */
   async execute(command: CreatePokemonCommand): Promise<{ pokemonId: string }> {
-    const event = new PokemonCreatedEvent(command.name, command.pokedexNo);
+    const event = new PokemonCreatedEvent(
+      command.name,
+      command.pokedexNo,
+      command.typeId1,
+      command.typeId2,
+    );
     const pokemon = Pokemon.create(event);
     await this.repository.save(pokemon);
 

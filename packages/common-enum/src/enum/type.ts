@@ -33,7 +33,7 @@ export class Type {
 
   public static fromId(id: string): Type {
     const type = this._values.find((v) => v.id === id);
-    if (!type) throw new Error('Type is not found !');
+    if (!type) throw new Error(`Type is not found ! id is [${id}]`);
     return type;
   }
 }

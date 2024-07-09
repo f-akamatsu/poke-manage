@@ -29,11 +29,13 @@
     "@nestjs/event-emitter": "^2.0.4",
     "@nestjs/microservices": "^10.3.8",
     "@nestjs/platform-express": "^10.0.0",
+    "@packages/common-enum": "workspace:*",
     "@packages/protos": "workspace:*",
     "@prisma/client": "^5.2.0",
     "mongodb": "^6.7.0",
     "reflect-metadata": "^0.2.0",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "typescript-optional": "3.0.0-alpha.3"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",

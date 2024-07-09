@@ -11,6 +11,8 @@ service PokemonCommandService {
 message CreatePokemonRequest {
   int32 pokedexNo = 1;
   string name = 2;
+  string typeId1 = 3;
+  optional string typeId2 = 4;
 }
 
 message CreatePokemonResponse {
@@ -21,6 +23,8 @@ message UpdatePokemonRequest {
   string pokemonId = 1;
   int32 pokedexNo = 2;
   string name = 3;
+  string typeId1 = 4;
+  optional string typeId2 = 5;
 }
 
 message UpdatePokemonResponse {}

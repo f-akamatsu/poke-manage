@@ -11,8 +11,8 @@ export const grpcClientOptions: Record<string, ClientProviderOptions> = {
       url: 'localhost:50051', // TODO env
       package: POKEMON_QUERY_PACKAGE_NAME,
       protoPath: join(
-        process.cwd(),
-        'node_modules/@packages/protos/apis/pokemon/pokemon_query.proto',
+        __dirname,
+        '../../../packages/protos/apis/pokemon/pokemon_query.proto',
       ),
     },
   },
@@ -23,8 +23,8 @@ export const grpcClientOptions: Record<string, ClientProviderOptions> = {
       url: 'localhost:50051', // TODO env
       package: POKEMON_COMMAND_PACKAGE_NAME,
       protoPath: join(
-        process.cwd(),
-        'node_modules/@packages/protos/apis/pokemon/pokemon_command.proto',
+        __dirname,
+        '../../../packages/protos/apis/pokemon/pokemon_command.proto',
       ),
     },
   },

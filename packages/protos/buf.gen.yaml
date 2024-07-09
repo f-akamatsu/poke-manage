@@ -5,7 +5,7 @@ plugins:
     opt: "\
       nestJs=true,\
       esModuleInterop=true,\
-      useOptionals=messages,\
+      useOptionals=none,\
       oneof=unions,\
       forceLong=bitint,\
       unrecognizedEnum=false,\

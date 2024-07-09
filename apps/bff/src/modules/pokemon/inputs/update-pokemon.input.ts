@@ -10,4 +10,10 @@ export class UpdatePokemonInput {
 
   @Field(() => Int)
   pokedexNo: number;
+
+  @Field(() => String)
+  typeId1: string;
+
+  @Field(() => String, { nullable: true })
+  typeId2?: string;
 }

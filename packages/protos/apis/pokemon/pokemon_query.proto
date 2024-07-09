@@ -25,4 +25,6 @@ message Pokemon {
   string pokemonId = 1;
   int32 pokedexNo = 2;
   string name = 3;
+  string typeId1 = 4;
+  optional string typeId2 = 5;
 }

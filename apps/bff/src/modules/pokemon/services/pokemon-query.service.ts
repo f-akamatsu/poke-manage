@@ -8,6 +8,7 @@ import {
 } from '@packages/protos/__generated__/pokemon/pokemon_query.interface';
 import { lastValueFrom } from 'rxjs';
 import { Pokemon } from '../models/pokemon.model';
+import { Optional } from 'typescript-optional';
 
 @Injectable()
 export class PokemonQueryService implements OnModuleInit {
@@ -30,7 +31,9 @@ export class PokemonQueryService implements OnModuleInit {
 
   async findPokemon(pokemonId: string): Promise<Pokemon> {
     const response = await lastValueFrom(this.svc.findPokemon({ pokemonId }));
-    return this.protoToGraphQLModel(response.pokemon);
+    return this.protoToGraphQLModel(
+      Optional.ofNullable(response.pokemon).get(), // protoのmessageがundefinedになる
+    );
   }
 
   private protoToGraphQLModel(pokemonProto: PokemonProto): Pokemon {
@@ -38,8 +41,8 @@ export class PokemonQueryService implements OnModuleInit {
       pokemonId: pokemonProto.pokemonId,
       name: pokemonProto.name,
       pokedexNo: pokemonProto.pokedexNo,
-      // TODO
-      type1: { id: '01', name: 'ノーマル' },
+      typeId1: pokemonProto.typeId1,
+      typeId2: pokemonProto.typeId2,
     };
   }
 }

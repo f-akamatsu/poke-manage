@@ -84,6 +84,8 @@ export function Pokemon({ pokemonId }: PokemonProps) {
           pokemonId,
           name: data.name,
           pokedexNo: data.pokedexNo,
+          // TODO
+          typeId1: '01',
         },
       });
 
@@ -93,6 +95,8 @@ export function Pokemon({ pokemonId }: PokemonProps) {
         input: {
           name: data.name,
           pokedexNo: data.pokedexNo,
+          // TODO
+          typeId1: '01',
         },
       });
 

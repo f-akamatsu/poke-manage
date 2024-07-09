@@ -16,6 +16,8 @@ export class UpdatePokemonCommand implements ICommand {
     public readonly pokemonId: string,
     public readonly name: string,
     public readonly pokedexNo: number,
+    public readonly typeId1: string,
+    public readonly typeId2?: string,
   ) {}
 }
 
@@ -36,7 +38,12 @@ export class UpdatePokemonCommandHandler
    *
    */
   async execute(command: UpdatePokemonCommand): Promise<void> {
-    const event = new PokemonUpdatedEvent(command.name, command.pokedexNo);
+    const event = new PokemonUpdatedEvent(
+      command.name,
+      command.pokedexNo,
+      command.typeId1,
+      command.typeId2,
+    );
     const pokemon = await this.repository.findById(
       PokemonId.from(command.pokemonId),
     );

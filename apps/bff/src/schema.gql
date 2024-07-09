@@ -5,6 +5,8 @@
 input CreatePokemonInput {
   name: String!
   pokedexNo: Int!
+  typeId1: String!
+  typeId2: String
 }
 
 input DeletePokemonInput {
@@ -21,8 +23,8 @@ type Pokemon {
   name: String!
   pokedexNo: Int!
   pokemonId: String!
-  type1: Type!
-  type2: Type
+  typeId1: String!
+  typeId2: String
 }
 
 type Query {
@@ -30,15 +32,12 @@ type Query {
   findPokemon(id: String!): Pokemon!
 }
 
-type Type {
-  id: String!
-  name: String!
-}
-
 input UpdatePokemonInput {
   name: String!
   pokedexNo: Int!
   pokemonId: String!
+  typeId1: String!
+  typeId2: String
 }
 
 """Represents NULL values"""

@@ -24,7 +24,12 @@ export class PokemonController implements PokemonCommandServiceController {
   async createPokemon(
     request: CreatePokemonRequest,
   ): Promise<CreatePokemonResponse> {
-    const command = new CreatePokemonCommand(request.name, request.pokedexNo);
+    const command = new CreatePokemonCommand(
+      request.name,
+      request.pokedexNo,
+      request.typeId1,
+      request.typeId2,
+    );
     const response = await this.commandBus.execute<
       CreatePokemonCommand,
       { pokemonId: string }
@@ -40,6 +45,8 @@ export class PokemonController implements PokemonCommandServiceController {
       request.pokemonId,
       request.name,
       request.pokedexNo,
+      request.typeId1,
+      request.typeId2,
     );
     await this.commandBus.execute<UpdatePokemonCommand>(command);
   }

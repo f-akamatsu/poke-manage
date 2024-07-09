@@ -11,6 +11,8 @@ import { PokemonId } from '../value-objects/pokemon-id';
 import { PokemonUpdatedEvent } from '../events/pokemon-updated.event';
 import { PokemonDeletedEvent } from '../events/pokemon-deleted.event';
 import { IsDeleted } from '../value-objects/is-deleted';
+import { Type } from '@packages/common-enum';
+import { Optional } from 'typescript-optional';
 
 /**
  * ポケモン
@@ -23,6 +25,10 @@ export class Pokemon extends AggregateRoot {
   private _name: PokemonName;
   /** 図鑑番号 */
   private _pokedexNo: PokedexNo;
+  /** タイプ1 */
+  private _type1: Type;
+  /** タイプ2 */
+  private _type2?: Type;
   /** 削除フラグ */
   private _isDeleted: IsDeleted;
 
@@ -62,6 +68,9 @@ export class Pokemon extends AggregateRoot {
     this.append(event);
   }
 
+  /**
+   *
+   */
   public delete(event: PokemonDeletedEvent): void {
     this.applyPokemonDeletedEvent(event);
     this.append(event);
@@ -74,6 +83,10 @@ export class Pokemon extends AggregateRoot {
   private applyPokemonCreatedEvent(event: PokemonCreatedEvent) {
     this._name = new PokemonName(event.name);
     this._pokedexNo = new PokedexNo(event.pokedexNo);
+    this._type1 = Type.fromId(event.typeId1);
+    this._type2 = Optional.ofNullable(event.typeId2)
+      .map(Type.fromId)
+      .orUndefined();
     this._isDeleted = new IsDeleted(false);
   }
 
@@ -81,6 +94,10 @@ export class Pokemon extends AggregateRoot {
   private applyPokemonUpdatedEvent(event: PokemonUpdatedEvent) {
     this._name = new PokemonName(event.name);
     this._pokedexNo = new PokedexNo(event.pokedexNo);
+    this._type1 = Type.fromId(event.typeId1);
+    this._type2 = Optional.ofNullable(event.typeId2)
+      .map(Type.fromId)
+      .orUndefined();
   }
 
   @ApplyEvent(PokemonDeletedEvent)
@@ -101,6 +118,14 @@ export class Pokemon extends AggregateRoot {
 
   public get pokedexNo(): PokedexNo {
     return this._pokedexNo;
+  }
+
+  public get type1(): Type {
+    return this._type1;
+  }
+
+  public get type2(): Type | undefined {
+    return this._type2;
   }
 
   public get isDeleted(): IsDeleted {

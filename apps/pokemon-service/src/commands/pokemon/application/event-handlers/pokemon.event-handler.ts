@@ -4,6 +4,7 @@ import { PrismaService } from 'src/common/prisma/prisma.service';
 import { Pokemon } from '../../domain/entities/pokemon';
 import { PokemonRM } from '@prisma/client';
 import { PokemonId } from '../../domain/value-objects/pokemon-id';
+import { Optional } from 'typescript-optional';
 
 @Injectable()
 export class PokemonEventHandler {
@@ -31,6 +32,8 @@ export class PokemonEventHandler {
       pokemon_id: pokemon.pokemonId.value,
       name: pokemon.name.value,
       pokedex_no: pokemon.pokedexNo.value,
+      type_id_1: pokemon.type1.id,
+      type_id_2: Optional.ofNullable(pokemon.type2?.id).orNull(),
     };
 
     await this.prisma.pokemonRM.upsert({

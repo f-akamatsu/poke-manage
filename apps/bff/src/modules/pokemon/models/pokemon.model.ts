@@ -1,5 +1,4 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { Type } from 'src/common/models/type.model';
 
 @ObjectType()
 export class Pokemon {
@@ -12,9 +11,9 @@ export class Pokemon {
   @Field((_type) => Int)
   pokedexNo: number;
 
-  @Field((_type) => Type)
-  type1: Type;
+  @Field((_type) => String)
+  typeId1: string;
 
-  @Field((_type) => Type, { nullable: true })
-  type2?: Type;
+  @Field((_type) => String, { nullable: true })
+  typeId2?: string;
 }

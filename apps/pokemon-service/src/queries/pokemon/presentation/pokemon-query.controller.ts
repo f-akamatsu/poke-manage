@@ -13,6 +13,7 @@ import {
 import { FetchAllPokemonQuery } from '../application/fetch-all-pokemon.query';
 import { PokemonRM } from '@prisma/client';
 import { FindPokemonQuery } from '../application/find-pokemon.query';
+import { Optional } from 'typescript-optional';
 
 @PokemonQueryServiceControllerMethods()
 @Controller(POKEMON_QUERY_PACKAGE_NAME)
@@ -59,5 +60,7 @@ const toProtoMessage = (pokemonRM: PokemonRM): Pokemon => {
     pokemonId: pokemonRM.pokemon_id,
     pokedexNo: pokemonRM.pokedex_no,
     name: pokemonRM.name,
+    typeId1: pokemonRM.type_id_1,
+    typeId2: pokemonRM.type_id_2 ?? undefined,
   };
 };
