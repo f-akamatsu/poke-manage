@@ -1,4 +1,4 @@
-import { Button, Center, Flex, Input, Spacer, Text } from '@chakra-ui/react';
+import { Button, Center, Flex, Input, Text } from '@chakra-ui/react';
 import { useFormContext } from 'react-hook-form';
 import { PokemonFormSchemaType } from './Pokemon.schema';
 import { Select } from 'chakra-react-select';
