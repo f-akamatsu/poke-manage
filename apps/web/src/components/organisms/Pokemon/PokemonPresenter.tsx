@@ -1,6 +1,12 @@
 import { Button, Center, Flex, Input, Spacer, Text } from '@chakra-ui/react';
 import { useFormContext } from 'react-hook-form';
 import { PokemonFormSchemaType } from './Pokemon.schema';
+import { Select } from 'chakra-react-select';
+import { Type } from '@packages/common-enum';
+
+const options: { label: string; value: string }[] = Type.values.map((v) => {
+  return { label: v.name, value: v.id };
+});
 
 export interface PokemonPresenterProps {
   onSubmit: (data: PokemonFormSchemaType) => void;
@@ -45,6 +51,9 @@ export function PokemonPresenter({ onSubmit, isFetching }: PokemonPresenterProps
             </Text>
           )}
         </Flex>
+
+        {/* タイプ */}
+        <Select options={options} />
 
         <Center>
           <Button

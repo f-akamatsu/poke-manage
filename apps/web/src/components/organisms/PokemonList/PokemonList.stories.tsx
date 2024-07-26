@@ -19,14 +19,14 @@ export const Basic: Story = (args: PokemonListPresenterProps) => {
 
 Basic.args = {
   pokemonFragments: [
-    { pokedexNo: 1, name: 'フシギダネ' },
-    { pokedexNo: 2, name: 'フシギソウ' },
-    { pokedexNo: 3, name: 'フシギバナ' },
-    { pokedexNo: 4, name: 'ヒトカゲ' },
-    { pokedexNo: 5, name: 'リザード' },
-    { pokedexNo: 6, name: 'リザードン' },
-    { pokedexNo: 7, name: 'ゼニガメ' },
-    { pokedexNo: 8, name: 'カメール' },
-    { pokedexNo: 9, name: 'カメックス' },
+    { pokemonId: '', pokedexNo: 1, name: 'フシギダネ' },
+    { pokemonId: '', pokedexNo: 2, name: 'フシギソウ' },
+    { pokemonId: '', pokedexNo: 3, name: 'フシギバナ' },
+    { pokemonId: '', pokedexNo: 4, name: 'ヒトカゲ' },
+    { pokemonId: '', pokedexNo: 5, name: 'リザード' },
+    { pokemonId: '', pokedexNo: 6, name: 'リザードン' },
+    { pokemonId: '', pokedexNo: 7, name: 'ゼニガメ' },
+    { pokemonId: '', pokedexNo: 8, name: 'カメール' },
+    { pokemonId: '', pokedexNo: 9, name: 'カメックス' },
   ].map((pokemon) => makeFragmentData(pokemon, PokemonFieldsFragment)),
 };
