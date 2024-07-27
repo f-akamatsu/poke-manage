@@ -17,8 +17,6 @@ export class PokemonRepository implements IPokemonRepository {
     );
     const pokemon = Pokemon.fromEvents(pokemonId, events);
 
-    console.log(pokemon);
-
     if (!pokemon.version || pokemon.isDeleted.value) {
       throw new NotFoundException(
         `Pokemon Not Found. PokemonId is [${pokemonId.value}].`,
