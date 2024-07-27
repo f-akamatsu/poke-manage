@@ -1,12 +1,16 @@
 import { EventNestMongoDbModule } from '@event-nest/mongodb';
 import { Module } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
-    EventNestMongoDbModule.register({
-      connectionUri: 'mongodb://user:password@localhost:27017/pokemon',
-      aggregatesCollection: 'aggregates-collection',
-      eventsCollection: 'events-collection',
+    EventNestMongoDbModule.registerAsync({
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        connectionUri: configService.getOrThrow<string>('EVENTSTORE_URL'),
+        aggregatesCollection: 'aggregates-collection',
+        eventsCollection: 'events-collection',
+      }),
     }),
   ],
 })

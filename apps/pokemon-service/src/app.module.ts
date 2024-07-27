@@ -5,10 +5,12 @@ import { PokemonModule } from './commands/pokemon/pokemon.module';
 import { PrismaModule } from './common/prisma/prisma.module';
 import { EventStoreModule } from './common/event-store/event-store.module';
 import { EventEmitterModule } from '@nestjs/event-emitter';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
     // 共通
+    ConfigModule.forRoot({ isGlobal: true }),
     CustomCqrsModule,
     PrismaModule,
     EventStoreModule,
