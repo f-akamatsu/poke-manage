@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "turbo dev"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +18,7 @@
   "devDependencies": {
     "prettier": "^3.3.0",
     "rimraf": "^5.0.5",
+    "turbo": "^2.0.9",
     "typescript": "^5.4.5"
   }
 }
