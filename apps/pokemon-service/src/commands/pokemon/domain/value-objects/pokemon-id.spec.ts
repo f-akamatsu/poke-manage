@@ -4,8 +4,8 @@ import { PokemonId } from './pokemon-id';
 describe('PokemonId', () => {
   describe('バリデーション', () => {
     it('ObjectIDの形式のときに値が正しいこと', () => {
-      const actual = PokemonId.from('507f1f77bcf86cd799439011');
-      expect(actual.value).toBe('507f1f77bcf86cd799439011');
+      const pokemonId = PokemonId.from('507f1f77bcf86cd799439011');
+      expect(pokemonId.value).toBe('507f1f77bcf86cd799439011');
     });
 
     it('16進数以外の文字が使用されているときエラーになること', () => {

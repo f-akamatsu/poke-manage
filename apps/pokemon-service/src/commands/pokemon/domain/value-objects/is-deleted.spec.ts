@@ -4,13 +4,13 @@ import { IsDeleted } from './is-deleted';
 describe('IsDeleted', () => {
   describe('バリデーション', () => {
     it('trueのときに値が正しいこと', () => {
-      const actual = IsDeleted.from(true);
-      expect(actual.value).toBe(true);
+      const isDeleted = IsDeleted.from(true);
+      expect(isDeleted.value).toBe(true);
     });
 
     it('falseのときに値が正しいこと', () => {
-      const actual = IsDeleted.from(false);
-      expect(actual.value).toBe(false);
+      const isDeleted = IsDeleted.from(false);
+      expect(isDeleted.value).toBe(false);
     });
 
     it('文字列のときエラーになること', () => {

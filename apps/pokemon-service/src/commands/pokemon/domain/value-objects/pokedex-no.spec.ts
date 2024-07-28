@@ -4,8 +4,8 @@ import { PokedexNo } from './pokedex-no';
 describe('PokedexNo', () => {
   describe('バリデーション', () => {
     it('1のときに値が正しいこと', () => {
-      const actual = PokedexNo.from(1);
-      expect(actual.value).toBe(1);
+      const pokedexNo = PokedexNo.from(1);
+      expect(pokedexNo.value).toBe(1);
     });
 
     it('文字列のときエラーになること', () => {

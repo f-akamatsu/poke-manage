@@ -4,13 +4,13 @@ import { PokemonName } from './pokemon-name';
 describe('PokemonName', () => {
   describe('バリデーション', () => {
     it('1文字のときに値が正しいこと', () => {
-      const actual = PokemonName.from('ア');
-      expect(actual.value).toBe('ア');
+      const pokemonName = PokemonName.from('ア');
+      expect(pokemonName.value).toBe('ア');
     });
 
     it('6文字のときに値が正しいこと', () => {
-      const actual = PokemonName.from('マフォクシー');
-      expect(actual.value).toBe('マフォクシー');
+      const pokemonName = PokemonName.from('マフォクシー');
+      expect(pokemonName.value).toBe('マフォクシー');
     });
 
     it('数値のときエラーになること', () => {
