@@ -4,11 +4,12 @@ import { PokemonName } from '../../../domain/value-objects/pokemon-name';
 import { Pokemon } from '../../../domain/entities/pokemon';
 import { IsDeleted } from '../../../domain/value-objects/is-deleted';
 import { PokemonCreatedEvent } from '../../../domain/events/pokemon-created.event';
+import { InvalidPokemonException } from '../../../domain/exceptions/invalid-pokemon.exception';
 
 describe('Pokemon', () => {
   describe('Create', () => {
     describe('バリデーション', () => {
-      it('正しいイベントのときにドメインの各プロパティが正しいこと', () => {
+      it('正しいイベントのとき、正しい値でドメインが作成されること', () => {
         const pokemon = Pokemon.create(
           new PokemonCreatedEvent(
             'フシギダネ',
@@ -26,6 +27,19 @@ describe('Pokemon', () => {
         expect(pokemon.type2).toEqual(Type.POISON);
         expect(pokemon.isDeleted).toEqual(IsDeleted.from(false));
       });
+    });
+
+    it('ポケモン名が不正なイベントのとき、エラーになること', () => {
+      expect(() =>
+        Pokemon.create(
+          new PokemonCreatedEvent(
+            '', // NG
+            1,
+            Type.GRASS.id,
+            Type.POISON.id,
+          ),
+        ),
+      ).toThrow(InvalidPokemonException);
     });
   });
 });
