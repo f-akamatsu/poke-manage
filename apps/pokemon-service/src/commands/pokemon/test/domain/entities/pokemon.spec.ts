@@ -27,19 +27,30 @@ describe('Pokemon', () => {
         expect(pokemon.type2).toEqual(Type.POISON);
         expect(pokemon.isDeleted).toEqual(IsDeleted.from(false));
       });
-    });
 
-    it('ポケモン名が不正なイベントのとき、エラーになること', () => {
-      expect(() =>
-        Pokemon.create(
-          new PokemonCreatedEvent(
-            '', // NG
-            1,
-            Type.GRASS.id,
-            Type.POISON.id,
+      it('ポケモン名が不正なイベントのとき、エラーになること', () => {
+        expect(() =>
+          Pokemon.create(
+            new PokemonCreatedEvent('', 1, Type.NORMAL.id, undefined),
           ),
-        ),
-      ).toThrow(InvalidPokemonException);
+        ).toThrow(InvalidPokemonException);
+      });
+
+      it('図鑑Noが不正なイベントのとき、エラーになること', () => {
+        expect(() =>
+          Pokemon.create(
+            new PokemonCreatedEvent('けつばん', 0, Type.NORMAL.id, undefined),
+          ),
+        ).toThrow(InvalidPokemonException);
+      });
+
+      it('タイプ1のタイプIDが不正なイベントのとき、エラーになること', () => {
+        expect(() =>
+          Pokemon.create(
+            new PokemonCreatedEvent('けつばん', 0, '20', undefined),
+          ),
+        ).toThrow(Error);
+      });
     });
   });
 });
