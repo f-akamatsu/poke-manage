@@ -51,6 +51,54 @@ describe('Pokemon', () => {
           ),
         ).toThrow(Error);
       });
+
+      it('タイプ2のタイプIDが不正なイベントのとき、エラーになること', () => {
+        expect(() =>
+          Pokemon.create(
+            new PokemonCreatedEvent('けつばん', 0, Type.NORMAL.id, '20'),
+          ),
+        ).toThrow(Error);
+      });
+    });
+
+    describe('タイプのパターン', () => {
+      it('単タイプのポケモンが正しく作成されること', () => {
+        const pokemon = Pokemon.create(
+          new PokemonCreatedEvent(
+            'ピカチュウ',
+            25,
+            Type.ELECTRIC.id,
+            undefined,
+          ),
+        );
+
+        expect(pokemon.version).toBe(0);
+        expect(pokemon.pokemonId).toEqual(expect.anything());
+        expect(pokemon.name).toEqual(PokemonName.from('ピカチュウ'));
+        expect(pokemon.pokedexNo).toEqual(PokedexNo.from(25));
+        expect(pokemon.type1).toEqual(Type.ELECTRIC);
+        expect(pokemon.type2).toBeUndefined();
+        expect(pokemon.isDeleted).toEqual(IsDeleted.from(false));
+      });
+
+      it('複数タイプのポケモンが正しく作成されること', () => {
+        const pokemon = Pokemon.create(
+          new PokemonCreatedEvent(
+            'トゲキッス',
+            468,
+            Type.FAIRY.id,
+            Type.FLYING.id,
+          ),
+        );
+
+        expect(pokemon.version).toBe(0);
+        expect(pokemon.pokemonId).toEqual(expect.anything());
+        expect(pokemon.name).toEqual(PokemonName.from('トゲキッス'));
+        expect(pokemon.pokedexNo).toEqual(PokedexNo.from(468));
+        expect(pokemon.type1).toEqual(Type.FAIRY);
+        expect(pokemon.type2).toEqual(Type.FLYING);
+        expect(pokemon.isDeleted).toEqual(IsDeleted.from(false));
+      });
     });
   });
 });
