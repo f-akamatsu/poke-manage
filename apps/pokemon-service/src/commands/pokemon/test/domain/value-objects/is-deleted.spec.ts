@@ -1,5 +1,5 @@
-import { InvalidPokemonException } from '../exceptions/invalid-pokemon.exception';
-import { IsDeleted } from './is-deleted';
+import { InvalidPokemonException } from '../../../domain/exceptions/invalid-pokemon.exception';
+import { IsDeleted } from '../../../domain/value-objects/is-deleted';
 
 describe('IsDeleted', () => {
   describe('バリデーション', () => {

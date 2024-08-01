@@ -1,5 +1,5 @@
-import { InvalidPokemonException } from '../exceptions/invalid-pokemon.exception';
-import { PokedexNo } from './pokedex-no';
+import { InvalidPokemonException } from '../../../domain/exceptions/invalid-pokemon.exception';
+import { PokedexNo } from '../../../domain/value-objects/pokedex-no';
 
 describe('PokedexNo', () => {
   describe('バリデーション', () => {

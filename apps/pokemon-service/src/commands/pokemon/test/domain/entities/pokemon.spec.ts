@@ -1,9 +1,9 @@
 import { Type } from '@packages/common-enum';
-import { PokedexNo } from '../value-objects/pokedex-no';
-import { PokemonName } from '../value-objects/pokemon-name';
-import { Pokemon } from './pokemon';
-import { IsDeleted } from '../value-objects/is-deleted';
-import { PokemonCreatedEvent } from '../events/pokemon-created.event';
+import { PokedexNo } from '../../../domain/value-objects/pokedex-no';
+import { PokemonName } from '../../../domain/value-objects/pokemon-name';
+import { Pokemon } from '../../../domain/entities/pokemon';
+import { IsDeleted } from '../../../domain/value-objects/is-deleted';
+import { PokemonCreatedEvent } from '../../../domain/events/pokemon-created.event';
 
 describe('Pokemon', () => {
   describe('Create', () => {
