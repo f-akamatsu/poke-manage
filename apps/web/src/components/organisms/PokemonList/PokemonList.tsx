@@ -8,7 +8,7 @@ import { PokemonListPresenter } from './PokemonListPresenter';
 const FetchAllPokemonQuery = graphql(/* GraphQL */ `
   query FetchAllPokemon {
     fetchAllPokemon {
-      ...PokemonFields
+      ...PokemonCardFields
     }
   }
 `);
@@ -24,5 +24,12 @@ export function PokemonList({}: PokemonListProps) {
 
   if (!data) return null;
 
-  return <PokemonListPresenter pokemonFragments={data.fetchAllPokemon} />;
+  const handleClick = (pokemonId: string): void => {};
+
+  return (
+    <PokemonListPresenter
+      pokemonFragments={data.fetchAllPokemon}
+      onClickPokemonCard={handleClick}
+    />
+  );
 }

@@ -1,4 +1,4 @@
-import { Header } from '@/components/organisms/Header';
+import { Header } from '@/components/organisms/Header/Header';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Providers } from './providers';

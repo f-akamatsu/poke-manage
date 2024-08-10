@@ -3,8 +3,9 @@ import { PokemonCardFieldsFragment, PokemonCardPresenter } from './PokemonCardPr
 
 export interface PokemonCardProps {
   pokemonFragment: FragmentType<typeof PokemonCardFieldsFragment>;
+  onClick: (pokemonId: string) => void;
 }
 
-export function PokemonCard({ pokemonFragment }: PokemonCardProps) {
-  return <PokemonCardPresenter pokemonFragment={pokemonFragment} />;
+export function PokemonCard({ pokemonFragment, onClick }: PokemonCardProps) {
+  return <PokemonCardPresenter pokemonFragment={pokemonFragment} onClick={onClick} />;
 }

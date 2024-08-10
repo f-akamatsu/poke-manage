@@ -1,6 +1,6 @@
 import { FragmentType, getFragmentData, graphql } from '@/gql/__generated__';
 import { Flex, Spacer, Text } from '@chakra-ui/react';
-import { TypeIcon } from '../TypeIcon';
+import { TypeIcon } from '../TypeIcon/TypeIcon';
 import { padNumber } from '@/utils';
 import { NoImage } from '@/components/atoms/NoImage/NoImage';
 
@@ -16,9 +16,10 @@ export const PokemonCardFieldsFragment = graphql(/* GraphQL */ `
 
 export interface PokemonCardPresenterProps {
   pokemonFragment: FragmentType<typeof PokemonCardFieldsFragment>;
+  onClick: (pokemonId: string) => void;
 }
 
-export function PokemonCardPresenter({ pokemonFragment }: PokemonCardPresenterProps) {
+export function PokemonCardPresenter({ pokemonFragment, onClick }: PokemonCardPresenterProps) {
   const pokemon = getFragmentData(PokemonCardFieldsFragment, pokemonFragment);
 
   return (
@@ -35,6 +36,9 @@ export function PokemonCardPresenter({ pokemonFragment }: PokemonCardPresenterPr
       cursor='pointer'
       _hover={{ bgColor: 'cyan.50' }}
       _active={{ borderBottomWidth: '1px', transform: 'translateY(2px)' }}
+      onClick={() => {
+        onClick(pokemon.pokemonId);
+      }}
     >
       <NoImage />
       <Flex flexDir='column' gap={1} flexGrow={1}>
