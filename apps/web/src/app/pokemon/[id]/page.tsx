@@ -1,6 +1,6 @@
 'use client';
 
-import { Pokemon } from '@/components/organisms/Pokemon/Pokemon';
+import { Pokemon } from '@/components/organisms/Pokemon';
 import { useParams } from 'next/navigation';
 
 export default function PokemonPage() {
