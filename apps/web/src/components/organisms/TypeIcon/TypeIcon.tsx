@@ -17,10 +17,10 @@ import {
   Rock,
   Steel,
   Water,
-} from '@/icons';
+} from '@/icons/type';
 import { Type } from '@packages/common-enum';
 
-const SIZE = 30;
+const SIZE = 20;
 
 export interface TypeIconProps {
   typeId: string;

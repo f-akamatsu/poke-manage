@@ -22,9 +22,10 @@ Basic.args = {
   pokemonFragment: makeFragmentData(
     {
       pokemonId: '',
-      pokedexNo: 151,
-      name: 'ミュウ',
-      typeId1: Type.PSYCHIC.id,
+      pokedexNo: 1,
+      name: 'フシギダネ',
+      typeId1: Type.GRASS.id,
+      typeId2: Type.POISON.id,
     },
     PokemonCardFieldsFragment
   ),
