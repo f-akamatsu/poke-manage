@@ -10,7 +10,6 @@ import {
 import { TypeSelect } from '../TypeSelect/TypeSelect';
 import { PokemonCreateFormSchemaType } from './PokemonCreateForm.schema';
 import { Controller, useFormContext } from 'react-hook-form';
-import { fields } from '@hookform/resolvers/ajv/src/__tests__/__fixtures__/data.js';
 
 export interface PokemonCreateFormPresenterProps {
   onSubmit: (data: PokemonCreateFormSchemaType) => void;
@@ -76,6 +75,7 @@ export function PokemonCreateFormPresenter({
 
         <Center>
           <Button
+            type='submit'
             w='fit-content'
             mt={4}
             colorScheme='teal'

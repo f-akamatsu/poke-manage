@@ -8,8 +8,8 @@ export interface TypeSelectOptions {
 }
 
 export interface TypeSelectPresenterProps {
-  value: TypeSelectOptions | null;
-  onChange: (newValue: TypeSelectOptions | null) => void;
+  value: TypeSelectOptions | null | undefined;
+  onChange: (newValue: TypeSelectOptions | null | undefined) => void;
   options: TypeSelectOptions[];
   isInvalid: boolean;
 }

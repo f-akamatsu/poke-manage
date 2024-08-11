@@ -21,4 +21,4 @@ const typeBaseSchema = z.object(
 export const type1Schema = typeBaseSchema;
 
 /** スキーマ タイプ2 */
-export const type2Schema = typeBaseSchema.nullable();
+export const type2Schema = typeBaseSchema.nullable().optional();
