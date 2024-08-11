@@ -13,9 +13,9 @@ export function PokemonCreateForm({}: PokemonCreateFormProps) {
   });
 
   /** 保存処理 */
-  const onSubmit = async (data: PokemonCreateFormSchemaType) => {
-    // TODO
-  };
+  const onSubmit = async (data: PokemonCreateFormSchemaType) => {};
+
+  console.log(methods.formState.errors);
 
   return (
     <FormProvider {...methods}>

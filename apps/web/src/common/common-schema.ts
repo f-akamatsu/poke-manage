@@ -1,4 +1,3 @@
-import { Type } from '@packages/common-enum';
 import { z } from 'zod';
 
 /** スキーマ ポケモン名 */
@@ -12,7 +11,8 @@ export const pokedexNoSchema = z
   .number({ message: '数字を入力してください' })
   .min(1, '1以上の数字を入力してください');
 
-/** スキーマ タイプ */
-export const typeIdSchema = z
-  .string()
-  .refine((v) => Type.isValid(v), { message: '存在しないタイプです' });
+/** スキーマ タイプ1 */
+export const type1Schema = z.object({ label: z.string(), value: z.string() });
+
+/** スキーマ タイプ2 */
+export const type2Schema = type1Schema.nullable();

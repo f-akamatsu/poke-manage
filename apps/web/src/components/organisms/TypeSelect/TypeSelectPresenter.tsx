@@ -2,10 +2,15 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
 import { TypeIcon } from '../TypeIcon/TypeIcon';
 
+export interface TypeSelectOptions {
+  label: string;
+  value: string;
+}
+
 export interface TypeSelectPresenterProps {
-  value: string | null;
-  onChange: (newValue: string | null) => void;
-  options: { label: string; value: string }[];
+  value: TypeSelectOptions | null;
+  onChange: (newValue: TypeSelectOptions | null) => void;
+  options: TypeSelectOptions[];
 }
 
 export function TypeSelectPresenter({ value, onChange, options }: TypeSelectPresenterProps) {
@@ -18,6 +23,8 @@ export function TypeSelectPresenter({ value, onChange, options }: TypeSelectPres
         placeholder='-'
         isClearable
         menuPlacement='auto'
+        value={value}
+        onChange={onChange}
       />
     </Box>
   );

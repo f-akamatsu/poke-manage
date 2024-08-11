@@ -14,8 +14,8 @@ export function PokemonCardListPresenter({
 }: PokemonCardListPresenterProps) {
   return (
     <Flex wrap='wrap' gap={4}>
-      {pokemonFragments.map((f) => (
-        <PokemonCard pokemonFragment={f} onClick={onClickPokemonCard} />
+      {pokemonFragments.map((f, i) => (
+        <PokemonCard key={i} pokemonFragment={f} onClick={onClickPokemonCard} />
       ))}
     </Flex>
   );

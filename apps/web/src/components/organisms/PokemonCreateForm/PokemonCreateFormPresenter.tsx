@@ -9,7 +9,8 @@ import {
 } from '@chakra-ui/react';
 import { TypeSelect } from '../TypeSelect/TypeSelect';
 import { PokemonCreateFormSchemaType } from './PokemonCreateForm.schema';
-import { useFormContext } from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
+import { fields } from '@hookform/resolvers/ajv/src/__tests__/__fixtures__/data.js';
 
 export interface PokemonCreateFormPresenterProps {
   onSubmit: (data: PokemonCreateFormSchemaType) => void;
@@ -24,11 +25,12 @@ export function PokemonCreateFormPresenter({
     register,
     handleSubmit,
     formState: { errors, isValid },
+    control,
   } = useFormContext<PokemonCreateFormSchemaType>();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Flex flexDir='column' gap={4} width='fit-content' p={6} bgColor='white'>
+      <Flex flexDir='column' gap={4} width='fit-content' bgColor='white'>
         {/* ポケモンの名前 */}
         <FormControl isInvalid={errors.name !== undefined}>
           <FormLabel fontSize='xs'>ポケモンの名前</FormLabel>
@@ -47,19 +49,39 @@ export function PokemonCreateFormPresenter({
 
         {/* タイプ */}
         <Flex gap={2}>
-          <FormControl>
-            <FormLabel fontSize='xs'>タイプ1</FormLabel>
-            <TypeSelect value={'01'} onChange={() => {}} />
-          </FormControl>
+          <Controller
+            control={control}
+            name='type1'
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <FormControl>
+                <FormLabel fontSize='xs'>タイプ1</FormLabel>
+                <TypeSelect value={value} onChange={onChange} />
+                {error && <FormErrorMessage fontSize='xs'>{error.message}</FormErrorMessage>}
+              </FormControl>
+            )}
+          />
 
-          <FormControl>
-            <FormLabel fontSize='xs'>タイプ2</FormLabel>
-            <TypeSelect value={'01'} onChange={() => {}} />
-          </FormControl>
+          <Controller
+            control={control}
+            name='type2'
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <FormControl>
+                <FormLabel fontSize='xs'>タイプ2</FormLabel>
+                <TypeSelect value={value} onChange={onChange} />
+                {error && <FormErrorMessage fontSize='xs'>{error.message}</FormErrorMessage>}
+              </FormControl>
+            )}
+          />
         </Flex>
 
         <Center>
-          <Button w='fit-content' mt={4} colorScheme='teal' isDisabled={!isValid}>
+          <Button
+            w='fit-content'
+            mt={4}
+            colorScheme='teal'
+            isDisabled={!isValid}
+            isLoading={isFetching}
+          >
             新規登録
           </Button>
         </Center>

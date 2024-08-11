@@ -4,6 +4,7 @@ import { useQuery } from 'urql';
 import { graphql } from '@/gql/__generated__';
 import { PokemonListPresenter } from './PokemonListPresenter';
 import { useRouter } from 'next/navigation';
+import { useDisclosure } from '@chakra-ui/react';
 
 /** Query */
 const FetchAllPokemonQuery = graphql(/* GraphQL */ `
@@ -20,6 +21,7 @@ export interface PokemonListProps {
 
 export function PokemonList({}: PokemonListProps) {
   const router = useRouter();
+  const createModalDisclosure = useDisclosure();
   const [result] = useQuery({ query: FetchAllPokemonQuery });
 
   const { data } = result;
@@ -34,6 +36,7 @@ export function PokemonList({}: PokemonListProps) {
     <PokemonListPresenter
       pokemonFragments={data.fetchAllPokemon}
       onClickPokemonCard={handleClick}
+      createModalDisclosure={createModalDisclosure}
     />
   );
 }
