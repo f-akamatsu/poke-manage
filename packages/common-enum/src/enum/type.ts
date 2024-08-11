@@ -36,4 +36,8 @@ export class Type {
     if (!type) throw new Error(`Type is not found ! id is [${id}]`);
     return type;
   }
+
+  public static isValid(id: string): boolean {
+    return Type._values.some((v) => v.id === id);
+  }
 }

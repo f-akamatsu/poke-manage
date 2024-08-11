@@ -3,8 +3,8 @@ import { Select } from 'chakra-react-select';
 import { TypeIcon } from '../TypeIcon/TypeIcon';
 
 export interface TypeSelectPresenterProps {
-  value: string;
-  onChange: (newValue: string) => void;
+  value: string | null;
+  onChange: (newValue: string | null) => void;
   options: { label: string; value: string }[];
 }
 

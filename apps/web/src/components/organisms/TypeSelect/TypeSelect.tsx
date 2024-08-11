@@ -2,8 +2,8 @@ import { Type } from '@packages/common-enum';
 import { TypeSelectPresenter } from './TypeSelectPresenter';
 
 export interface TypeSelectProps {
-  value: string;
-  onChange: (newValue: string) => void;
+  value: string | null;
+  onChange: (newValue: string | null) => void;
 }
 
 export function TypeSelect({ value, onChange }: TypeSelectProps) {
