@@ -3,7 +3,7 @@ import { PokemonController } from './presentation/pokemon.controller';
 import { CreatePokemonCommandHandler } from './application/usecases/create-pokemon.command';
 import { POKEMON_REPOSITORY_TOKEN } from './domain/repository/pokemon.repository.interface';
 import { PokemonRepository } from './infrastructure/pokemon.repository';
-import { UpdatePokemonCommandHandler } from './application/usecases/update-pokemon.command';
+import { UpdatePokemonNameCommandHandler } from './application/usecases/update-pokemon-name.command';
 import { PokemonEventHandler } from './application/event-handlers/pokemon.event-handler';
 import { DeletePokemonCommandHandler } from './application/usecases/delete-pokemon.command';
 
@@ -12,7 +12,7 @@ import { DeletePokemonCommandHandler } from './application/usecases/delete-pokem
   controllers: [PokemonController],
   providers: [
     CreatePokemonCommandHandler,
-    UpdatePokemonCommandHandler,
+    UpdatePokemonNameCommandHandler,
     DeletePokemonCommandHandler,
     PokemonEventHandler,
     {

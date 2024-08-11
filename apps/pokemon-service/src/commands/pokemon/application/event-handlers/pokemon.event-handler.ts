@@ -13,7 +13,7 @@ export class PokemonEventHandler {
   /**
    * { async: true, promisify: true }
    * 同期的にリードモデルを更新するため
-   * 本来は非同期の方がよい？
+   * 本来は非同期の方がよい？ ⇒ 結局要件による
    */
   @OnEvent('pokemon.*', { async: true, promisify: true })
   async handlePokemonEvent(pokemon: Pokemon): Promise<void> {

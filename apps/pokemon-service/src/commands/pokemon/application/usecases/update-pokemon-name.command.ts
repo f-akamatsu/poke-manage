@@ -4,29 +4,26 @@ import {
   IPokemonRepository,
   POKEMON_REPOSITORY_TOKEN,
 } from '../../domain/repository/pokemon.repository.interface';
-import { PokemonUpdatedEvent } from '../../domain/events/pokemon-updated.event';
+import { PokemonNameUpdatedEvent as PokemonNameUpdatedEvent } from '../../domain/events/pokemon-name-updated.event';
 import { PokemonId } from '../../domain/value-objects/pokemon-id';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 
 /**
- * ポケモン更新
+ * ポケモンの名前を変更する　コマンド
  */
-export class UpdatePokemonCommand implements ICommand {
+export class UpdatePokemonNameCommand implements ICommand {
   constructor(
     public readonly pokemonId: string,
     public readonly name: string,
-    public readonly pokedexNo: number,
-    public readonly typeId1: string,
-    public readonly typeId2?: string,
   ) {}
 }
 
 /**
- * ポケモン更新ユースケース
+ * ポケモンの名前を変更する　コマンドハンドラー
  */
-@CommandHandler(UpdatePokemonCommand)
-export class UpdatePokemonCommandHandler
-  implements ICommandHandler<UpdatePokemonCommand>
+@CommandHandler(UpdatePokemonNameCommand)
+export class UpdatePokemonNameCommandHandler
+  implements ICommandHandler<UpdatePokemonNameCommand>
 {
   constructor(
     @Inject(POKEMON_REPOSITORY_TOKEN)
@@ -37,20 +34,15 @@ export class UpdatePokemonCommandHandler
   /**
    *
    */
-  async execute(command: UpdatePokemonCommand): Promise<void> {
-    const event = new PokemonUpdatedEvent(
-      command.name,
-      command.pokedexNo,
-      command.typeId1,
-      command.typeId2,
-    );
+  async execute(command: UpdatePokemonNameCommand): Promise<void> {
+    const event = new PokemonNameUpdatedEvent(command.name);
     const pokemon = await this.repository.findById(
       PokemonId.from(command.pokemonId),
     );
-    pokemon.update(event);
+    pokemon.updateName(event);
     await this.repository.save(pokemon);
 
     // ドメインイベント発行
-    await this.eventEmitter.emitAsync('pokemon.updated', pokemon);
+    await this.eventEmitter.emitAsync('pokemon.name-updated', pokemon);
   }
 }

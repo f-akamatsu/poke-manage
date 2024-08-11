@@ -7,8 +7,9 @@ import {
 } from '@packages/protos/__generated__/pokemon/pokemon_command.interface';
 import { lastValueFrom } from 'rxjs';
 import { CreatePokemonInput } from '../inputs/create-pokemon.input';
-import { UpdatePokemonInput } from '../inputs/update-pokemon.input';
+import { UpdatePokemonNameInput } from '../inputs/update-pokemon-name.input';
 import { DeletePokemonInput } from '../inputs/delete-pokemon.input';
+
 @Injectable()
 export class PokemonCommandService implements OnModuleInit {
   private svc: PokemonCommandServiceClient;
@@ -24,7 +25,7 @@ export class PokemonCommandService implements OnModuleInit {
   }
 
   /**
-   *
+   * ポケモンを新規登録する
    */
   async createPokemon(
     input: CreatePokemonInput,
@@ -34,14 +35,14 @@ export class PokemonCommandService implements OnModuleInit {
   }
 
   /**
-   *
+   * ポケモンの名前を変更する
    */
-  async updatePokemon(input: UpdatePokemonInput): Promise<void> {
-    await lastValueFrom(this.svc.updatePokemon(input));
+  async updatePokemonName(input: UpdatePokemonNameInput): Promise<void> {
+    await lastValueFrom(this.svc.updatePokemonName(input));
   }
 
   /**
-   *
+   * ポケモンを削除する
    */
   async deletePokemon(input: DeletePokemonInput): Promise<void> {
     await lastValueFrom(this.svc.deletePokemon(input));

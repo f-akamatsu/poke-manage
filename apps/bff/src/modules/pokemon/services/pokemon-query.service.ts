@@ -24,11 +24,21 @@ export class PokemonQueryService implements OnModuleInit {
     );
   }
 
+  /**
+   * 全ポケモンを取得する
+   */
   async fetchAllPokemon(): Promise<Pokemon[]> {
     const response = await lastValueFrom(this.svc.fetchAllPokemon({}));
-    return response.pokemonList.map(this.protoToGraphQLModel);
+
+    // 取得結果が0件のときProtoはundefinedを返却するため、Optionalで空配列に変換しておく
+    return Optional.ofNullable(response.pokemonList)
+      .orElse([])
+      .map(this.protoToGraphQLModel);
   }
 
+  /**
+   * ポケモンを1件取得する
+   */
   async findPokemon(pokemonId: string): Promise<Pokemon> {
     const response = await lastValueFrom(this.svc.findPokemon({ pokemonId }));
     return this.protoToGraphQLModel(

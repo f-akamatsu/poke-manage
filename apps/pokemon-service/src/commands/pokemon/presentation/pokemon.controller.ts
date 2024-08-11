@@ -7,10 +7,10 @@ import {
   POKEMON_COMMAND_PACKAGE_NAME,
   PokemonCommandServiceController,
   PokemonCommandServiceControllerMethods,
-  UpdatePokemonRequest,
+  UpdatePokemonNameRequest,
 } from '@packages/protos/__generated__/pokemon/pokemon_command.interface';
 import { CreatePokemonCommand } from '../application/usecases/create-pokemon.command';
-import { UpdatePokemonCommand } from '../application/usecases/update-pokemon.command';
+import { UpdatePokemonNameCommand } from '../application/usecases/update-pokemon-name.command';
 import { DeletePokemonCommand } from '../application/usecases/delete-pokemon.command';
 
 @PokemonCommandServiceControllerMethods()
@@ -19,7 +19,7 @@ export class PokemonController implements PokemonCommandServiceController {
   constructor(private readonly commandBus: CommandBus) {}
 
   /**
-   *
+   * ポケモンを作成する
    */
   async createPokemon(
     request: CreatePokemonRequest,
@@ -38,21 +38,18 @@ export class PokemonController implements PokemonCommandServiceController {
   }
 
   /**
-   *
+   * ポケモンの名前を変更する
    */
-  async updatePokemon(request: UpdatePokemonRequest): Promise<void> {
-    const command = new UpdatePokemonCommand(
+  async updatePokemonName(request: UpdatePokemonNameRequest): Promise<void> {
+    const command = new UpdatePokemonNameCommand(
       request.pokemonId,
       request.name,
-      request.pokedexNo,
-      request.typeId1,
-      request.typeId2,
     );
-    await this.commandBus.execute<UpdatePokemonCommand>(command);
+    await this.commandBus.execute<UpdatePokemonNameCommand>(command);
   }
 
   /**
-   *
+   * ポケモンを削除する
    */
   async deletePokemon(request: DeletePokemonRequest): Promise<void> {
     const command = new DeletePokemonCommand(request.pokemonId);

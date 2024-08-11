@@ -16,7 +16,7 @@ input DeletePokemonInput {
 type Mutation {
   createPokemon(input: CreatePokemonInput!): Pokemon!
   deletePokemon(input: DeletePokemonInput!): Void
-  updatePokemon(input: UpdatePokemonInput!): Pokemon!
+  updatePokemonName(input: UpdatePokemonNameInput!): Pokemon!
 }
 
 type Pokemon {
@@ -32,12 +32,9 @@ type Query {
   findPokemon(id: String!): Pokemon!
 }
 
-input UpdatePokemonInput {
+input UpdatePokemonNameInput {
   name: String!
-  pokedexNo: Int!
   pokemonId: String!
-  typeId1: String!
-  typeId2: String
 }
 
 """Represents NULL values"""

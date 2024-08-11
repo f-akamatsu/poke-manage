@@ -8,7 +8,7 @@ import { PokedexNo } from '../value-objects/pokedex-no';
 import { PokemonName } from '../value-objects/pokemon-name';
 import { PokemonCreatedEvent } from '../events/pokemon-created.event';
 import { PokemonId } from '../value-objects/pokemon-id';
-import { PokemonUpdatedEvent } from '../events/pokemon-updated.event';
+import { PokemonNameUpdatedEvent } from '../events/pokemon-name-updated.event';
 import { PokemonDeletedEvent } from '../events/pokemon-deleted.event';
 import { IsDeleted } from '../value-objects/is-deleted';
 import { Type } from '@packages/common-enum';
@@ -63,8 +63,8 @@ export class Pokemon extends AggregateRoot {
   /**
    *
    */
-  public update(event: PokemonUpdatedEvent): void {
-    this.applyPokemonUpdatedEvent(event);
+  public updateName(event: PokemonNameUpdatedEvent): void {
+    this.applyPokemonNameUpdatedEvent(event);
     this.append(event);
   }
 
@@ -90,14 +90,9 @@ export class Pokemon extends AggregateRoot {
     this._isDeleted = new IsDeleted(false);
   }
 
-  @ApplyEvent(PokemonUpdatedEvent)
-  private applyPokemonUpdatedEvent(event: PokemonUpdatedEvent) {
+  @ApplyEvent(PokemonNameUpdatedEvent)
+  private applyPokemonNameUpdatedEvent(event: PokemonNameUpdatedEvent) {
     this._name = new PokemonName(event.name);
-    this._pokedexNo = new PokedexNo(event.pokedexNo);
-    this._type1 = Type.fromId(event.typeId1);
-    this._type2 = Optional.ofNullable(event.typeId2)
-      .map(Type.fromId)
-      .orUndefined();
   }
 
   @ApplyEvent(PokemonDeletedEvent)

@@ -3,7 +3,7 @@ import { Pokemon } from '../models/pokemon.model';
 import { PokemonCommandService } from '../services/pokemon-command.service';
 import { PokemonQueryService } from '../services/pokemon-query.service';
 import { CreatePokemonInput } from '../inputs/create-pokemon.input';
-import { UpdatePokemonInput } from '../inputs/update-pokemon.input';
+import { UpdatePokemonNameInput } from '../inputs/update-pokemon-name.input';
 import { DeletePokemonInput } from '../inputs/delete-pokemon.input';
 import { GraphQLVoid } from 'graphql-scalars';
 
@@ -23,10 +23,10 @@ export class PokemonMutationResolver {
   }
 
   @Mutation(() => Pokemon)
-  async updatePokemon(
-    @Args('input') input: UpdatePokemonInput,
+  async updatePokemonName(
+    @Args('input') input: UpdatePokemonNameInput,
   ): Promise<Pokemon> {
-    await this.pokemonCommandService.updatePokemon(input);
+    await this.pokemonCommandService.updatePokemonName(input);
     return await this.pokemonQueryService.findPokemon(input.pokemonId);
   }
 
