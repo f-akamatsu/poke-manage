@@ -11,9 +11,15 @@ export interface TypeSelectPresenterProps {
   value: TypeSelectOptions | null;
   onChange: (newValue: TypeSelectOptions | null) => void;
   options: TypeSelectOptions[];
+  isInvalid: boolean;
 }
 
-export function TypeSelectPresenter({ value, onChange, options }: TypeSelectPresenterProps) {
+export function TypeSelectPresenter({
+  value,
+  onChange,
+  options,
+  isInvalid,
+}: TypeSelectPresenterProps) {
   return (
     <Box w='220px'>
       <Select
@@ -25,6 +31,7 @@ export function TypeSelectPresenter({ value, onChange, options }: TypeSelectPres
         menuPlacement='auto'
         value={value}
         onChange={onChange}
+        isInvalid={isInvalid}
       />
     </Box>
   );
