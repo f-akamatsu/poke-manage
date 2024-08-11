@@ -42,7 +42,7 @@ export function PokemonListPresenter({
       <SimpleModal
         isOpen={createModalDisclosure.isOpen}
         onClose={createModalDisclosure.onClose}
-        title='ポケモンを新規登録します'
+        title='ポケモン登録'
       >
         <PokemonCreateForm />
       </SimpleModal>

@@ -30,9 +30,9 @@ export function PokemonCreateFormPresenter({
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Flex flexDir='column' gap={4} width='fit-content' bgColor='white'>
-        {/* ポケモンの名前 */}
+        {/* 名前 */}
         <FormControl isInvalid={errors.name !== undefined}>
-          <FormLabel fontSize='xs'>ポケモンの名前</FormLabel>
+          <FormLabel fontSize='xs'>名前</FormLabel>
           <Input {...register('name')} />
           {errors.name && <FormErrorMessage fontSize='xs'>{errors.name.message}</FormErrorMessage>}
         </FormControl>
@@ -40,7 +40,7 @@ export function PokemonCreateFormPresenter({
         {/* 図鑑No */}
         <FormControl isInvalid={errors.pokedexNo !== undefined}>
           <FormLabel fontSize='xs'>図鑑No</FormLabel>
-          <Input {...register('pokedexNo', { valueAsNumber: true })} />
+          <Input type='number' {...register('pokedexNo', { valueAsNumber: true })} />
           {errors.pokedexNo && (
             <FormErrorMessage fontSize='xs'>{errors.pokedexNo.message}</FormErrorMessage>
           )}

@@ -22,7 +22,9 @@ export function SimpleModal({ isOpen, onClose, children, title }: SimpleModalPro
     <Modal isOpen={isOpen} onClose={onClose} size='xl'>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>{title}</ModalHeader>
+        <ModalHeader>
+          <Center>{title}</Center>
+        </ModalHeader>
         <ModalCloseButton />
 
         <ModalBody>
