@@ -64,7 +64,7 @@ export function PokemonCreateFormPresenter({
             control={control}
             name='type2'
             render={({ field: { onChange, value }, fieldState: { error } }) => (
-              <FormControl>
+              <FormControl isInvalid={error !== undefined}>
                 <FormLabel fontSize='xs'>タイプ2</FormLabel>
                 <TypeSelect value={value} onChange={onChange} isInvalid={error !== undefined} />
                 {error && <FormErrorMessage fontSize='xs'>{error.message}</FormErrorMessage>}
