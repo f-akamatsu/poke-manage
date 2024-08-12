@@ -6,6 +6,7 @@ import { graphql } from '@/gql/__generated__';
 import { useMutation } from 'urql';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@chakra-ui/react';
+import { useEffect } from 'react';
 
 /** Mutation */
 const CreatePokemonMutation = graphql(/* GraphQL */ `
@@ -27,6 +28,12 @@ export function PokemonCreateForm({}: PokemonCreateFormProps) {
     resolver: zodResolver(pokemonCreateFormSchema),
     mode: 'onChange',
   });
+  const { watch, trigger } = methods;
+
+  // タイプ2重複エラー、タイプ1の値を変えたときにも検証しなおしてほしいため
+  useEffect(() => {
+    trigger('type2');
+  }, [watch('type1')]);
 
   // Mutation
   const [createResult, executeCreate] = useMutation(CreatePokemonMutation);
