@@ -1,3 +1,4 @@
+// TODO NestJSのeslintの設定を共通化したい
 module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
