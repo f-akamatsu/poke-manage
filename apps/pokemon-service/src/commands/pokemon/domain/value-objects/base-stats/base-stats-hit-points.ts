@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { ValueObject } from '../../../../../common/domain/value-object';
 import { InvalidPokemonException } from '../../exceptions/invalid-pokemon.exception';
 
-const BaseStatsHitPointsSchema = z.number().min(0);
+const BaseStatsHitPointsSchema = z.number().int().min(0);
 
 /**
  * 種族値 HP

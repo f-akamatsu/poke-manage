@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { ValueObject } from '../../../../../common/domain/value-object';
 import { InvalidPokemonException } from '../../exceptions/invalid-pokemon.exception';
 
-const BaseStatsAttackSchema = z.number().min(0);
+const BaseStatsAttackSchema = z.number().int().min(0);
 
 /**
  * 種族値 こうげき
