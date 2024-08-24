@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
-import { PrismaService } from 'src/common/prisma/prisma.service';
-import { Pokemon } from '../../domain/entities/pokemon';
 import { PokemonRM } from '@prisma/client';
-import { PokemonId } from '../../domain/value-objects/pokemon-id';
+import { PrismaService } from 'src/common/prisma/prisma.service';
 import { Optional } from 'typescript-optional';
+import { Pokemon } from '../../domain/entities/pokemon';
+import { PokemonId } from '../../domain/value-objects/pokemon-id';
 
 @Injectable()
 export class PokemonEventHandler {

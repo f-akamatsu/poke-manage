@@ -1,11 +1,11 @@
+import { Inject } from '@nestjs/common';
 import { CommandHandler, ICommand, ICommandHandler } from '@nestjs/cqrs';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { PokemonDeletedEvent } from '../../domain/events/pokemon-deleted.event';
 import {
   IPokemonRepository,
   POKEMON_REPOSITORY_TOKEN,
 } from '../../domain/repository/pokemon.repository.interface';
-import { EventEmitter2 } from '@nestjs/event-emitter';
-import { Inject } from '@nestjs/common';
-import { PokemonDeletedEvent } from '../../domain/events/pokemon-deleted.event';
 import { PokemonId } from '../../domain/value-objects/pokemon-id';
 
 /**

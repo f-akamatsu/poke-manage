@@ -4,16 +4,17 @@ import {
   ApplyEvent,
   StoredEvent,
 } from '@event-nest/core';
-import { PokedexNo } from '../value-objects/pokedex-no';
-import { PokemonName } from '../value-objects/pokemon-name';
-import { PokemonCreatedEvent } from '../events/pokemon-created.event';
-import { PokemonId } from '../value-objects/pokemon-id';
-import { PokemonNameUpdatedEvent } from '../events/pokemon-name-updated.event';
-import { PokemonDeletedEvent } from '../events/pokemon-deleted.event';
-import { IsDeleted } from '../value-objects/is-deleted';
 import { Type } from '@packages/common-enum';
 import { Optional } from 'typescript-optional';
+import { PokemonBaseStatsUpdatedEvent } from '../events/pokemon-base-stats-updated.event';
+import { PokemonCreatedEvent } from '../events/pokemon-created.event';
+import { PokemonDeletedEvent } from '../events/pokemon-deleted.event';
+import { PokemonNameUpdatedEvent } from '../events/pokemon-name-updated.event';
 import { BaseStats } from '../value-objects/base-stats/base-stats';
+import { IsDeleted } from '../value-objects/is-deleted';
+import { PokedexNo } from '../value-objects/pokedex-no';
+import { PokemonId } from '../value-objects/pokemon-id';
+import { PokemonName } from '../value-objects/pokemon-name';
 
 /**
  * ポケモン
@@ -41,7 +42,7 @@ export class Pokemon extends AggregateRoot {
   }
 
   /**
-   *
+   * 新規登録する
    */
   public static create(event: PokemonCreatedEvent): Pokemon {
     const pokemonId = PokemonId.generate();
@@ -52,7 +53,7 @@ export class Pokemon extends AggregateRoot {
   }
 
   /**
-   *
+   * 名前を変更する
    */
   public updateName(event: PokemonNameUpdatedEvent): void {
     this.applyPokemonNameUpdatedEvent(event);
@@ -60,7 +61,7 @@ export class Pokemon extends AggregateRoot {
   }
 
   /**
-   *
+   * 削除する
    */
   public delete(event: PokemonDeletedEvent): void {
     this.applyPokemonDeletedEvent(event);
@@ -68,7 +69,15 @@ export class Pokemon extends AggregateRoot {
   }
 
   /**
-   *
+   * 種族値を変更する
+   */
+  public updateBaseStats(event: PokemonBaseStatsUpdatedEvent): void {
+    this.applyPokemonBaseStatsUpdatedEvent(event);
+    this.append(event);
+  }
+
+  /**
+   * イベントから復元する
    */
   public static fromEvents(
     pokemonId: PokemonId,
@@ -84,24 +93,38 @@ export class Pokemon extends AggregateRoot {
   // ==============================
   @ApplyEvent(PokemonCreatedEvent)
   private applyPokemonCreatedEvent(event: PokemonCreatedEvent) {
-    this._name = new PokemonName(event.name);
-    this._pokedexNo = new PokedexNo(event.pokedexNo);
+    this._name = PokemonName.from(event.name);
+    this._pokedexNo = PokedexNo.from(event.pokedexNo);
     this._type1 = Type.fromId(event.typeId1);
     this._type2 = Optional.ofNullable(event.typeId2)
       .map(Type.fromId)
       .orUndefined();
     this._baseStats = BaseStats.createEmpty();
-    this._isDeleted = new IsDeleted(false);
+    this._isDeleted = IsDeleted.from(false);
   }
 
   @ApplyEvent(PokemonNameUpdatedEvent)
   private applyPokemonNameUpdatedEvent(event: PokemonNameUpdatedEvent) {
-    this._name = new PokemonName(event.name);
+    this._name = PokemonName.from(event.name);
   }
 
   @ApplyEvent(PokemonDeletedEvent)
   private applyPokemonDeletedEvent(_event: PokemonDeletedEvent) {
-    this._isDeleted = new IsDeleted(true);
+    this._isDeleted = IsDeleted.from(true);
+  }
+
+  @ApplyEvent(PokemonBaseStatsUpdatedEvent)
+  private applyPokemonBaseStatsUpdatedEvent(
+    event: PokemonBaseStatsUpdatedEvent,
+  ) {
+    this._baseStats = BaseStats.from(
+      event.hitPoints,
+      event.attack,
+      event.defense,
+      event.spAttack,
+      event.spDefense,
+      event.speed,
+    );
   }
 
   // ==============================

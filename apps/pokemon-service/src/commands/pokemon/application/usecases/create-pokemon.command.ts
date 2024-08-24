@@ -1,12 +1,12 @@
 import { Inject } from '@nestjs/common';
 import { CommandHandler, ICommand, ICommandHandler } from '@nestjs/cqrs';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Pokemon } from '../../domain/entities/pokemon';
+import { PokemonCreatedEvent } from '../../domain/events/pokemon-created.event';
 import {
   IPokemonRepository,
   POKEMON_REPOSITORY_TOKEN,
 } from '../../domain/repository/pokemon.repository.interface';
-import { PokemonCreatedEvent } from '../../domain/events/pokemon-created.event';
-import { EventEmitter2 } from '@nestjs/event-emitter';
 
 /**
  * ポケモン新規登録

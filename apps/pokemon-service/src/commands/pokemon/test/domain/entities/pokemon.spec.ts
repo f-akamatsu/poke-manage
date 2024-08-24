@@ -1,10 +1,10 @@
 import { Type } from '@packages/common-enum';
-import { PokedexNo } from '../../../domain/value-objects/pokedex-no';
-import { PokemonName } from '../../../domain/value-objects/pokemon-name';
 import { Pokemon } from '../../../domain/entities/pokemon';
-import { IsDeleted } from '../../../domain/value-objects/is-deleted';
 import { PokemonCreatedEvent } from '../../../domain/events/pokemon-created.event';
 import { InvalidPokemonException } from '../../../domain/exceptions/invalid-pokemon.exception';
+import { IsDeleted } from '../../../domain/value-objects/is-deleted';
+import { PokedexNo } from '../../../domain/value-objects/pokedex-no';
+import { PokemonName } from '../../../domain/value-objects/pokemon-name';
 
 describe('Pokemon', () => {
   describe('Create', () => {

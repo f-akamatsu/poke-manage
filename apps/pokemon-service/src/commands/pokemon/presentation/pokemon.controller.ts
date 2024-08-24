@@ -10,8 +10,8 @@ import {
   UpdatePokemonNameRequest,
 } from '@packages/protos/__generated__/pokemon/pokemon_command.interface';
 import { CreatePokemonCommand } from '../application/usecases/create-pokemon.command';
-import { UpdatePokemonNameCommand } from '../application/usecases/update-pokemon-name.command';
 import { DeletePokemonCommand } from '../application/usecases/delete-pokemon.command';
+import { UpdatePokemonNameCommand } from '../application/usecases/update-pokemon-name.command';
 
 @PokemonCommandServiceControllerMethods()
 @Controller(POKEMON_COMMAND_PACKAGE_NAME)

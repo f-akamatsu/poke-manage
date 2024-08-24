@@ -3,17 +3,16 @@ import { QueryBus } from '@nestjs/cqrs';
 import {
   FetchAllPokemonRequest,
   FetchAllPokemonResponse,
+  FindPokemonRequest,
+  FindPokemonResponse,
+  Pokemon,
   POKEMON_QUERY_PACKAGE_NAME,
   PokemonQueryServiceController,
   PokemonQueryServiceControllerMethods,
-  Pokemon,
-  FindPokemonRequest,
-  FindPokemonResponse,
 } from '@packages/protos/__generated__/pokemon/pokemon_query.interface';
-import { FetchAllPokemonQuery } from '../application/fetch-all-pokemon.query';
 import { PokemonRM } from '@prisma/client';
+import { FetchAllPokemonQuery } from '../application/fetch-all-pokemon.query';
 import { FindPokemonQuery } from '../application/find-pokemon.query';
-import { Optional } from 'typescript-optional';
 
 @PokemonQueryServiceControllerMethods()
 @Controller(POKEMON_QUERY_PACKAGE_NAME)

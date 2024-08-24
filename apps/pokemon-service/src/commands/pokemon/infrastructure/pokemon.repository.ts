@@ -1,7 +1,7 @@
+import { EVENT_STORE, EventStore } from '@event-nest/core';
 import { Inject, NotFoundException } from '@nestjs/common';
 import { Pokemon } from '../domain/entities/pokemon';
 import { IPokemonRepository } from '../domain/repository/pokemon.repository.interface';
-import { EVENT_STORE, EventStore } from '@event-nest/core';
 import { PokemonId } from '../domain/value-objects/pokemon-id';
 
 export class PokemonRepository implements IPokemonRepository {

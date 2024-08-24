@@ -1,12 +1,12 @@
 import { Inject } from '@nestjs/common';
 import { CommandHandler, ICommand, ICommandHandler } from '@nestjs/cqrs';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { PokemonNameUpdatedEvent } from '../../domain/events/pokemon-name-updated.event';
 import {
   IPokemonRepository,
   POKEMON_REPOSITORY_TOKEN,
 } from '../../domain/repository/pokemon.repository.interface';
-import { PokemonNameUpdatedEvent as PokemonNameUpdatedEvent } from '../../domain/events/pokemon-name-updated.event';
 import { PokemonId } from '../../domain/value-objects/pokemon-id';
-import { EventEmitter2 } from '@nestjs/event-emitter';
 
 /**
  * ポケモンの名前を変更する　コマンド

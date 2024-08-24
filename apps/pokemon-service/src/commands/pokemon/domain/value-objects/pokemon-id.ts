@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb';
-import { ValueObject } from '../../../../common/domain/value-object';
 import { z } from 'zod';
+import { ValueObject } from '../../../../common/domain/value-object';
 import { InvalidPokemonException } from '../exceptions/invalid-pokemon.exception';
 
 const PokemonIdSchema = z.string().regex(/^[0-9a-f]{24}$/);

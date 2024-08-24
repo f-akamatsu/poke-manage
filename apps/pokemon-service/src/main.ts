@@ -1,8 +1,8 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
-import { POKEMON_QUERY_PACKAGE_NAME } from '@packages/protos/__generated__/pokemon/pokemon_query.interface';
 import { POKEMON_COMMAND_PACKAGE_NAME } from '@packages/protos/__generated__/pokemon/pokemon_command.interface';
+import { POKEMON_QUERY_PACKAGE_NAME } from '@packages/protos/__generated__/pokemon/pokemon_query.interface';
+import { AppModule } from './app.module';
 
 const PORT = 50051;
 
