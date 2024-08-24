@@ -21,9 +21,15 @@ type Mutation {
 }
 
 type Pokemon {
+  attack: Int!
+  defense: Int!
+  hitPoints: Int!
   name: String!
   pokedexNo: Int!
   pokemonId: String!
+  spAttack: Int!
+  spDefense: Int!
+  speed: Int!
   typeId1: String!
   typeId2: String
 }

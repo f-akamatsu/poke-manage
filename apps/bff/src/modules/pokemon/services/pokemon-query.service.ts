@@ -53,6 +53,12 @@ export class PokemonQueryService implements OnModuleInit {
       pokedexNo: pokemonProto.pokedexNo,
       typeId1: pokemonProto.typeId1,
       typeId2: pokemonProto.typeId2,
+      hitPoints: pokemonProto.hitPoints,
+      attack: pokemonProto.attack,
+      defense: pokemonProto.defense,
+      spAttack: pokemonProto.spAttack,
+      spDefense: pokemonProto.spDefense,
+      speed: pokemonProto.speed,
     };
   }
 }

@@ -61,5 +61,11 @@ const toProtoMessage = (pokemonRM: PokemonRM): Pokemon => {
     name: pokemonRM.name,
     typeId1: pokemonRM.type_id_1,
     typeId2: pokemonRM.type_id_2 ?? undefined,
+    hitPoints: pokemonRM.hit_points,
+    attack: pokemonRM.attack,
+    defense: pokemonRM.defense,
+    spAttack: pokemonRM.sp_attack,
+    spDefense: pokemonRM.sp_defense,
+    speed: pokemonRM.speed,
   };
 };

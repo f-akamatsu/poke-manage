@@ -27,4 +27,10 @@ message Pokemon {
   string name = 3;
   string typeId1 = 4;
   optional string typeId2 = 5;
+  int32 hitPoints = 6;
+  int32 attack = 7;
+  int32 defense = 8;
+  int32 spAttack = 9;
+  int32 spDefense = 10;
+  int32 speed = 11;
 }

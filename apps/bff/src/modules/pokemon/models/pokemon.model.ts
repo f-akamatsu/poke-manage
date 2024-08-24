@@ -2,18 +2,36 @@ import { Field, Int, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 export class Pokemon {
-  @Field((_type) => String)
+  @Field(() => String)
   pokemonId: string;
 
-  @Field((_type) => String)
+  @Field(() => String)
   name: string;
 
-  @Field((_type) => Int)
+  @Field(() => Int)
   pokedexNo: number;
 
-  @Field((_type) => String)
+  @Field(() => String)
   typeId1: string;
 
-  @Field((_type) => String, { nullable: true })
+  @Field(() => String, { nullable: true })
   typeId2?: string;
+
+  @Field(() => Int)
+  hitPoints: number;
+
+  @Field(() => Int)
+  attack: number;
+
+  @Field(() => Int)
+  defense: number;
+
+  @Field(() => Int)
+  spAttack: number;
+
+  @Field(() => Int)
+  spDefense: number;
+
+  @Field(() => Int)
+  speed: number;
 }
