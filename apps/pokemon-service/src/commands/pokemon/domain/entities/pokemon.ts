@@ -13,6 +13,7 @@ import { PokemonDeletedEvent } from '../events/pokemon-deleted.event';
 import { IsDeleted } from '../value-objects/is-deleted';
 import { Type } from '@packages/common-enum';
 import { Optional } from 'typescript-optional';
+import { BaseStats } from '../value-objects/base-stats/base-stats';
 
 /**
  * ポケモン
@@ -29,6 +30,8 @@ export class Pokemon extends AggregateRoot {
   private _type1: Type;
   /** タイプ2 */
   private _type2?: Type;
+  /** 種族値 */
+  private _baseStats: BaseStats;
   /** 削除フラグ */
   private _isDeleted: IsDeleted;
 
@@ -51,18 +54,6 @@ export class Pokemon extends AggregateRoot {
   /**
    *
    */
-  public static fromEvents(
-    pokemonId: PokemonId,
-    events: Array<StoredEvent>,
-  ): Pokemon {
-    const pokemon = new Pokemon(pokemonId);
-    pokemon.reconstitute(events);
-    return pokemon;
-  }
-
-  /**
-   *
-   */
   public updateName(event: PokemonNameUpdatedEvent): void {
     this.applyPokemonNameUpdatedEvent(event);
     this.append(event);
@@ -76,6 +67,18 @@ export class Pokemon extends AggregateRoot {
     this.append(event);
   }
 
+  /**
+   *
+   */
+  public static fromEvents(
+    pokemonId: PokemonId,
+    events: Array<StoredEvent>,
+  ): Pokemon {
+    const pokemon = new Pokemon(pokemonId);
+    pokemon.reconstitute(events);
+    return pokemon;
+  }
+
   // ==============================
   //  ApplyEvent
   // ==============================
@@ -87,6 +90,7 @@ export class Pokemon extends AggregateRoot {
     this._type2 = Optional.ofNullable(event.typeId2)
       .map(Type.fromId)
       .orUndefined();
+    this._baseStats = BaseStats.createEmpty();
     this._isDeleted = new IsDeleted(false);
   }
 
@@ -121,6 +125,10 @@ export class Pokemon extends AggregateRoot {
 
   public get type2(): Type | undefined {
     return this._type2;
+  }
+
+  public get baseStats(): BaseStats {
+    return this._baseStats;
   }
 
   public get isDeleted(): IsDeleted {
