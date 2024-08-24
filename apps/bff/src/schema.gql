@@ -16,6 +16,7 @@ input DeletePokemonInput {
 type Mutation {
   createPokemon(input: CreatePokemonInput!): Pokemon!
   deletePokemon(input: DeletePokemonInput!): Void
+  updatePokemonBaseStats(input: UpdatePokemonBaseStatsInput!): Pokemon!
   updatePokemonName(input: UpdatePokemonNameInput!): Pokemon!
 }
 
@@ -30,6 +31,16 @@ type Pokemon {
 type Query {
   fetchAllPokemon: [Pokemon!]!
   findPokemon(id: String!): Pokemon!
+}
+
+input UpdatePokemonBaseStatsInput {
+  attack: Int!
+  defense: Int!
+  hitPoints: Int!
+  pokemonId: String!
+  spAttack: Int!
+  spDefense: Int!
+  speed: Int!
 }
 
 input UpdatePokemonNameInput {
