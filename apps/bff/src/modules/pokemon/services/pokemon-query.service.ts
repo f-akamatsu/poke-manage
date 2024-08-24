@@ -3,12 +3,12 @@ import { ClientGrpc } from '@nestjs/microservices';
 import {
   POKEMON_QUERY_PACKAGE_NAME,
   POKEMON_QUERY_SERVICE_NAME,
-  PokemonQueryServiceClient,
   Pokemon as PokemonProto,
+  PokemonQueryServiceClient,
 } from '@packages/protos/__generated__/pokemon/pokemon_query.interface';
 import { lastValueFrom } from 'rxjs';
-import { Pokemon } from '../models/pokemon.model';
 import { Optional } from 'typescript-optional';
+import { Pokemon } from '../models/pokemon.model';
 
 @Injectable()
 export class PokemonQueryService implements OnModuleInit {

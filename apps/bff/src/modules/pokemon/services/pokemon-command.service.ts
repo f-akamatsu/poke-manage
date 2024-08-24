@@ -7,8 +7,8 @@ import {
 } from '@packages/protos/__generated__/pokemon/pokemon_command.interface';
 import { lastValueFrom } from 'rxjs';
 import { CreatePokemonInput } from '../inputs/create-pokemon.input';
-import { UpdatePokemonNameInput } from '../inputs/update-pokemon-name.input';
 import { DeletePokemonInput } from '../inputs/delete-pokemon.input';
+import { UpdatePokemonNameInput } from '../inputs/update-pokemon-name.input';
 
 @Injectable()
 export class PokemonCommandService implements OnModuleInit {

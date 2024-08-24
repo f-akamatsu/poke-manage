@@ -1,11 +1,11 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import { GraphQLVoid } from 'graphql-scalars';
+import { CreatePokemonInput } from '../inputs/create-pokemon.input';
+import { DeletePokemonInput } from '../inputs/delete-pokemon.input';
+import { UpdatePokemonNameInput } from '../inputs/update-pokemon-name.input';
 import { Pokemon } from '../models/pokemon.model';
 import { PokemonCommandService } from '../services/pokemon-command.service';
 import { PokemonQueryService } from '../services/pokemon-query.service';
-import { CreatePokemonInput } from '../inputs/create-pokemon.input';
-import { UpdatePokemonNameInput } from '../inputs/update-pokemon-name.input';
-import { DeletePokemonInput } from '../inputs/delete-pokemon.input';
-import { GraphQLVoid } from 'graphql-scalars';
 
 @Resolver(() => Pokemon)
 export class PokemonMutationResolver {
