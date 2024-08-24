@@ -7,10 +7,12 @@ import {
   POKEMON_COMMAND_PACKAGE_NAME,
   PokemonCommandServiceController,
   PokemonCommandServiceControllerMethods,
+  UpdatePokemonBaseStatsRequest,
   UpdatePokemonNameRequest,
 } from '@packages/protos/__generated__/pokemon/pokemon_command.interface';
 import { CreatePokemonCommand } from '../application/usecases/create-pokemon.command';
 import { DeletePokemonCommand } from '../application/usecases/delete-pokemon.command';
+import { UpdatePokemonBaseStatsCommand } from '../application/usecases/update-pokemon-base-stats.command';
 import { UpdatePokemonNameCommand } from '../application/usecases/update-pokemon-name.command';
 
 @PokemonCommandServiceControllerMethods()
@@ -54,5 +56,23 @@ export class PokemonController implements PokemonCommandServiceController {
   async deletePokemon(request: DeletePokemonRequest): Promise<void> {
     const command = new DeletePokemonCommand(request.pokemonId);
     await this.commandBus.execute<DeletePokemonCommand>(command);
+  }
+
+  /**
+   * ポケモンの種族値を変更する
+   */
+  async updatePokemonBaseStats(
+    request: UpdatePokemonBaseStatsRequest,
+  ): Promise<void> {
+    const command = new UpdatePokemonBaseStatsCommand(
+      request.pokemonId,
+      request.hitPoints,
+      request.attack,
+      request.defense,
+      request.spAttack,
+      request.spDefense,
+      request.speed,
+    );
+    await this.commandBus.execute<UpdatePokemonBaseStatsCommand>(command);
   }
 }

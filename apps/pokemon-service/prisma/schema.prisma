@@ -19,4 +19,10 @@ model PokemonRM {
   name        String  @unique @db.VarChar(6)
   type_id_1   String  @db.VarChar(2)
   type_id_2   String? @db.VarChar(2)
+  hit_points  Int
+  attack      Int
+  defense     Int
+  sp_attack   Int
+  sp_defense  Int
+  speed       Int
 }

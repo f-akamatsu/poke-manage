@@ -34,6 +34,12 @@ export class PokemonEventHandler {
       pokedex_no: pokemon.pokedexNo.value,
       type_id_1: pokemon.type1.id,
       type_id_2: Optional.ofNullable(pokemon.type2?.id).orNull(),
+      hit_points: pokemon.baseStats.hitPoints.value,
+      attack: pokemon.baseStats.attack.value,
+      defense: pokemon.baseStats.defense.value,
+      sp_attack: pokemon.baseStats.spAttack.value,
+      sp_defense: pokemon.baseStats.spDefense.value,
+      speed: pokemon.baseStats.speed.value,
     };
 
     await this.prisma.pokemonRM.upsert({
