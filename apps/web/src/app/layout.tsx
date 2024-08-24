@@ -1,8 +1,8 @@
 import { Header } from '@/components/organisms/Header/Header';
+import { Box } from '@chakra-ui/react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Providers } from './providers';
-import { Box } from '@chakra-ui/react';
 
 const inter = Inter({ subsets: ['latin'] });
 

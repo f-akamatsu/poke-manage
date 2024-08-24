@@ -1,7 +1,7 @@
-import { Meta, StoryObj } from '@storybook/react';
-import { TypeIcon, TypeIconProps } from './TypeIcon';
-import { Type } from '@packages/common-enum';
 import { Flex } from '@chakra-ui/react';
+import { Type } from '@packages/common-enum';
+import { Meta, StoryObj } from '@storybook/react';
+import { TypeIcon } from './TypeIcon';
 
 const meta: Meta<typeof TypeIcon> = {
   component: TypeIcon,

@@ -1,8 +1,8 @@
+import { getTypeColorCode, padNumber } from '@/common';
+import { NoImage } from '@/components/atoms/NoImage/NoImage';
 import { FragmentType, getFragmentData, graphql } from '@/gql/__generated__';
 import { Box, Flex, Spacer, Text } from '@chakra-ui/react';
 import { TypeIcon } from '../TypeIcon/TypeIcon';
-import { getTypeColorCode, padNumber } from '@/common';
-import { NoImage } from '@/components/atoms/NoImage/NoImage';
 
 export const PokemonCardFieldsFragment = graphql(/* GraphQL */ `
   fragment PokemonCardFields on Pokemon {

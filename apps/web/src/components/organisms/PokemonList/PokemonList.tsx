@@ -1,10 +1,10 @@
 'use client';
 
-import { useQuery } from 'urql';
 import { graphql } from '@/gql/__generated__';
-import { PokemonListPresenter } from './PokemonListPresenter';
-import { useRouter } from 'next/navigation';
 import { useDisclosure } from '@chakra-ui/react';
+import { useRouter } from 'next/navigation';
+import { useQuery } from 'urql';
+import { PokemonListPresenter } from './PokemonListPresenter';
 
 /** Query */
 const FetchAllPokemonQuery = graphql(/* GraphQL */ `

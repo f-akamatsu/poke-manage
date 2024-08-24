@@ -1,11 +1,11 @@
+import { makeFragmentData } from '@/gql/__generated__';
+import { Type } from '@packages/common-enum';
 import { Meta, StoryObj } from '@storybook/react';
 import {
   PokemonCardFieldsFragment,
   PokemonCardPresenter,
   PokemonCardPresenterProps,
 } from './PokemonCardPresenter';
-import { makeFragmentData } from '@/gql/__generated__';
-import { Type } from '@packages/common-enum';
 
 const meta: Meta<typeof PokemonCardPresenter> = {
   component: PokemonCardPresenter,
