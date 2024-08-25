@@ -12,7 +12,7 @@ export class PokemonQueryResolver {
   }
 
   @Query(() => Pokemon)
-  async findPokemon(@Args('id') pokemonId: string): Promise<Pokemon> {
+  async findPokemon(@Args('pokemonId') pokemonId: string): Promise<Pokemon> {
     return await this.pokemonQueryService.findPokemon(pokemonId);
   }
 }

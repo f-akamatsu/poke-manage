@@ -9,6 +9,7 @@ export const pokemonNameSchema = z
 /** スキーマ ポケモン図鑑No */
 export const pokedexNoSchema = z
   .number({ message: '入力してください' })
+  .int()
   .min(1, '1以上を入力してください');
 
 /** スキーマ タイプ(共通) */
@@ -22,3 +23,6 @@ export const type1Schema = typeBaseSchema;
 
 /** スキーマ タイプ2 */
 export const type2Schema = typeBaseSchema.nullable().optional();
+
+/** スキーマ 種族値 */
+export const baseStatsSchema = z.number().int().min(1);

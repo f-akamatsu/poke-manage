@@ -22,9 +22,7 @@ export interface PokemonListProps {
 export function PokemonList({}: PokemonListProps) {
   const router = useRouter();
   const createModalDisclosure = useDisclosure();
-  const [result] = useQuery({ query: FetchAllPokemonQuery });
-
-  const { data } = result;
+  const [{ data }] = useQuery({ query: FetchAllPokemonQuery });
 
   if (!data) return null;
 

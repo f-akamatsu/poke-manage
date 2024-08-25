@@ -36,7 +36,7 @@ type Pokemon {
 
 type Query {
   fetchAllPokemon: [Pokemon!]!
-  findPokemon(id: String!): Pokemon!
+  findPokemon(pokemonId: String!): Pokemon!
 }
 
 input UpdatePokemonBaseStatsInput {
