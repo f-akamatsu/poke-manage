@@ -1,5 +1,6 @@
 import { useToast } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useMutation } from 'urql';
 import { FragmentType, getFragmentData, graphql } from '../../../../gql/__generated__';
@@ -37,6 +38,7 @@ export interface PokemonBaseStatsFormProps {
 
 export function PokemonBaseStatsForm({ pokemonBaseStatsFormFragment }: PokemonBaseStatsFormProps) {
   const toast = useToast();
+  const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const pokemonBaseStats = getFragmentData(
     PokemonBaseStatsFormFragment,
@@ -61,8 +63,11 @@ export function PokemonBaseStatsForm({ pokemonBaseStatsFormFragment }: PokemonBa
   const [updateResult, executeUpdate] = useMutation(UpdatePokemonBaseStatsMutation);
   const { fetching } = updateResult;
 
-  const onSubmit = async (data: PokemonBaseStatsFormSchemaType) => {
-    await executeUpdate({
+  /**
+   * 更新処理
+   */
+  const handleSubmit = async (data: PokemonBaseStatsFormSchemaType) => {
+    executeUpdate({
       input: {
         pokemonId: pokemonBaseStats.pokemonId,
         hitPoints: data.hitPoints,
@@ -72,14 +77,29 @@ export function PokemonBaseStatsForm({ pokemonBaseStatsFormFragment }: PokemonBa
         spDefense: data.spDefense,
         speed: data.speed,
       },
-    });
+    })
+      .then(() => {
+        toast({ status: 'success', description: '種族値を更新しました' });
+        setIsEditing(false);
+      })
+      .catch((_e) => {
+        toast({ status: 'error', description: '種族値を更新できませんでした' });
+      });
+  };
 
-    toast({ status: 'success', description: '種族値を更新しました' });
+  const handleClickEditIcon = () => {
+    console.log('handleClickEditIcon');
+    setIsEditing(true);
   };
 
   return (
     <FormProvider {...methods}>
-      <PokemonBaseStatsFormPresenter onSubmit={onSubmit} isFetching={fetching} />
+      <PokemonBaseStatsFormPresenter
+        onSubmit={handleSubmit}
+        isFetching={fetching}
+        isEditing={isEditing}
+        onClickEditIcon={handleClickEditIcon}
+      />
     </FormProvider>
   );
 }
