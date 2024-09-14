@@ -1,4 +1,12 @@
-import { Flex, FormControl, FormErrorMessage, FormLabel, Icon, IconButton } from '@chakra-ui/react';
+import {
+  Flex,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Icon,
+  IconButton,
+  Tooltip,
+} from '@chakra-ui/react';
 import { useFormContext } from 'react-hook-form';
 import { FaFloppyDisk, FaPenToSquare } from 'react-icons/fa6';
 import NumberInput from '../../../atoms/NumberInput/NumberInput';
@@ -96,25 +104,29 @@ export function PokemonBaseStatsFormPresenter({
 
         {/* それぞれのボタンにkeyをつけないと挙動がおかしくなる */}
         {isEditing ? (
-          <IconButton
-            key='save-button'
-            type='submit'
-            aria-label='更新する'
-            icon={<Icon as={FaFloppyDisk} />}
-            isLoading={isFetching}
-            isDisabled={!isValid}
-            colorScheme='teal'
-          />
+          <Tooltip label='変更を保存します'>
+            <IconButton
+              key='save-button'
+              type='submit'
+              aria-label='変更を保存する'
+              icon={<Icon as={FaFloppyDisk} />}
+              isLoading={isFetching}
+              isDisabled={!isValid}
+              colorScheme='teal'
+            />
+          </Tooltip>
         ) : (
-          <IconButton
-            key='edit-button'
-            type='button'
-            aria-label='編集する'
-            icon={<Icon as={FaPenToSquare} />}
-            colorScheme='teal'
-            variant='outline'
-            onClick={onClickEditIcon}
-          />
+          <Tooltip label='種族値を変更します'>
+            <IconButton
+              key='edit-button'
+              type='button'
+              aria-label='種族値を変更する'
+              icon={<Icon as={FaPenToSquare} />}
+              colorScheme='teal'
+              variant='outline'
+              onClick={onClickEditIcon}
+            />
+          </Tooltip>
         )}
       </Flex>
     </form>
