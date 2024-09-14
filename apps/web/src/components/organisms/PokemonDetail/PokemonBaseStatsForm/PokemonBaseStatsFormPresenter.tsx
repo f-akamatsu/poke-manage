@@ -110,9 +110,10 @@ export function PokemonBaseStatsFormPresenter({
             key='edit-button'
             type='button'
             aria-label='編集する'
-            icon={<Icon as={FaPenToSquare} onClick={onClickEditIcon} />}
+            icon={<Icon as={FaPenToSquare} />}
             colorScheme='teal'
             variant='outline'
+            onClick={onClickEditIcon}
           />
         )}
       </Flex>
