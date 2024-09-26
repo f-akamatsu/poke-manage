@@ -9,7 +9,7 @@
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "clean": "rimraf node_modules",
+    "clean": "rimraf node_modules .next .turbo storybook-static",
     "codegen": "graphql-codegen --config codegen.ts",
     "gen:icons": "./scripts/generate-icons.sh"
   },
