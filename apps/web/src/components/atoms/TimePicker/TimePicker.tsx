@@ -14,13 +14,13 @@ import { useEffect, useRef, useState } from 'react';
 // https://mui.com/x/react-date-pickers/time-picker/
 // https://developer.mozilla.org/ja/docs/Web/HTML/Element/input/time
 
-export type TimePickerProps = {
+export interface TimePickerProps {
   value: string;
   onChange: (newValue: string) => void;
   step?: 1 | 5 | 10 | 15;
   min?: string;
   max?: string;
-};
+}
 
 export function TimePicker({
   value,
