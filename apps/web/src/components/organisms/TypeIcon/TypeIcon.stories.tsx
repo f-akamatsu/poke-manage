@@ -10,11 +10,11 @@ const meta: Meta<typeof TypeIcon> = {
 export default meta;
 type Story = StoryObj<typeof TypeIcon>;
 
-export const AllTypes: Story = (args: {}) => {
+export const AllTypes: Story = () => {
   return (
     <Flex gap={4} wrap='wrap'>
       {Type.values.map((type) => (
-        <TypeIcon typeId={type.id} />
+        <TypeIcon typeId={type.id} key={type.id} />
       ))}
     </Flex>
   );
