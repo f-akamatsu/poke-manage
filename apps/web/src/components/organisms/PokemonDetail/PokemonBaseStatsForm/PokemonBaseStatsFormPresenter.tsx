@@ -1,12 +1,4 @@
-import {
-  Flex,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Icon,
-  IconButton,
-  Tooltip,
-} from '@chakra-ui/react';
+import { Flex, Icon, IconButton, Tooltip } from '@chakra-ui/react';
 import { useFormContext } from 'react-hook-form';
 import { FaFloppyDisk, FaPenToSquare } from 'react-icons/fa6';
 import NumberInput from '../../../atoms/NumberInput/NumberInput';
@@ -36,70 +28,52 @@ export function PokemonBaseStatsFormPresenter({
       <Flex alignItems='center' gap={12}>
         <Flex gap={4}>
           {/* HP */}
-          <FormControl isInvalid={errors.hitPoints !== undefined} w='80px'>
-            <FormLabel fontSize='xs'>HP</FormLabel>
-            <NumberInput
-              {...register('hitPoints', { valueAsNumber: true })}
-              isReadOnly={!isEditing}
-            />
-            {errors.hitPoints && (
-              <FormErrorMessage fontSize='xs'>{errors.hitPoints.message}</FormErrorMessage>
-            )}
-          </FormControl>
+          <NumberInput
+            {...register('hitPoints', { valueAsNumber: true })}
+            isReadOnly={!isEditing}
+            label='HP'
+            errorMessage={errors.hitPoints?.message}
+          />
 
           {/* こうげき */}
-          <FormControl isInvalid={errors.attack !== undefined} w='80px'>
-            <FormLabel fontSize='xs'>こうげき</FormLabel>
-            <NumberInput {...register('attack', { valueAsNumber: true })} isReadOnly={!isEditing} />
-            {errors.attack && (
-              <FormErrorMessage fontSize='xs'>{errors.attack.message}</FormErrorMessage>
-            )}
-          </FormControl>
+          <NumberInput
+            {...register('attack', { valueAsNumber: true })}
+            isReadOnly={!isEditing}
+            label='こうげき'
+            errorMessage={errors.attack?.message}
+          />
 
           {/* ぼうぎょ */}
-          <FormControl isInvalid={errors.defense !== undefined} w='80px'>
-            <FormLabel fontSize='xs'>ぼうぎょ</FormLabel>
-            <NumberInput
-              {...register('defense', { valueAsNumber: true })}
-              isReadOnly={!isEditing}
-            />
-            {errors.defense && (
-              <FormErrorMessage fontSize='xs'>{errors.defense.message}</FormErrorMessage>
-            )}
-          </FormControl>
+          <NumberInput
+            {...register('defense', { valueAsNumber: true })}
+            isReadOnly={!isEditing}
+            label='ぼうぎょ'
+            errorMessage={errors.defense?.message}
+          />
 
           {/* とくこう */}
-          <FormControl isInvalid={errors.spAttack !== undefined} w='80px'>
-            <FormLabel fontSize='xs'>とくこう</FormLabel>
-            <NumberInput
-              {...register('spAttack', { valueAsNumber: true })}
-              isReadOnly={!isEditing}
-            />
-            {errors.spAttack && (
-              <FormErrorMessage fontSize='xs'>{errors.spAttack.message}</FormErrorMessage>
-            )}
-          </FormControl>
+          <NumberInput
+            {...register('spAttack', { valueAsNumber: true })}
+            isReadOnly={!isEditing}
+            label='とくこう'
+            errorMessage={errors.spAttack?.message}
+          />
 
           {/* とくぼう */}
-          <FormControl isInvalid={errors.spDefense !== undefined} w='80px'>
-            <FormLabel fontSize='xs'>とくぼう</FormLabel>
-            <NumberInput
-              {...register('spDefense', { valueAsNumber: true })}
-              isReadOnly={!isEditing}
-            />
-            {errors.spDefense && (
-              <FormErrorMessage fontSize='xs'>{errors.spDefense.message}</FormErrorMessage>
-            )}
-          </FormControl>
+          <NumberInput
+            {...register('spDefense', { valueAsNumber: true })}
+            isReadOnly={!isEditing}
+            label='とくぼう'
+            errorMessage={errors.spDefense?.message}
+          />
 
           {/* すばやさ */}
-          <FormControl isInvalid={errors.speed !== undefined} w='80px'>
-            <FormLabel fontSize='xs'>すばやさ</FormLabel>
-            <NumberInput {...register('speed', { valueAsNumber: true })} isReadOnly={!isEditing} />
-            {errors.speed && (
-              <FormErrorMessage fontSize='xs'>{errors.speed.message}</FormErrorMessage>
-            )}
-          </FormControl>
+          <NumberInput
+            {...register('speed', { valueAsNumber: true })}
+            isReadOnly={!isEditing}
+            label='すばやさ'
+            errorMessage={errors.speed?.message}
+          />
         </Flex>
 
         {/* それぞれのボタンにkeyをつけないと挙動がおかしくなる */}
