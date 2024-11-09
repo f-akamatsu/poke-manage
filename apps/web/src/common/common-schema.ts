@@ -25,4 +25,7 @@ export const type1Schema = typeBaseSchema;
 export const type2Schema = typeBaseSchema.nullable().optional();
 
 /** スキーマ 種族値 */
-export const baseStatsSchema = z.number().int().min(1);
+export const baseStatsSchema = z
+  .number({ message: '入力してください' })
+  .int()
+  .min(1, '1以上を入力してください');

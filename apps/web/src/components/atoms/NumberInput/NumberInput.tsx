@@ -9,7 +9,9 @@ export interface NumberInputProps extends InputProps {
 const NumberInput = forwardRef(function NumberInput(props: NumberInputProps, ref) {
   return (
     <FormControl isInvalid={props.errorMessage !== undefined} w='80px'>
-      <FormLabel fontSize='xs'>{props.label}</FormLabel>
+      <FormLabel fontSize='xs' textAlign='center' marginInlineEnd={0} marginBottom={1}>
+        {props.label}
+      </FormLabel>
       <Input
         {...props}
         type='number'
