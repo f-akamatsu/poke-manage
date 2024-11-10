@@ -24,8 +24,8 @@
     "clean": "rimraf node_modules dist .turbo"
   },
   "dependencies": {
-    "@event-nest/core": "^3.0.1",
-    "@event-nest/mongodb": "^3.0.1",
+    "@event-nest/core": "^3.2.1",
+    "@event-nest/mongodb": "^3.2.1",
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.2.3",
     "@nestjs/core": "^10.0.0",

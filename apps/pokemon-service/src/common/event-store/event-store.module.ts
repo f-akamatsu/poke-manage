@@ -4,7 +4,7 @@ import { ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
-    EventNestMongoDbModule.registerAsync({
+    EventNestMongoDbModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         connectionUri: configService.getOrThrow<string>('EVENTSTORE_URL'),
