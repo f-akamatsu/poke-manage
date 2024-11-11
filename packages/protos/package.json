@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "protobuf": "pnpm buf generate",
-    "build": "rimraf __generated__ && pnpm protobuf && tsc"
+    "codegen": "rimraf __generated__ && pnpm protobuf && tsc"
   },
   "keywords": [],
   "author": "",

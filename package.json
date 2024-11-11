@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "dev": "turbo run dev",
-    "clean": "turbo run clean && rimraf node_modules"
+    "clean": "turbo run clean && rimraf node_modules",
+    "codegen": "turbo run codegen"
   },
   "keywords": [],
   "author": "",

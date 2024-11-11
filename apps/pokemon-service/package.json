@@ -20,8 +20,9 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "seed": "pnpx ts-node prisma/seed.ts",
     "prisma:push": "prisma db push",
-    "prsima:gen": "prisma generate",
-    "clean": "rimraf node_modules dist .turbo"
+    "prisma:gen": "prisma generate",
+    "clean": "rimraf node_modules dist .turbo",
+    "codegen": "pnpm prisma:gen"
   },
   "dependencies": {
     "@event-nest/core": "^3.2.1",
