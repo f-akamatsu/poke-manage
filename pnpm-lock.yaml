@@ -27,8 +27,8 @@ importers:
         specifier: ^4.11.2
         version: 4.11.2(graphql@16.9.0)
       '@grpc/grpc-js':
-        specifier: ^1.10.8
-        version: 1.10.8
+        specifier: ^1.12.2
+        version: 1.12.2
       '@grpc/proto-loader':
         specifier: ^0.7.13
         version: 0.7.13
@@ -46,7 +46,7 @@ importers:
         version: 12.2.1(@nestjs/common@10.4.7)(@nestjs/core@10.4.7)(graphql@16.9.0)(reflect-metadata@0.2.2)
       '@nestjs/microservices':
         specifier: ^10.4.7
-        version: 10.4.7(@grpc/grpc-js@1.10.8)(@nestjs/common@10.4.7)(@nestjs/core@10.4.7)(reflect-metadata@0.2.2)(rxjs@7.8.1)
+        version: 10.4.7(@grpc/grpc-js@1.12.2)(@nestjs/common@10.4.7)(@nestjs/core@10.4.7)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       '@nestjs/platform-express':
         specifier: ^10.4.7
         version: 10.4.7(@nestjs/common@10.4.7)(@nestjs/core@10.4.7)
@@ -158,7 +158,7 @@ importers:
         version: 2.1.1(@nestjs/common@10.4.7)(@nestjs/core@10.4.7)
       '@nestjs/microservices':
         specifier: ^10.4.7
-        version: 10.4.7(@grpc/grpc-js@1.10.8)(@nestjs/common@10.4.7)(@nestjs/core@10.4.7)(reflect-metadata@0.2.2)(rxjs@7.8.1)
+        version: 10.4.7(@grpc/grpc-js@1.12.2)(@nestjs/common@10.4.7)(@nestjs/core@10.4.7)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       '@nestjs/platform-express':
         specifier: ^10.4.7
         version: 10.4.7(@nestjs/common@10.4.7)(@nestjs/core@10.4.7)
@@ -383,14 +383,14 @@ importers:
   packages/protos:
     dependencies:
       '@grpc/grpc-js':
-        specifier: ^1.10.8
-        version: 1.10.8
+        specifier: ^1.12.2
+        version: 1.12.2
       '@grpc/proto-loader':
         specifier: ^0.7.13
         version: 0.7.13
       '@nestjs/microservices':
         specifier: ^10.4.7
-        version: 10.4.7(@grpc/grpc-js@1.10.8)(@nestjs/common@10.4.7)(@nestjs/core@10.4.7)(reflect-metadata@0.2.2)(rxjs@7.8.1)
+        version: 10.4.7(@grpc/grpc-js@1.12.2)(@nestjs/common@10.4.7)(@nestjs/core@10.4.7)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       rxjs:
         specifier: ^7.8.1
         version: 7.8.1
@@ -3639,8 +3639,8 @@ packages:
     dependencies:
       graphql: 16.9.0
 
-  /@grpc/grpc-js@1.10.8:
-    resolution: {integrity: sha512-vYVqYzHicDqyKB+NQhAc54I1QWCBLCrYG6unqOIcBTHx+7x8C9lcoLj3KVJXs2VB4lUbpWY+Kk9NipcbXYWmvg==}
+  /@grpc/grpc-js@1.12.2:
+    resolution: {integrity: sha512-bgxdZmgTrJZX50OjyVwz3+mNEnCTNkh3cIqGPWVNeW9jX6bn1ZkU80uPd+67/ZpIJIjRQ9qaHCjhavyoWYxumg==}
     engines: {node: '>=12.10.0'}
     dependencies:
       '@grpc/proto-loader': 0.7.13
@@ -3653,7 +3653,7 @@ packages:
     dependencies:
       lodash.camelcase: 4.3.0
       long: 5.2.3
-      protobufjs: 7.3.0
+      protobufjs: 7.4.0
       yargs: 17.7.2
 
   /@hookform/resolvers@3.6.0(react-hook-form@7.52.0):
@@ -4303,7 +4303,7 @@ packages:
         optional: true
     dependencies:
       '@nestjs/common': 10.4.7(reflect-metadata@0.2.2)(rxjs@7.8.1)
-      '@nestjs/microservices': 10.4.7(@grpc/grpc-js@1.10.8)(@nestjs/common@10.4.7)(@nestjs/core@10.4.7)(reflect-metadata@0.2.2)(rxjs@7.8.1)
+      '@nestjs/microservices': 10.4.7(@grpc/grpc-js@1.12.2)(@nestjs/common@10.4.7)(@nestjs/core@10.4.7)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       '@nestjs/platform-express': 10.4.7(@nestjs/common@10.4.7)(@nestjs/core@10.4.7)
       '@nuxtjs/opencollective': 0.3.2
       fast-safe-stringify: 2.1.1
@@ -4403,7 +4403,7 @@ packages:
       reflect-metadata: 0.2.2
     dev: false
 
-  /@nestjs/microservices@10.4.7(@grpc/grpc-js@1.10.8)(@nestjs/common@10.4.7)(@nestjs/core@10.4.7)(reflect-metadata@0.2.2)(rxjs@7.8.1):
+  /@nestjs/microservices@10.4.7(@grpc/grpc-js@1.12.2)(@nestjs/common@10.4.7)(@nestjs/core@10.4.7)(reflect-metadata@0.2.2)(rxjs@7.8.1):
     resolution: {integrity: sha512-xqwFqheyo5c52s8YFf/vZD6felccoB+FpCCTj66jLxKRk3ZITjiENwar0mWjkiiAz9YoTmsDP80bnEoIpgBLWg==}
     peerDependencies:
       '@grpc/grpc-js': '*'
@@ -4439,7 +4439,7 @@ packages:
       nats:
         optional: true
     dependencies:
-      '@grpc/grpc-js': 1.10.8
+      '@grpc/grpc-js': 1.12.2
       '@nestjs/common': 10.4.7(reflect-metadata@0.2.2)(rxjs@7.8.1)
       '@nestjs/core': 10.4.7(@nestjs/common@10.4.7)(@nestjs/microservices@10.4.7)(@nestjs/platform-express@10.4.7)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       iterare: 1.2.1
@@ -4523,7 +4523,7 @@ packages:
     dependencies:
       '@nestjs/common': 10.4.7(reflect-metadata@0.2.2)(rxjs@7.8.1)
       '@nestjs/core': 10.4.7(@nestjs/common@10.4.7)(@nestjs/microservices@10.4.7)(@nestjs/platform-express@10.4.7)(reflect-metadata@0.2.2)(rxjs@7.8.1)
-      '@nestjs/microservices': 10.4.7(@grpc/grpc-js@1.10.8)(@nestjs/common@10.4.7)(@nestjs/core@10.4.7)(reflect-metadata@0.2.2)(rxjs@7.8.1)
+      '@nestjs/microservices': 10.4.7(@grpc/grpc-js@1.12.2)(@nestjs/common@10.4.7)(@nestjs/core@10.4.7)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       '@nestjs/platform-express': 10.4.7(@nestjs/common@10.4.7)(@nestjs/core@10.4.7)
       tslib: 2.7.0
     dev: true
@@ -12168,6 +12168,25 @@ packages:
 
   /protobufjs@7.3.0:
     resolution: {integrity: sha512-YWD03n3shzV9ImZRX3ccbjqLxj7NokGN0V/ESiBV5xWqrommYHYiihuIyavq03pWSGqlyvYUFmfoMKd+1rPA/g==}
+    engines: {node: '>=12.0.0'}
+    requiresBuild: true
+    dependencies:
+      '@protobufjs/aspromise': 1.1.2
+      '@protobufjs/base64': 1.1.2
+      '@protobufjs/codegen': 2.0.4
+      '@protobufjs/eventemitter': 1.1.0
+      '@protobufjs/fetch': 1.1.0
+      '@protobufjs/float': 1.0.2
+      '@protobufjs/inquire': 1.1.0
+      '@protobufjs/path': 1.1.2
+      '@protobufjs/pool': 1.1.0
+      '@protobufjs/utf8': 1.1.0
+      '@types/node': 20.11.24
+      long: 5.2.3
+    dev: true
+
+  /protobufjs@7.4.0:
+    resolution: {integrity: sha512-mRUWCc3KUU4w1jU8sGxICXH/gNS94DvI1gxqDvBzhj1JpcsimQkYiOJfwsPUykUI5ZaspFbSgmBLER8IrQ3tqw==}
     engines: {node: '>=12.0.0'}
     requiresBuild: true
     dependencies:
