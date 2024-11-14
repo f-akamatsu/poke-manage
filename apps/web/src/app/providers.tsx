@@ -1,6 +1,6 @@
 'use client';
 
-import { ChakraProvider } from '@chakra-ui/react';
+import { Provider as ChakraProvider } from '@/components/ui/provider';
 import { UrqlProvider, cacheExchange, createClient, fetchExchange, ssrExchange } from '@urql/next';
 import { useMemo } from 'react';
 
