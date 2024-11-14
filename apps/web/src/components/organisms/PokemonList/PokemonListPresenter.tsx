@@ -1,7 +1,7 @@
 import { SimpleModal } from '@/components/molecules/SimpleModal/SimpleModal';
+import { Button } from '@/components/ui/button';
 import { FragmentType } from '@/gql/__generated__';
-import { AddIcon } from '@chakra-ui/icons';
-import { Button, Flex, UseDisclosureReturn } from '@chakra-ui/react';
+import { Flex, UseDisclosureReturn } from '@chakra-ui/react';
 import { PokemonCardFieldsFragment } from '../PokemonCard/PokemonCardPresenter';
 import { PokemonCardList } from '../PokemonCardList/PokemonCardList';
 import { PokemonCreateForm } from '../PokemonCreateForm/PokemonCreateForm';
@@ -21,15 +21,21 @@ export function PokemonListPresenter({
     <>
       <Flex flexDir='column' gap={4}>
         <Flex>
-          <Button
-            w='fit-content'
-            leftIcon={<AddIcon />}
-            colorScheme='teal'
-            variant='solid'
-            onClick={createModalDisclosure.onOpen}
+          <SimpleModal
+            title='ポケモン登録'
+            dialogTrigger={
+              <Button
+                w='fit-content'
+                colorScheme='teal'
+                variant='solid'
+                onClick={createModalDisclosure.onOpen}
+              >
+                登録
+              </Button>
+            }
           >
-            登録
-          </Button>
+            <PokemonCreateForm />
+          </SimpleModal>
         </Flex>
 
         <PokemonCardList
@@ -37,15 +43,6 @@ export function PokemonListPresenter({
           onClickPokemonCard={onClickPokemonCard}
         />
       </Flex>
-
-      {/* 登録モーダル */}
-      <SimpleModal
-        isOpen={createModalDisclosure.isOpen}
-        onClose={createModalDisclosure.onClose}
-        title='ポケモン登録'
-      >
-        <PokemonCreateForm />
-      </SimpleModal>
     </>
   );
 }

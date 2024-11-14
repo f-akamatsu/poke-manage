@@ -1,4 +1,4 @@
-import { useToast } from '@chakra-ui/react';
+import { toaster } from '@/components/ui/toaster';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -37,7 +37,6 @@ export interface PokemonBaseStatsFormProps {
 }
 
 export function PokemonBaseStatsForm({ pokemonBaseStatsFormFragment }: PokemonBaseStatsFormProps) {
-  const toast = useToast();
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const pokemonBaseStats = getFragmentData(
@@ -79,11 +78,11 @@ export function PokemonBaseStatsForm({ pokemonBaseStatsFormFragment }: PokemonBa
       },
     })
       .then(() => {
-        toast({ status: 'success', description: '種族値を更新しました' });
+        toaster.create({ type: 'success', description: '種族値を更新しました' });
         setIsEditing(false);
       })
       .catch((_e) => {
-        toast({ status: 'error', description: '種族値を更新できませんでした' });
+        toaster.create({ type: 'error', description: '種族値を更新できませんでした' });
       });
   };
 

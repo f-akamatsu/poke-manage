@@ -1,7 +1,9 @@
-import { Flex, Icon, IconButton, Tooltip } from '@chakra-ui/react';
+import { Button } from '@/components/ui/button';
+import { Field } from '@/components/ui/field';
+import { Tooltip } from '@/components/ui/tooltip';
+import { Flex, Icon, Input } from '@chakra-ui/react';
 import { useFormContext } from 'react-hook-form';
 import { FaFloppyDisk, FaPenToSquare } from 'react-icons/fa6';
-import NumberInput from '../../../atoms/NumberInput/NumberInput';
 import { PokemonBaseStatsFormSchemaType } from './PokemonBaseStatsFormSchema';
 
 export interface PokemonBaseStatsFormPresenterProps {
@@ -28,78 +30,96 @@ export function PokemonBaseStatsFormPresenter({
       <Flex alignItems='center' gap={12}>
         <Flex gap={4}>
           {/* HP */}
-          <NumberInput
-            {...register('hitPoints', { valueAsNumber: true })}
-            isReadOnly={!isEditing}
-            label='HP'
-            errorMessage={errors.hitPoints?.message}
-          />
+          <Field label='HP' invalid={!!errors.hitPoints} errorText={errors.hitPoints?.message}>
+            <Input
+              type='number'
+              textAlign='right'
+              readOnly={!isEditing}
+              {...register('hitPoints', { valueAsNumber: true })}
+            />
+          </Field>
 
           {/* こうげき */}
-          <NumberInput
-            {...register('attack', { valueAsNumber: true })}
-            isReadOnly={!isEditing}
-            label='こうげき'
-            errorMessage={errors.attack?.message}
-          />
+          <Field label='こうげき' invalid={!!errors.attack} errorText={errors.attack?.message}>
+            <Input
+              type='number'
+              textAlign='right'
+              readOnly={!isEditing}
+              {...register('attack', { valueAsNumber: true })}
+            />
+          </Field>
 
           {/* ぼうぎょ */}
-          <NumberInput
-            {...register('defense', { valueAsNumber: true })}
-            isReadOnly={!isEditing}
-            label='ぼうぎょ'
-            errorMessage={errors.defense?.message}
-          />
+          <Field label='ぼうぎょ' invalid={!!errors.defense} errorText={errors.defense?.message}>
+            <Input
+              type='number'
+              textAlign='right'
+              readOnly={!isEditing}
+              {...register('defense', { valueAsNumber: true })}
+            />
+          </Field>
 
           {/* とくこう */}
-          <NumberInput
-            {...register('spAttack', { valueAsNumber: true })}
-            isReadOnly={!isEditing}
-            label='とくこう'
-            errorMessage={errors.spAttack?.message}
-          />
+          <Field label='とくこう' invalid={!!errors.spAttack} errorText={errors.spAttack?.message}>
+            <Input
+              type='number'
+              textAlign='right'
+              readOnly={!isEditing}
+              {...register('spAttack', { valueAsNumber: true })}
+            />
+          </Field>
 
           {/* とくぼう */}
-          <NumberInput
-            {...register('spDefense', { valueAsNumber: true })}
-            isReadOnly={!isEditing}
+          <Field
             label='とくぼう'
-            errorMessage={errors.spDefense?.message}
-          />
+            invalid={!!errors.spDefense}
+            errorText={errors.spDefense?.message}
+          >
+            <Input
+              type='number'
+              textAlign='right'
+              readOnly={!isEditing}
+              {...register('spDefense', { valueAsNumber: true })}
+            />
+          </Field>
 
           {/* すばやさ */}
-          <NumberInput
-            {...register('speed', { valueAsNumber: true })}
-            isReadOnly={!isEditing}
-            label='すばやさ'
-            errorMessage={errors.speed?.message}
-          />
+          <Field label='すばやさ' invalid={!!errors.speed} errorText={errors.speed?.message}>
+            <Input
+              type='number'
+              textAlign='right'
+              readOnly={!isEditing}
+              {...register('speed', { valueAsNumber: true })}
+            />
+          </Field>
         </Flex>
 
         {/* それぞれのボタンにkeyをつけないと挙動がおかしくなる */}
         {isEditing ? (
-          <Tooltip label='変更を保存します'>
-            <IconButton
+          <Tooltip content='変更を保存します'>
+            <Button
               key='save-button'
               type='submit'
               aria-label='変更を保存する'
-              icon={<Icon as={FaFloppyDisk} />}
-              isLoading={isFetching}
-              isDisabled={!isValid}
+              loading={isFetching}
+              disabled={!isValid}
               colorScheme='teal'
-            />
+            >
+              <Icon as={FaFloppyDisk} />
+            </Button>
           </Tooltip>
         ) : (
-          <Tooltip label='種族値を変更します'>
-            <IconButton
+          <Tooltip content='種族値を変更します'>
+            <Button
               key='edit-button'
               type='button'
               aria-label='種族値を変更する'
-              icon={<Icon as={FaPenToSquare} />}
               colorScheme='teal'
               variant='outline'
               onClick={onClickEditIcon}
-            />
+            >
+              <Icon as={FaPenToSquare} />
+            </Button>
           </Tooltip>
         )}
       </Flex>

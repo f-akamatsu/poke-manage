@@ -1,12 +1,6 @@
-import {
-  Button,
-  Center,
-  Flex,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
-} from '@chakra-ui/react';
+import { Button } from '@/components/ui/button';
+import { Field } from '@/components/ui/field';
+import { Center, Flex, Input } from '@chakra-ui/react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { TypeSelect } from '../TypeSelect/TypeSelect';
 import { PokemonCreateFormSchemaType } from './PokemonCreateForm.schema';
@@ -31,46 +25,35 @@ export function PokemonCreateFormPresenter({
     <form onSubmit={handleSubmit(onSubmit)}>
       <Flex flexDir='column' gap={4} width='fit-content' bgColor='white'>
         {/* 図鑑No */}
-        <FormControl isInvalid={errors.pokedexNo !== undefined}>
-          <FormLabel fontSize='xs'>図鑑No</FormLabel>
+        <Field label='図鑑No' invalid={!!errors.pokedexNo} errorText={errors.pokedexNo?.message}>
           <Input type='number' {...register('pokedexNo', { valueAsNumber: true })} w='100px' />
-          {errors.pokedexNo && (
-            <FormErrorMessage fontSize='xs'>{errors.pokedexNo.message}</FormErrorMessage>
-          )}
-        </FormControl>
+        </Field>
 
         {/* 名前 */}
-        <FormControl isInvalid={errors.name !== undefined}>
-          <FormLabel fontSize='xs'>名前</FormLabel>
+        <Field label='名前' invalid={!!errors.name} errorText={errors.name?.message}>
           <Input {...register('name')} w='200px' />
-          {errors.name && <FormErrorMessage fontSize='xs'>{errors.name.message}</FormErrorMessage>}
-        </FormControl>
+        </Field>
 
         {/* タイプ */}
         <Flex gap={2}>
-          <Controller
-            control={control}
-            name='type1'
-            render={({ field: { onChange, value }, fieldState: { error } }) => (
-              <FormControl isInvalid={error !== undefined}>
-                <FormLabel fontSize='xs'>タイプ1</FormLabel>
+          <Field label='タイプ1' invalid={!!errors.type1} errorText={errors.type1?.message}>
+            <Controller
+              control={control}
+              name='type1'
+              render={({ field: { onChange, value }, fieldState: { error } }) => (
                 <TypeSelect value={value} onChange={onChange} isInvalid={error !== undefined} />
-                {error && <FormErrorMessage fontSize='xs'>{error.message}</FormErrorMessage>}
-              </FormControl>
-            )}
-          />
-
-          <Controller
-            control={control}
-            name='type2'
-            render={({ field: { onChange, value }, fieldState: { error } }) => (
-              <FormControl isInvalid={error !== undefined}>
-                <FormLabel fontSize='xs'>タイプ2</FormLabel>
+              )}
+            />
+          </Field>
+          <Field label='タイプ2' invalid={!!errors.type2} errorText={errors.type2?.message}>
+            <Controller
+              control={control}
+              name='type2'
+              render={({ field: { onChange, value }, fieldState: { error } }) => (
                 <TypeSelect value={value} onChange={onChange} isInvalid={error !== undefined} />
-                {error && <FormErrorMessage fontSize='xs'>{error.message}</FormErrorMessage>}
-              </FormControl>
-            )}
-          />
+              )}
+            />
+          </Field>
         </Flex>
 
         <Center>
@@ -79,8 +62,8 @@ export function PokemonCreateFormPresenter({
             w='fit-content'
             mt={4}
             colorScheme='teal'
-            isDisabled={!isValid}
-            isLoading={isFetching}
+            disabled={!isValid}
+            loading={isFetching}
           >
             新規登録
           </Button>

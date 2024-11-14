@@ -1,5 +1,5 @@
+import { toaster } from '@/components/ui/toaster';
 import { graphql } from '@/gql/__generated__';
-import { useToast } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
@@ -21,7 +21,6 @@ export interface PokemonCreateFormProps {}
 
 export function PokemonCreateForm({}: PokemonCreateFormProps) {
   const router = useRouter();
-  const toast = useToast();
 
   // React Hook Form
   const methods = useForm<PokemonCreateFormSchemaType>({
@@ -50,7 +49,7 @@ export function PokemonCreateForm({}: PokemonCreateFormProps) {
       },
     });
 
-    toast({ status: 'success', description: '登録しました' });
+    toaster.create({ type: 'success', description: '登録しました' });
     router.push(`/pokemon/${_createResult.data?.createPokemon.pokemonId}`);
   };
 
