@@ -14,7 +14,7 @@ export const Basic: Story = (args: TypeSelectPresenterProps) => {
 };
 
 Basic.args = {
-  options: Type.values.map((t) => {
+  types: Type.values.map((t) => {
     return { label: t.name, value: t.id };
   }),
 };

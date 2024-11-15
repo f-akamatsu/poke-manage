@@ -1,6 +1,5 @@
-import { Box, Flex, Text } from '@chakra-ui/react';
-import { Select } from 'chakra-react-select';
-import { TypeIcon } from '../TypeIcon/TypeIcon';
+import { SelectContent, SelectItem, SelectRoot } from '@/components/ui/select';
+import { createListCollection } from '@chakra-ui/react';
 
 export interface TypeSelectOptions {
   label: string;
@@ -8,40 +7,39 @@ export interface TypeSelectOptions {
 }
 
 export interface TypeSelectPresenterProps {
-  value: TypeSelectOptions | null | undefined;
-  onChange: (newValue: TypeSelectOptions | null | undefined) => void;
-  options: TypeSelectOptions[];
+  name: string;
+  value: string[];
+  onChange: (newValue: string[]) => void;
+  onBlur: () => void;
+  types: TypeSelectOptions[];
   isInvalid: boolean;
 }
 
 export function TypeSelectPresenter({
+  name,
   value,
   onChange,
-  options,
+  onBlur,
+  types,
   isInvalid,
 }: TypeSelectPresenterProps) {
+  const collection = createListCollection({ items: types });
   return (
-    <Box w='220px'>
-      <Select
-        options={options}
-        formatOptionLabel={formatOptionLabel}
-        useBasicStyles
-        placeholder='-'
-        isClearable
-        menuPlacement='auto'
-        value={value}
-        onChange={onChange}
-        isInvalid={isInvalid}
-      />
-    </Box>
-  );
-}
-
-function formatOptionLabel(option: { label: string; value: string }) {
-  return (
-    <Flex gap={2} alignItems='center'>
-      <TypeIcon typeId={option.value} />
-      <Text fontSize='small'>{option.label}</Text>
-    </Flex>
+    <SelectRoot
+      name={name}
+      value={value}
+      onValueChange={({ value }) => onChange(value)}
+      onInteractOutside={onBlur}
+      collection={collection}
+      width='220px'
+    >
+      <SelectContent>
+        {collection.items.map((type) => (
+          <SelectItem item={type} key={type.value}>
+            {type.label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </SelectRoot>
   );
 }

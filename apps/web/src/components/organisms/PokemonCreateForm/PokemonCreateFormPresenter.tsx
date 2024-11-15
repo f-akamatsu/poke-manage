@@ -40,8 +40,14 @@ export function PokemonCreateFormPresenter({
             <Controller
               control={control}
               name='type1'
-              render={({ field: { onChange, value }, fieldState: { error } }) => (
-                <TypeSelect value={value} onChange={onChange} isInvalid={error !== undefined} />
+              render={({ field: { name, onChange, onBlur, value }, fieldState: { error } }) => (
+                <TypeSelect
+                  name={name}
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  isInvalid={!!error}
+                />
               )}
             />
           </Field>
@@ -49,8 +55,14 @@ export function PokemonCreateFormPresenter({
             <Controller
               control={control}
               name='type2'
-              render={({ field: { onChange, value }, fieldState: { error } }) => (
-                <TypeSelect value={value} onChange={onChange} isInvalid={error !== undefined} />
+              render={({ field: { name, onChange, onBlur, value }, fieldState: { error } }) => (
+                <TypeSelect
+                  name={name}
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  isInvalid={!!error}
+                />
               )}
             />
           </Field>

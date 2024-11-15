@@ -1,9 +1,10 @@
-import { Button } from '@/components/ui/button';
 import { Field } from '@/components/ui/field';
-import { Tooltip } from '@/components/ui/tooltip';
-import { Flex, Icon, Input } from '@chakra-ui/react';
+import { Flex, Input } from '@chakra-ui/react';
 import { useFormContext } from 'react-hook-form';
-import { FaFloppyDisk, FaPenToSquare } from 'react-icons/fa6';
+import { FaEdit } from 'react-icons/fa';
+import { FaFloppyDisk } from 'react-icons/fa6';
+import { Button } from '../../../ui/button';
+import { Tooltip } from '../../../ui/tooltip';
 import { PokemonBaseStatsFormSchemaType } from './PokemonBaseStatsFormSchema';
 
 export interface PokemonBaseStatsFormPresenterProps {
@@ -105,7 +106,7 @@ export function PokemonBaseStatsFormPresenter({
               disabled={!isValid}
               colorScheme='teal'
             >
-              <Icon as={FaFloppyDisk} />
+              <FaFloppyDisk />
             </Button>
           </Tooltip>
         ) : (
@@ -118,7 +119,7 @@ export function PokemonBaseStatsFormPresenter({
               variant='outline'
               onClick={onClickEditIcon}
             >
-              <Icon as={FaPenToSquare} />
+              <FaEdit />
             </Button>
           </Tooltip>
         )}

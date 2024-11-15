@@ -13,16 +13,13 @@ export const pokedexNoSchema = z
   .min(1, '1以上を入力してください');
 
 /** スキーマ タイプ(共通) */
-const typeBaseSchema = z.object(
-  { label: z.string(), value: z.string() },
-  { invalid_type_error: '入力してください' }
-);
+const typeBaseSchema = z.string().array();
 
 /** スキーマ タイプ1 */
 export const type1Schema = typeBaseSchema;
 
 /** スキーマ タイプ2 */
-export const type2Schema = typeBaseSchema.nullable().optional();
+export const type2Schema = typeBaseSchema;
 
 /** スキーマ 種族値 */
 export const baseStatsSchema = z

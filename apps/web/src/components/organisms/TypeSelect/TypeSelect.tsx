@@ -1,22 +1,26 @@
 import { Type } from '@packages/common-enum';
-import { TypeSelectOptions, TypeSelectPresenter } from './TypeSelectPresenter';
+import { TypeSelectPresenter } from './TypeSelectPresenter';
 
 export interface TypeSelectProps {
-  value: TypeSelectOptions | null | undefined;
-  onChange: (newValue: TypeSelectOptions | null | undefined) => void;
+  name: string;
+  value: string[];
+  onChange: (newValue: string[]) => void;
+  onBlur: () => void;
   isInvalid?: boolean;
 }
 
-export function TypeSelect({ value, onChange, isInvalid = false }: TypeSelectProps) {
+export function TypeSelect({ name, value, onChange, onBlur, isInvalid = false }: TypeSelectProps) {
   const options = Type.values.map((t) => {
     return { value: t.id, label: t.name };
   });
 
   return (
     <TypeSelectPresenter
+      name={name}
       value={value}
       onChange={onChange}
-      options={options}
+      onBlur={onBlur}
+      types={options}
       isInvalid={isInvalid}
     />
   );

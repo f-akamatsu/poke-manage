@@ -44,8 +44,8 @@ export function PokemonCreateForm({}: PokemonCreateFormProps) {
       input: {
         name: data.name,
         pokedexNo: data.pokedexNo,
-        typeId1: data.type1.value,
-        typeId2: data.type2?.value ?? undefined,
+        typeId1: data.type1[0],
+        typeId2: data.type2[0] ?? undefined,
       },
     });
 

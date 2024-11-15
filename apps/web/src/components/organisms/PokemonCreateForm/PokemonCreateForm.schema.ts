@@ -11,7 +11,7 @@ export const pokemonCreateFormSchema = z
   .refine(
     (data) => {
       if (data.type2 === undefined || data.type2 === null) return true;
-      if (data.type2.value !== data.type1.value) return true;
+      if (data.type2[0] !== data.type1[0]) return true;
       return false;
     },
     {
