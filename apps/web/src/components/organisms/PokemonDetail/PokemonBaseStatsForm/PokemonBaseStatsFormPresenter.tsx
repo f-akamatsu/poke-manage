@@ -1,4 +1,4 @@
-import { Flex, Icon, IconButton, Tooltip } from '@chakra-ui/react';
+import { Flex, Grid, GridItem, Icon, IconButton, Tooltip } from '@chakra-ui/react';
 import { useFormContext } from 'react-hook-form';
 import { FaFloppyDisk, FaPenToSquare } from 'react-icons/fa6';
 import NumberInput from '../../../atoms/NumberInput/NumberInput';
@@ -26,55 +26,72 @@ export function PokemonBaseStatsFormPresenter({
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Flex alignItems='center' gap={12}>
-        <Flex gap={4}>
+        <Grid
+          templateRows='repeat(3, 1fr)'
+          templateColumns='repeat(2, 1fr)'
+          rowGap={4}
+          columnGap={12}
+        >
           {/* HP */}
-          <NumberInput
-            {...register('hitPoints', { valueAsNumber: true })}
-            isReadOnly={!isEditing}
-            label='HP'
-            errorMessage={errors.hitPoints?.message}
-          />
+          <GridItem>
+            <NumberInput
+              {...register('hitPoints', { valueAsNumber: true })}
+              isReadOnly={!isEditing}
+              label='HP'
+              errorMessage={errors.hitPoints?.message}
+            />
+          </GridItem>
 
           {/* こうげき */}
-          <NumberInput
-            {...register('attack', { valueAsNumber: true })}
-            isReadOnly={!isEditing}
-            label='こうげき'
-            errorMessage={errors.attack?.message}
-          />
+          <GridItem>
+            <NumberInput
+              {...register('attack', { valueAsNumber: true })}
+              isReadOnly={!isEditing}
+              label='こうげき'
+              errorMessage={errors.attack?.message}
+            />
+          </GridItem>
 
           {/* ぼうぎょ */}
-          <NumberInput
-            {...register('defense', { valueAsNumber: true })}
-            isReadOnly={!isEditing}
-            label='ぼうぎょ'
-            errorMessage={errors.defense?.message}
-          />
+          <GridItem>
+            <NumberInput
+              {...register('defense', { valueAsNumber: true })}
+              isReadOnly={!isEditing}
+              label='ぼうぎょ'
+              errorMessage={errors.defense?.message}
+            />
+          </GridItem>
 
           {/* とくこう */}
-          <NumberInput
-            {...register('spAttack', { valueAsNumber: true })}
-            isReadOnly={!isEditing}
-            label='とくこう'
-            errorMessage={errors.spAttack?.message}
-          />
+          <GridItem>
+            <NumberInput
+              {...register('spAttack', { valueAsNumber: true })}
+              isReadOnly={!isEditing}
+              label='とくこう'
+              errorMessage={errors.spAttack?.message}
+            />
+          </GridItem>
 
           {/* とくぼう */}
-          <NumberInput
-            {...register('spDefense', { valueAsNumber: true })}
-            isReadOnly={!isEditing}
-            label='とくぼう'
-            errorMessage={errors.spDefense?.message}
-          />
+          <GridItem>
+            <NumberInput
+              {...register('spDefense', { valueAsNumber: true })}
+              isReadOnly={!isEditing}
+              label='とくぼう'
+              errorMessage={errors.spDefense?.message}
+            />
+          </GridItem>
 
           {/* すばやさ */}
-          <NumberInput
-            {...register('speed', { valueAsNumber: true })}
-            isReadOnly={!isEditing}
-            label='すばやさ'
-            errorMessage={errors.speed?.message}
-          />
-        </Flex>
+          <GridItem>
+            <NumberInput
+              {...register('speed', { valueAsNumber: true })}
+              isReadOnly={!isEditing}
+              label='すばやさ'
+              errorMessage={errors.speed?.message}
+            />
+          </GridItem>
+        </Grid>
 
         {/* それぞれのボタンにkeyをつけないと挙動がおかしくなる */}
         {isEditing ? (
