@@ -78,7 +78,7 @@ export function PokemonCreateFormPresenter({
             type='submit'
             w='fit-content'
             mt={4}
-            colorScheme='teal'
+            colorScheme='red'
             isDisabled={!isValid}
             isLoading={isFetching}
           >

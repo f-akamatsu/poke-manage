@@ -3,7 +3,7 @@ import NextLink from 'next/link';
 
 export function Header() {
   return (
-    <Flex as='header' bg='gray.100' p={4} position='sticky' top={0}>
+    <Flex as='header' bg='#E53E3E' p={4} position='sticky' top={0} color='white'>
       <NextLink href='/' passHref>
         <Heading as='h1' fontSize='xl' cursor='pointer'>
           Poké Manage

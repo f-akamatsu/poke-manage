@@ -24,7 +24,7 @@ export function PokemonListPresenter({
           <Button
             w='fit-content'
             leftIcon={<AddIcon />}
-            colorScheme='teal'
+            colorScheme='red'
             variant='solid'
             onClick={createModalDisclosure.onOpen}
           >
