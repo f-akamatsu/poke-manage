@@ -24,10 +24,8 @@ export function PokemonCardPresenter({ pokemonFragment, onClick }: PokemonCardPr
 
   return (
     <Flex
-      border='1px'
       width='240px'
       bgColor='white'
-      borderColor='gray.400'
       borderRadius='12px'
       borderBottomWidth='3px'
       cursor='pointer'
@@ -38,7 +36,7 @@ export function PokemonCardPresenter({ pokemonFragment, onClick }: PokemonCardPr
       }}
       overflow='hidden'
     >
-      <Box w='8px' bgColor={getTypeColorCode(pokemon.typeId1)} opacity={0.8} />
+      <Box w='8px' bgColor={getTypeColorCode(pokemon.typeId1)} />
       <Flex padding={4} alignItems='center' gap={4} flexGrow={1}>
         <NoImage />
         <Flex flexDir='column' gap={1} flexGrow={1}>
