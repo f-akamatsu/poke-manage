@@ -3,11 +3,10 @@ import {
   CardBody,
   CardHeader,
   Flex,
-  Grid,
-  GridItem,
   Heading,
   Icon,
   IconButton,
+  SimpleGrid,
   Spacer,
   Tooltip,
 } from '@chakra-ui/react';
@@ -71,72 +70,55 @@ export function PokemonBaseStatsFormPresenter({
           </Flex>
         </CardHeader>
         <CardBody>
-          <Grid
-            templateRows='repeat(3, 1fr)'
-            templateColumns='repeat(2, 1fr)'
-            rowGap={4}
-            columnGap={12}
-          >
+          <SimpleGrid columns={2} spacingX={12} spacingY={4}>
             {/* HP */}
-            <GridItem>
-              <NumberInput
-                {...register('hitPoints', { valueAsNumber: true })}
-                isReadOnly={!isEditing}
-                label='HP'
-                errorMessage={errors.hitPoints?.message}
-              />
-            </GridItem>
+            <NumberInput
+              {...register('hitPoints', { valueAsNumber: true })}
+              isReadOnly={!isEditing}
+              label='HP'
+              errorMessage={errors.hitPoints?.message}
+            />
 
             {/* こうげき */}
-            <GridItem>
-              <NumberInput
-                {...register('attack', { valueAsNumber: true })}
-                isReadOnly={!isEditing}
-                label='こうげき'
-                errorMessage={errors.attack?.message}
-              />
-            </GridItem>
+            <NumberInput
+              {...register('attack', { valueAsNumber: true })}
+              isReadOnly={!isEditing}
+              label='こうげき'
+              errorMessage={errors.attack?.message}
+            />
 
             {/* ぼうぎょ */}
-            <GridItem>
-              <NumberInput
-                {...register('defense', { valueAsNumber: true })}
-                isReadOnly={!isEditing}
-                label='ぼうぎょ'
-                errorMessage={errors.defense?.message}
-              />
-            </GridItem>
+            <NumberInput
+              {...register('defense', { valueAsNumber: true })}
+              isReadOnly={!isEditing}
+              label='ぼうぎょ'
+              errorMessage={errors.defense?.message}
+            />
 
             {/* とくこう */}
-            <GridItem>
-              <NumberInput
-                {...register('spAttack', { valueAsNumber: true })}
-                isReadOnly={!isEditing}
-                label='とくこう'
-                errorMessage={errors.spAttack?.message}
-              />
-            </GridItem>
+            <NumberInput
+              {...register('spAttack', { valueAsNumber: true })}
+              isReadOnly={!isEditing}
+              label='とくこう'
+              errorMessage={errors.spAttack?.message}
+            />
 
             {/* とくぼう */}
-            <GridItem>
-              <NumberInput
-                {...register('spDefense', { valueAsNumber: true })}
-                isReadOnly={!isEditing}
-                label='とくぼう'
-                errorMessage={errors.spDefense?.message}
-              />
-            </GridItem>
+            <NumberInput
+              {...register('spDefense', { valueAsNumber: true })}
+              isReadOnly={!isEditing}
+              label='とくぼう'
+              errorMessage={errors.spDefense?.message}
+            />
 
             {/* すばやさ */}
-            <GridItem>
-              <NumberInput
-                {...register('speed', { valueAsNumber: true })}
-                isReadOnly={!isEditing}
-                label='すばやさ'
-                errorMessage={errors.speed?.message}
-              />
-            </GridItem>
-          </Grid>
+            <NumberInput
+              {...register('speed', { valueAsNumber: true })}
+              isReadOnly={!isEditing}
+              label='すばやさ'
+              errorMessage={errors.speed?.message}
+            />
+          </SimpleGrid>
         </CardBody>
       </Card>
     </form>
