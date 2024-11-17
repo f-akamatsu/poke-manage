@@ -9,9 +9,9 @@ const meta: Meta<typeof TimePicker> = {
 export default meta;
 type Story = StoryObj<typeof TimePicker>;
 
-export const Basic: Story = (args: TimePickerProps) => {
+export const Default: Story = (args: TimePickerProps) => {
   const [value, setValue] = useState<string>('');
   return <TimePicker {...args} value={value} onChange={setValue} />;
 };
-
-Basic.args = {};
+Default.storyName = 'default';
+Default.args = {};

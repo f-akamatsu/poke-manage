@@ -13,7 +13,7 @@ export default meta;
 
 type Story = StoryObj<typeof PokemonBaseStatsFormPresenter>;
 
-export const Basic: Story = (args: PokemonBaseStatsFormPresenterProps) => {
+export const Default: Story = (args: PokemonBaseStatsFormPresenterProps) => {
   const methods = useForm<PokemonBaseStatsFormSchemaType>();
   return (
     <FormProvider {...methods}>
@@ -21,4 +21,5 @@ export const Basic: Story = (args: PokemonBaseStatsFormPresenterProps) => {
     </FormProvider>
   );
 };
-Basic.args = {};
+Default.storyName = 'default';
+Default.args = {};

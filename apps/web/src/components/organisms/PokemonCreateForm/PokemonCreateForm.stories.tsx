@@ -14,7 +14,7 @@ const meta: Meta<typeof PokemonCreateFormPresenter> = {
 export default meta;
 type Story = StoryObj<typeof PokemonCreateFormPresenter>;
 
-export const Basic: Story = (args: PokemonCreateFormPresenterProps) => {
+export const Default: Story = (args: PokemonCreateFormPresenterProps) => {
   const methods = useForm<PokemonCreateFormSchemaType>({
     resolver: zodResolver(pokemonCreateFormSchema),
     mode: 'onChange',
@@ -25,5 +25,5 @@ export const Basic: Story = (args: PokemonCreateFormPresenterProps) => {
     </FormProvider>
   );
 };
-
-Basic.args = {};
+Default.storyName = 'default';
+Default.args = {};

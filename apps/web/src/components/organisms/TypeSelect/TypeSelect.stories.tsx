@@ -9,11 +9,11 @@ const meta: Meta<typeof TypeSelectPresenter> = {
 export default meta;
 type Story = StoryObj<typeof TypeSelectPresenter>;
 
-export const Basic: Story = (args: TypeSelectPresenterProps) => {
+export const Default: Story = (args: TypeSelectPresenterProps) => {
   return <TypeSelectPresenter {...args} />;
 };
-
-Basic.args = {
+Default.storyName = 'default';
+Default.args = {
   options: Type.values.map((t) => {
     return { label: t.name, value: t.id };
   }),

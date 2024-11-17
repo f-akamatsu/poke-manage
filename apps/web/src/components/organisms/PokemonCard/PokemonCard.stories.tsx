@@ -14,11 +14,11 @@ const meta: Meta<typeof PokemonCardPresenter> = {
 export default meta;
 type Story = StoryObj<typeof PokemonCardPresenter>;
 
-export const Basic: Story = (args: PokemonCardPresenterProps) => {
+export const Default: Story = (args: PokemonCardPresenterProps) => {
   return <PokemonCardPresenter {...args} />;
 };
-
-Basic.args = {
+Default.storyName = 'default';
+Default.args = {
   pokemonFragment: makeFragmentData(
     {
       pokemonId: '',

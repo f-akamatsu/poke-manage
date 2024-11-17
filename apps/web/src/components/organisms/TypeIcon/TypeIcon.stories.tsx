@@ -19,5 +19,5 @@ export const AllTypes: Story = () => {
     </Flex>
   );
 };
-
+AllTypes.storyName = 'all types';
 AllTypes.args = {};
