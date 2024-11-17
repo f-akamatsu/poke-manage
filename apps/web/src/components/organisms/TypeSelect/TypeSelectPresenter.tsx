@@ -1,6 +1,6 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
-import { TypeIcon } from '../TypeIcon';
+import { TypeIcon } from '../TypeIcon/TypeIcon';
 
 export interface TypeSelectOptions {
   label: string;
