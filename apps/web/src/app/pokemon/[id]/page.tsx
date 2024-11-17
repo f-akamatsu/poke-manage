@@ -1,7 +1,7 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import { PokemonDetail } from '../../../components/organisms/PokemonDetail/PokemonDetail';
+import { PokemonDetail } from '../../../components/organisms/PokemonDetail';
 
 export default function PokemonPage() {
   const params = useParams();
