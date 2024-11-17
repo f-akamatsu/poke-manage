@@ -37,26 +37,23 @@ export interface PokemonBaseStatsFormProps {
 }
 
 export function PokemonBaseStatsForm({ pokemonBaseStatsFormFragment }: PokemonBaseStatsFormProps) {
-  const toast = useToast();
-  const [isEditing, setIsEditing] = useState<boolean>(false);
-
+  // フラグメント開梱
   const pokemonBaseStats = getFragmentData(
     PokemonBaseStatsFormFragment,
     pokemonBaseStatsFormFragment
   );
 
+  // state
+  const toast = useToast();
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [defaultValues, setDefaultValues] =
+    useState<PokemonBaseStatsFormSchemaType>(pokemonBaseStats);
+
   // React Hook Form
   const methods = useForm<PokemonBaseStatsFormSchemaType>({
     resolver: zodResolver(pokemonBaseStatsFormSchema),
     mode: 'onChange',
-    defaultValues: {
-      hitPoints: pokemonBaseStats.hitPoints,
-      attack: pokemonBaseStats.attack,
-      defense: pokemonBaseStats.defense,
-      spAttack: pokemonBaseStats.spAttack,
-      spDefense: pokemonBaseStats.spDefense,
-      speed: pokemonBaseStats.speed,
-    },
+    defaultValues,
   });
 
   // Mutation
@@ -80,6 +77,7 @@ export function PokemonBaseStatsForm({ pokemonBaseStatsFormFragment }: PokemonBa
     })
       .then(() => {
         toast({ status: 'success', description: '種族値を更新しました' });
+        setDefaultValues(data);
         setIsEditing(false);
       })
       .catch((_e) => {
@@ -87,8 +85,18 @@ export function PokemonBaseStatsForm({ pokemonBaseStatsFormFragment }: PokemonBa
       });
   };
 
+  /**
+   * キャンセルボタン押下
+   */
+  const handleClickCancel = () => {
+    methods.reset(defaultValues);
+    setIsEditing(false);
+  };
+
+  /**
+   * 編集ボタン押下
+   */
   const handleClickEditIcon = () => {
-    console.log('handleClickEditIcon');
     setIsEditing(true);
   };
 
@@ -99,6 +107,7 @@ export function PokemonBaseStatsForm({ pokemonBaseStatsFormFragment }: PokemonBa
         isFetching={fetching}
         isEditing={isEditing}
         onClickEditIcon={handleClickEditIcon}
+        onClickCancelIcon={handleClickCancel}
       />
     </FormProvider>
   );

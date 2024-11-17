@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { useFormContext } from 'react-hook-form';
 import { FaFloppyDisk, FaPenToSquare } from 'react-icons/fa6';
+import { GiCancel } from 'react-icons/gi';
 import { NumberInput } from '../../../molecules/NumberInput/NumberInput';
 import { PokemonBaseStatsFormSchemaType } from './PokemonBaseStatsFormSchema';
 
@@ -20,6 +21,7 @@ export interface PokemonBaseStatsFormPresenterProps {
   isFetching: boolean;
   isEditing: boolean;
   onClickEditIcon: () => void;
+  onClickCancelIcon: () => void;
 }
 
 export function PokemonBaseStatsFormPresenter({
@@ -27,6 +29,7 @@ export function PokemonBaseStatsFormPresenter({
   isFetching,
   isEditing,
   onClickEditIcon,
+  onClickCancelIcon,
 }: PokemonBaseStatsFormPresenterProps) {
   const {
     register,
@@ -38,22 +41,36 @@ export function PokemonBaseStatsFormPresenter({
     <form onSubmit={handleSubmit(onSubmit)}>
       <Card w='fit-content'>
         <CardHeader>
-          <Flex alignItems='center'>
+          <Flex alignItems='center' gap={2}>
             <Heading size='md'>種族値</Heading>
             <Spacer />
             {/* それぞれのボタンにkeyをつけないと挙動がおかしくなる */}
             {isEditing ? (
-              <Tooltip label='変更を保存します'>
-                <IconButton
-                  key='save-button'
-                  type='submit'
-                  aria-label='変更を保存する'
-                  icon={<Icon as={FaFloppyDisk} />}
-                  isLoading={isFetching}
-                  isDisabled={!isValid}
-                  colorScheme='red'
-                />
-              </Tooltip>
+              <>
+                <Tooltip label='変更をキャンセルします'>
+                  <IconButton
+                    key='cancel-button'
+                    aria-label='変更をキャンセルする'
+                    icon={<Icon as={GiCancel} />}
+                    colorScheme='red'
+                    size='sm'
+                    variant='ghost'
+                    onClick={onClickCancelIcon}
+                  />
+                </Tooltip>
+                <Tooltip label='変更を保存します'>
+                  <IconButton
+                    key='save-button'
+                    type='submit'
+                    aria-label='変更を保存する'
+                    icon={<Icon as={FaFloppyDisk} />}
+                    isLoading={isFetching}
+                    isDisabled={!isValid}
+                    colorScheme='red'
+                    size='sm'
+                  />
+                </Tooltip>
+              </>
             ) : (
               <Tooltip label='種族値を変更します'>
                 <IconButton
@@ -62,8 +79,9 @@ export function PokemonBaseStatsFormPresenter({
                   aria-label='種族値を変更する'
                   icon={<Icon as={FaPenToSquare} />}
                   colorScheme='red'
-                  variant='outline'
+                  variant='ghost'
                   onClick={onClickEditIcon}
+                  size='sm'
                 />
               </Tooltip>
             )}
