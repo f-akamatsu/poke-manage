@@ -11,8 +11,8 @@ import {
   Tooltip,
 } from '@chakra-ui/react';
 import { useFormContext } from 'react-hook-form';
+import { FaTimes } from 'react-icons/fa';
 import { FaFloppyDisk, FaPenToSquare } from 'react-icons/fa6';
-import { GiCancel } from 'react-icons/gi';
 import { NumberInput } from '../../../molecules/NumberInput/NumberInput';
 import { PokemonBaseStatsFormSchemaType } from './PokemonBaseStatsFormSchema';
 
@@ -41,7 +41,7 @@ export function PokemonBaseStatsFormPresenter({
     <form onSubmit={handleSubmit(onSubmit)}>
       <Card w='fit-content'>
         <CardHeader>
-          <Flex alignItems='center' gap={2}>
+          <Flex alignItems='center' gap={4}>
             <Heading size='md'>種族値</Heading>
             <Spacer />
             {/* それぞれのボタンにkeyをつけないと挙動がおかしくなる */}
@@ -51,11 +51,12 @@ export function PokemonBaseStatsFormPresenter({
                   <IconButton
                     key='cancel-button'
                     aria-label='変更をキャンセルする'
-                    icon={<Icon as={GiCancel} />}
+                    icon={<Icon as={FaTimes} />}
                     colorScheme='red'
                     size='sm'
                     variant='ghost'
                     onClick={onClickCancelIcon}
+                    isRound
                   />
                 </Tooltip>
                 <Tooltip label='変更を保存します'>
@@ -68,6 +69,7 @@ export function PokemonBaseStatsFormPresenter({
                     isDisabled={!isValid}
                     colorScheme='red'
                     size='sm'
+                    isRound
                   />
                 </Tooltip>
               </>
@@ -82,6 +84,7 @@ export function PokemonBaseStatsFormPresenter({
                   variant='ghost'
                   onClick={onClickEditIcon}
                   size='sm'
+                  isRound
                 />
               </Tooltip>
             )}
