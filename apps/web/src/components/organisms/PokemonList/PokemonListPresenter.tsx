@@ -3,8 +3,8 @@ import { FragmentType } from '@/gql/__generated__';
 import { AddIcon } from '@chakra-ui/icons';
 import { Button, Flex, UseDisclosureReturn } from '@chakra-ui/react';
 import { PokemonCardFieldsFragment } from '../PokemonCard/PokemonCardPresenter';
-import { PokemonCardList } from '../PokemonCardList/PokemonCardList';
-import { PokemonCreateForm } from '../PokemonCreateForm/PokemonCreateForm';
+import { PokemonCardList } from '../PokemonCardList';
+import { PokemonCreateForm } from '../PokemonCreateForm';
 
 export interface PokemonListPresenterProps {
   pokemonFragments: FragmentType<typeof PokemonCardFieldsFragment>[];
