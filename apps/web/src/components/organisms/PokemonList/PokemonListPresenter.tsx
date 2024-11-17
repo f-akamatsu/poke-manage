@@ -1,4 +1,4 @@
-import { SimpleModal } from '@/components/molecules/SimpleModal/SimpleModal';
+import { SimpleModal } from '@/components/molecules/SimpleModal';
 import { FragmentType } from '@/gql/__generated__';
 import { AddIcon } from '@chakra-ui/icons';
 import { Button, Flex, UseDisclosureReturn } from '@chakra-ui/react';
