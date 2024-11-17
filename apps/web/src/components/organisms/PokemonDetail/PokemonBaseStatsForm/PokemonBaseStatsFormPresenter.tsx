@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { useFormContext } from 'react-hook-form';
 import { FaFloppyDisk, FaPenToSquare } from 'react-icons/fa6';
-import { NumberInput } from '../../../atoms/NumberInput/NumberInput';
+import { NumberInput } from '../../../molecules/NumberInput/NumberInput';
 import { PokemonBaseStatsFormSchemaType } from './PokemonBaseStatsFormSchema';
 
 export interface PokemonBaseStatsFormPresenterProps {
