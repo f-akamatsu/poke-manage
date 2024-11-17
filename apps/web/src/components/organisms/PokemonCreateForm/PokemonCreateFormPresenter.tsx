@@ -8,7 +8,7 @@ import {
   Input,
 } from '@chakra-ui/react';
 import { Controller, useFormContext } from 'react-hook-form';
-import { TypeSelect } from '../TypeSelect/TypeSelect';
+import { TypeSelect } from '../TypeSelect';
 import { PokemonCreateFormSchemaType } from './PokemonCreateForm.schema';
 
 export interface PokemonCreateFormPresenterProps {
