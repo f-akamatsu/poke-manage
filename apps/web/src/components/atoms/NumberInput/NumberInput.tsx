@@ -16,7 +16,7 @@ export interface NumberInputProps extends InputProps {
   labelWidth?: string;
 }
 
-const NumberInput = forwardRef(function NumberInput(props: NumberInputProps, ref) {
+export const NumberInput = forwardRef(function NumberInput(props: NumberInputProps, ref) {
   const _width = props.width ?? '140px';
   6;
   const _labelWidth = props.labelWidth ?? '60px';
@@ -52,5 +52,3 @@ const NumberInput = forwardRef(function NumberInput(props: NumberInputProps, ref
     </FormControl>
   );
 });
-
-export default NumberInput;
