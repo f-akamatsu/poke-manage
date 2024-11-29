@@ -18,7 +18,6 @@ export interface NumberInputProps extends InputProps {
 
 export const NumberInput = forwardRef(function NumberInput(props: NumberInputProps, ref) {
   const _width = props.width ?? '140px';
-  6;
   const _labelWidth = props.labelWidth ?? '60px';
   const _errorMessage = props.errorMessage;
   const _rowSize = !!_errorMessage ? 2 : 1;
