@@ -2,7 +2,7 @@ import { SimpleModal } from '@/components/molecules/SimpleModal/SimpleModal';
 import { FragmentType } from '@/gql/__generated__';
 import { AddIcon } from '@chakra-ui/icons';
 import { Button, Flex, UseDisclosureReturn } from '@chakra-ui/react';
-import { PokemonCardFieldsFragment } from '../PokemonCard/PokemonCardPresenter';
+import { PokemonCardFieldsFragment } from '../PokemonCard';
 import { PokemonCardList } from '../PokemonCardList';
 import { PokemonCreateForm } from '../PokemonCreateForm';
 

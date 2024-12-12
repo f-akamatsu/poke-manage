@@ -1,7 +1,7 @@
 import { makeFragmentData } from '@/gql/__generated__';
 import { Type } from '@packages/common-enum';
 import { Meta, StoryObj } from '@storybook/react';
-import { PokemonCardFieldsFragment } from '../PokemonCard/PokemonCardPresenter';
+import { PokemonCardFieldsFragment } from '../PokemonCard';
 import {
   PokemonCardListPresenter,
   PokemonCardListPresenterProps,

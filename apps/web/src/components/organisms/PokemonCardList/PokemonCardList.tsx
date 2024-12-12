@@ -1,5 +1,5 @@
 import { FragmentType } from '@/gql/__generated__';
-import { PokemonCardFieldsFragment } from '../PokemonCard/PokemonCardPresenter';
+import { PokemonCardFieldsFragment } from '../PokemonCard';
 import { PokemonCardListPresenter } from './PokemonCardListPresenter';
 
 export interface PokemonCardListProps {
