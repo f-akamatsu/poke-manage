@@ -57,6 +57,7 @@ export function PokemonBaseStatsFormPresenter({
                     variant='ghost'
                     onClick={onClickCancelIcon}
                     isRound
+                    disabled={isFetching}
                   />
                 </Tooltip>
                 <Tooltip label='変更を保存します'>
