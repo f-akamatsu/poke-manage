@@ -1,7 +1,6 @@
 import { FragmentType } from '@/gql/__generated__';
 import { Flex } from '@chakra-ui/react';
-import { PokemonCard } from '../PokemonCard/PokemonCard';
-import { PokemonCardFieldsFragment } from '../PokemonCard/PokemonCardPresenter';
+import { PokemonCard, PokemonCardFieldsFragment } from '../PokemonCard';
 
 export interface PokemonCardListPresenterProps {
   pokemonFragments: FragmentType<typeof PokemonCardFieldsFragment>[];
