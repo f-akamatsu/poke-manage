@@ -1,8 +1,5 @@
 import { FragmentType } from '../../../gql/__generated__';
-import {
-  PokemonBaseStatsForm,
-  PokemonBaseStatsFormFragment,
-} from './PokemonBaseStatsForm/PokemonBaseStatsForm';
+import { PokemonBaseStatsForm, PokemonBaseStatsFormFragment } from './PokemonBaseStatsForm';
 
 export interface PokemonDetailPresenterProps {
   pokemonBaseStatsFormFragment: FragmentType<typeof PokemonBaseStatsFormFragment>;
