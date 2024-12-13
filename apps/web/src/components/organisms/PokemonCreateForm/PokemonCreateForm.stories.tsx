@@ -1,7 +1,4 @@
-import { zodResolver } from '@hookform/resolvers/zod';
 import { Meta, StoryObj } from '@storybook/react';
-import { FormProvider, useForm } from 'react-hook-form';
-import { pokemonCreateFormSchema, PokemonCreateFormSchemaType } from './PokemonCreateForm.schema';
 import {
   PokemonCreateFormPresenter,
   PokemonCreateFormPresenterProps,
@@ -15,15 +12,7 @@ export default meta;
 type Story = StoryObj<typeof PokemonCreateFormPresenter>;
 
 export const Default: Story = (args: PokemonCreateFormPresenterProps) => {
-  const methods = useForm<PokemonCreateFormSchemaType>({
-    resolver: zodResolver(pokemonCreateFormSchema),
-    mode: 'onChange',
-  });
-  return (
-    <FormProvider {...methods}>
-      <PokemonCreateFormPresenter {...args} />
-    </FormProvider>
-  );
+  return <PokemonCreateFormPresenter {...args} />;
 };
 Default.storyName = 'default';
 Default.args = {};
