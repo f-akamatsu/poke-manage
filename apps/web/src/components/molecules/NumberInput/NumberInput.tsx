@@ -24,7 +24,7 @@ export const NumberInput = forwardRef(function NumberInput(props: NumberInputPro
 
   return (
     <FormControl isInvalid={!!_errorMessage} w={_width}>
-      <Grid templateRows={`repeat(${_rowSize}, 1fr)`} templateColumns={`${_labelWidth} 1fr`}>
+      <Grid templateRows={`repeat(${_rowSize}, auto)`} templateColumns={`${_labelWidth} 1fr`}>
         <GridItem display='flex' alignItems='center'>
           <FormLabel m={0} fontSize='xs'>
             {props.label}
