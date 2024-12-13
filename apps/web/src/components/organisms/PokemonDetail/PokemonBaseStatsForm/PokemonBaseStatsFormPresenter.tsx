@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { useFormContext } from 'react-hook-form';
 import { FaTimes } from 'react-icons/fa';
-import { FaFloppyDisk, FaPenToSquare } from 'react-icons/fa6';
+import { FaChartSimple, FaFloppyDisk, FaPenToSquare } from 'react-icons/fa6';
 import { NumberInput } from '../../../molecules/NumberInput/NumberInput';
 import { PokemonBaseStatsFormSchemaType } from './PokemonBaseStatsFormSchema';
 
@@ -42,6 +42,7 @@ export function PokemonBaseStatsFormPresenter({
       <Card w='fit-content'>
         <CardHeader>
           <Flex alignItems='center' gap={4}>
+            <FaChartSimple size={24} style={{ transform: 'rotate(90deg)' }} />
             <Heading size='md'>種族値</Heading>
             <Spacer />
             {/* それぞれのボタンにkeyをつけないと挙動がおかしくなる */}
