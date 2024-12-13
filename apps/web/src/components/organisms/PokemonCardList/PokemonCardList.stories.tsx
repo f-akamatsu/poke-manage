@@ -2,20 +2,17 @@ import { makeFragmentData } from '@/gql/__generated__';
 import { Type } from '@packages/common-enum';
 import { Meta, StoryObj } from '@storybook/react';
 import { PokemonCardFieldsFragment } from '../PokemonCard';
-import {
-  PokemonCardListPresenter,
-  PokemonCardListPresenterProps,
-} from './PokemonCardListPresenter';
+import { PokemonCardList, PokemonCardListProps } from './PokemonCardList';
 
-const meta: Meta<typeof PokemonCardListPresenter> = {
-  component: PokemonCardListPresenter,
+const meta: Meta<typeof PokemonCardList> = {
+  component: PokemonCardList,
 };
 
 export default meta;
-type Story = StoryObj<typeof PokemonCardListPresenter>;
+type Story = StoryObj<typeof PokemonCardList>;
 
-export const Default: Story = (args: PokemonCardListPresenterProps) => {
-  return <PokemonCardListPresenter {...args} />;
+export const Default: Story = (args: PokemonCardListProps) => {
+  return <PokemonCardList {...args} />;
 };
 Default.storyName = 'default';
 Default.args = {

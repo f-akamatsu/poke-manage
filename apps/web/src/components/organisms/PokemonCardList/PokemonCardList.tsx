@@ -1,6 +1,6 @@
 import { FragmentType } from '@/gql/__generated__';
-import { PokemonCardFieldsFragment } from '../PokemonCard';
-import { PokemonCardListPresenter } from './PokemonCardListPresenter';
+import { Flex } from '@chakra-ui/react';
+import { PokemonCard, PokemonCardFieldsFragment } from '../PokemonCard';
 
 export interface PokemonCardListProps {
   pokemonFragments: FragmentType<typeof PokemonCardFieldsFragment>[];
@@ -9,9 +9,10 @@ export interface PokemonCardListProps {
 
 export function PokemonCardList({ pokemonFragments, onClickPokemonCard }: PokemonCardListProps) {
   return (
-    <PokemonCardListPresenter
-      pokemonFragments={pokemonFragments}
-      onClickPokemonCard={onClickPokemonCard}
-    />
+    <Flex wrap='wrap' gap={4}>
+      {pokemonFragments.map((f, i) => (
+        <PokemonCard key={i} pokemonFragment={f} onClick={onClickPokemonCard} />
+      ))}
+    </Flex>
   );
 }
