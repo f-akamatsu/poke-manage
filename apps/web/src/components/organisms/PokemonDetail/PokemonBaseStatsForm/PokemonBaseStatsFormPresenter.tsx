@@ -3,10 +3,10 @@ import {
   CardBody,
   CardHeader,
   Flex,
+  Grid,
   Heading,
   Icon,
   IconButton,
-  SimpleGrid,
   Spacer,
   Tooltip,
 } from '@chakra-ui/react';
@@ -92,7 +92,7 @@ export function PokemonBaseStatsFormPresenter({
           </Flex>
         </CardHeader>
         <CardBody>
-          <SimpleGrid columns={2} spacingX={12} spacingY={4}>
+          <Grid gridAutoFlow='column' gridTemplateRows='repeat(3, auto)' columnGap={12} rowGap={4}>
             {/* HP */}
             <NumberInput
               {...register('hitPoints', { valueAsNumber: true })}
@@ -140,7 +140,7 @@ export function PokemonBaseStatsFormPresenter({
               label='すばやさ'
               errorMessage={errors.speed?.message}
             />
-          </SimpleGrid>
+          </Grid>
         </CardBody>
       </Card>
     </form>
