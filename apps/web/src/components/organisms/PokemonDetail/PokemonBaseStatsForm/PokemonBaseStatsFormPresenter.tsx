@@ -93,7 +93,7 @@ export function PokemonBaseStatsFormPresenter({
           </Flex>
         </CardHeader>
         <CardBody>
-          <Grid gridAutoFlow='column' gridTemplateRows='repeat(3, auto)' columnGap={12} rowGap={4}>
+          <Grid autoFlow='column' templateRows='repeat(3, auto)' columnGap={12} rowGap={4}>
             {/* HP */}
             <NumberInput
               {...register('hitPoints', { valueAsNumber: true })}
