@@ -26,7 +26,13 @@ export const NumberInput = forwardRef(function NumberInput(props: NumberInputPro
     <FormControl isInvalid={!!_errorMessage} w={_width}>
       <Grid templateRows={`repeat(${_rowSize}, auto)`} templateColumns={`${_labelWidth} 1fr`}>
         <GridItem display='flex' alignItems='center'>
-          <FormLabel m={0} fontSize='xs'>
+          <FormLabel
+            m={0}
+            fontSize='xs'
+            {...(props.isReadOnly && {
+              pointerEvents: 'none',
+            })}
+          >
             {props.label}
           </FormLabel>
         </GridItem>
@@ -36,7 +42,14 @@ export const NumberInput = forwardRef(function NumberInput(props: NumberInputPro
             type='number'
             textAlign='right'
             ref={ref}
-            {...(props.isReadOnly && { bgColor: 'gray.50', cursor: 'default' })}
+            {...(props.isReadOnly && {
+              bgColor: undefined,
+              cursor: 'default',
+              borderColor: 'transparent',
+              fontWeight: 'bold',
+              fontSize: 20,
+              pointerEvents: 'none',
+            })}
           />
         </GridItem>
         <GridItem />

@@ -28,4 +28,5 @@ export const type2Schema = typeBaseSchema.nullable().optional();
 export const baseStatsSchema = z
   .number({ message: '入力してください' })
   .int()
-  .min(1, '1以上を入力してください');
+  .min(1, '1以上を入力してください')
+  .max(999, '999以下を入力してください');
