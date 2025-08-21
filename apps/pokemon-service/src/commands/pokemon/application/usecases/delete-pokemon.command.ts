@@ -1,6 +1,5 @@
 import { Inject } from '@nestjs/common';
 import { CommandHandler, ICommand, ICommandHandler } from '@nestjs/cqrs';
-import { EventEmitter2 } from '@nestjs/event-emitter';
 import { PokemonDeletedEvent } from '../../domain/events/pokemon-deleted.event';
 import {
   IPokemonRepository,
@@ -25,7 +24,6 @@ export class DeletePokemonCommandHandler
   constructor(
     @Inject(POKEMON_REPOSITORY_TOKEN)
     private readonly repository: IPokemonRepository,
-    private eventEmitter: EventEmitter2,
   ) {}
 
   /**
@@ -38,8 +36,5 @@ export class DeletePokemonCommandHandler
     );
     pokemon.delete(event);
     await this.repository.save(pokemon);
-
-    // ドメインイベント発行
-    await this.eventEmitter.emitAsync('pokemon.deleted', pokemon);
   }
 }

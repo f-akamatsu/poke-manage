@@ -1,6 +1,5 @@
 import { Inject } from '@nestjs/common';
 import { CommandHandler, ICommand, ICommandHandler } from '@nestjs/cqrs';
-import { EventEmitter2 } from '@nestjs/event-emitter';
 import { PokemonNameUpdatedEvent } from '../../domain/events/pokemon-name-updated.event';
 import {
   IPokemonRepository,
@@ -28,7 +27,6 @@ export class UpdatePokemonNameCommandHandler
   constructor(
     @Inject(POKEMON_REPOSITORY_TOKEN)
     private readonly repository: IPokemonRepository,
-    private eventEmitter: EventEmitter2,
   ) {}
 
   /**
@@ -41,8 +39,5 @@ export class UpdatePokemonNameCommandHandler
     );
     pokemon.updateName(event);
     await this.repository.save(pokemon);
-
-    // ドメインイベント発行
-    await this.eventEmitter.emitAsync('pokemon.name-updated', pokemon);
   }
 }
