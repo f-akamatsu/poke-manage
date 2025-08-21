@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { PokemonEventHandler } from './application/event-handlers/pokemon.event-handler';
+import { TestPokemonEventHandler } from './application/event-handlers/test-pokemon.event-handler';
 import { CreatePokemonCommandHandler } from './application/usecases/create-pokemon.command';
 import { DeletePokemonCommandHandler } from './application/usecases/delete-pokemon.command';
 import { UpdatePokemonBaseStatsCommandHandler } from './application/usecases/update-pokemon-base-stats.command';
@@ -17,6 +18,7 @@ import { PokemonController } from './presentation/pokemon.controller';
     DeletePokemonCommandHandler,
     UpdatePokemonBaseStatsCommandHandler,
     PokemonEventHandler,
+    TestPokemonEventHandler,
     {
       provide: POKEMON_REPOSITORY_TOKEN,
       useClass: PokemonRepository,

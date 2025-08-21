@@ -37,6 +37,8 @@ export class CreatePokemonCommandHandler
    *
    */
   async execute(command: CreatePokemonCommand): Promise<{ pokemonId: string }> {
+    console.log('========== UseCase Start ==========');
+
     const event = new PokemonCreatedEvent(
       command.name,
       command.pokedexNo,
@@ -48,6 +50,8 @@ export class CreatePokemonCommandHandler
 
     // ドメインイベント発行
     await this.eventEmitter.emitAsync('pokemon.created', pokemon);
+
+    console.log('========== UseCase End ==========');
 
     return { pokemonId: pokemon.pokemonId.value };
   }
