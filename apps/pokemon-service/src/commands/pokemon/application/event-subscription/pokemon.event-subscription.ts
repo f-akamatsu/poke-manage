@@ -3,7 +3,7 @@ import {
   OnDomainEvent,
   PublishedDomainEvent,
 } from '@event-nest/core';
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { PrismaService } from '../../../../common/prisma/prisma.service';
 import { PokemonBaseStatsUpdatedEvent } from '../../domain/events/pokemon-base-stats-updated.event';
 import { PokemonCreatedEvent } from '../../domain/events/pokemon-created.event';
@@ -51,10 +51,15 @@ export class PokemonEventSubscription
     } else if (payload instanceof PokemonDeletedEvent) {
       await this.pokemonDeletedEventSubscription(pokemonId);
     } else {
-      throw new Error();
+      throw new InternalServerErrorException(
+        '不正なPokemonイベントが発生しました。',
+      );
     }
   }
 
+  /**
+   * ポケモン新規登録イベントのサブスクリプション
+   */
   private async pokemonCreatedEventSubscription(
     pokemonId: string,
     payload: PokemonCreatedEvent,
@@ -76,6 +81,9 @@ export class PokemonEventSubscription
     });
   }
 
+  /**
+   * ポケモンの名前変更イベントのサブスクリプション
+   */
   private async pokemonNameUpdatedEventSubscription(
     pokemonId: string,
     payload: PokemonNameUpdatedEvent,
@@ -86,6 +94,9 @@ export class PokemonEventSubscription
     });
   }
 
+  /**
+   * ポケモンの種族値変更イベントのサブスクリプション
+   */
   private async pokemonBaseStatsUpdatedEventSubscription(
     pokemonId: string,
     payload: PokemonBaseStatsUpdatedEvent,
@@ -103,6 +114,9 @@ export class PokemonEventSubscription
     });
   }
 
+  /**
+   * ポケモン削除イベントのサブスクリプション
+   */
   private async pokemonDeletedEventSubscription(
     pokemonId: string,
   ): Promise<void> {
